@@ -9,8 +9,11 @@ console.log("test");
 // app.set('port', (process.env.PORT || 5000))
 // app.use(express.static(__dirname + '/public'))
 
+console.log("express", app)
+
 app.get('/', function (req, res) {
     console.log("get req:", req);
+    res.render('home', {sayHelloTo: 'world'});
     res.send('Hello World!')
 })
 
