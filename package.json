@@ -1,0 +1,19 @@
+{
+  "name": "zodiacsingbot",
+  "version": "1.0.0",
+  "description": "A bot that gives you the zodiac sign for the date you provide it.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "zodiac",
+    "sign",
+    "chatbot"
+  ],
+  "author": "Schwein",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
