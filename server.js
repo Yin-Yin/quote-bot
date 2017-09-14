@@ -1,4 +1,4 @@
-
+/*
 const express = require('express');
 
 const app = express();
@@ -20,4 +20,14 @@ app.get('/', function (req, res) {
 // api.ai route
 app.post('/intent', (req, res) => {
     res.send('Hello')
+});
+*/
+
+var app = require('express').createServer();
+app.get('/',function(req,res) {
+	res.send("Hello World");
+});
+
+app.listen(process.env.PORT || 3000,function(){
+	console.log("listening on 3000");
 });
