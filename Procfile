@@ -1,1 +1,1 @@
-worker: node workers/match.js
+web: node --debug=5858 index.js
