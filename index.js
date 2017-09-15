@@ -1,13 +1,18 @@
-
+var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
 
-app.set('port', (process.env.PORT || 5000));
 
-app.configure(function(){
-  app.use(express.bodyParser());
-  app.use(app.router);
-});
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+
+
+app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
