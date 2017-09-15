@@ -30,14 +30,14 @@ app.post('/intent', function(req, res){
   let action = req.body.result.action;
   let actionIncomplete = req.body.result.actionIncomplete;
   let parameters = req.body.result.parameters;
-  let intenName = req.body.result.intentName;
-  console.log("request intenName: ", intenName);
+  let intentName = req.body.result.intentName;
+  console.log("request: ", req.body);
   
   let response = 'this is doge';
   if (action === 'starsign.check') {
     response = "Your starsign is ...";
   }else{
-    response = "Hello, this is doge, you triggered the intent:  " + intenName + " parameters " + parameters;
+    response = "Hello, this is doge, you triggered the intent:  " + intentName + " parameters " + parameters;
   }
   /*
   res.set('Content-type', 'application/json')
