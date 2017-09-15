@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/intent', function(req, res){
-  console.log("request: ", req);
+  console.log("request: ", req.result);
   res.send(
     {
 "speech": "Barack Hussein Obama II was the 44th and current President of the United States.",
