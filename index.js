@@ -30,7 +30,7 @@ app.post('/intent', function(req, res){
   let action = req.body.result.action;
   let actionIncomplete = req.body.result.actionIncomplete;
   let parameters = req.body.result.parameters;
-  let intentName = req.body.result.intentName;
+  let intentName = req.body.result.metadata.intentName;
   console.log("request: ", req.body);
   
   let response = 'this is doge';
