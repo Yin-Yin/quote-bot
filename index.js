@@ -4,6 +4,11 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
+app.configure(function(){
+  app.use(express.bodyParser());
+  app.use(app.router);
+});
+
 app.use(express.static(__dirname + '/public'));
 
 
