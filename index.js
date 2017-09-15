@@ -27,7 +27,18 @@ app.get('/', function(req, res) {
 });
 
 app.post('/intent', function(req, res){
-  console.log("request: ", req.body);
+  let action = req.body.result.action;
+  let actionIncomplete = req.body.result.actionIncomplete;
+  let parameters = req.body.result.parameters;
+  let intenName = req.body.result.intentName;
+  console.log("request intenName: ", intenName);
+  
+  let response = 'this is doge';
+  if (action === 'starsign.check') {
+    response = "Your starsign is ...";
+  }else{
+    response = "Hello, this is doge, you triggered the intent:  " + intenName + " parameters " + parameters;
+  }
   /*
   res.set('Content-type', 'application/json')
   res.send(
@@ -39,7 +50,7 @@ app.post('/intent', function(req, res){
 "source": "DuckDuckGo"
 }
 */
-  let response = "This is a sample response from your webhook!" //Default response from the webhook to show it's working
+  
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   res.send(JSON.stringify({ "speech": response, "displayText": response 
