@@ -34,7 +34,7 @@ app.post('/intent', function(req, res){
   console.log("request: ", req.body);
   
   let response = 'this is doge';
-  if (action == 'starsign.check') {
+  if (intentName == 'starsign.check') {
     response = "Your starsign is ...";
   }else{
     response = "Hello, this is doge, you triggered the intent:  " + intentName + " parameters " + parameters;
