@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/intent', function(req, res){
-  console.log("request: ", req);
+  console.log("request: ", req.body);
   /*
   res.set('Content-type', 'application/json')
   res.send(
