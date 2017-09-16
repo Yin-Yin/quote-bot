@@ -34,6 +34,7 @@ app.post('/intent', function(req, res){
   //console.log("request: ", req.body);
   console.log("date: ", parameters.date);
   let parameterDate = new Date(parameters.date);
+  console.log("parameterDate: ", parameterDate);
   
   let response = 'this is doge';
   if (intentName == 'starsign.check') {
@@ -85,7 +86,8 @@ function getZodiacSign(date) {
     'sagittarius':'sagittarius'
   }
   
-  
+  console.log("day ", day);
+  console.log("month ", month);
  // returns the zodiac sign according to day and month ( http://coursesweb.net/ )
   var zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
   var last_day = ['', 19, 18, 20, 20, 21, 21, 22, 22, 21, 22, 21, 20, 19];
