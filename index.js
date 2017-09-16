@@ -32,6 +32,7 @@ app.post('/intent', function(req, res){
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
   console.log("request: ", req.body);
+  console.log("date: ", parameters.date);
   
   let response = 'this is doge';
   if (intentName == 'starsign.check') {
