@@ -31,19 +31,23 @@ app.post('/intent', function(req, res) {
   let actionIncomplete = req.body.result.actionIncomplete;
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
-  //console.log("request: ", req.body);
+  console.log("request: ", req.body);
   console.log("date: ", parameters.date);
   let parameterDate = new Date(parameters.date);
   console.log("parameterDate: ", parameterDate);
 
   let response = 'this is doge';
-  if (intentName == 'starsign.check') {
+  if (intentName == 'zodiacsign.check') {
     if (parameters.date === '') {
       response = "The date is not correct."
     }
     else {
-      response = "Your starsign is " + getZodiacSign(parameterDate);
+      response = "Your zodiac sign is " + getZodiacSign(parameterDate);
     }
+  }
+  else if (intentName == 'zodiacsign.info') {
+    console.log("parameters.zodiacsign ", parameters.zodiacsign)
+    response = getZodiacSignInfo(parameters.zodiacsign);
   }
   else {
     response = "Hello, this is doge, you triggered the intent: " + intentName + " parameters " + parameters;
@@ -129,3 +133,14 @@ function getZodiacSign(date) {
   }
   */
 }
+
+
+function getZodiacSignInfo(zodiacsign) {
+  switch (zodiacsign) {
+    case 'Capricorn':
+      return 'Dates: December 22 – January 19 \nThey are really cool!';
+    
+    default:
+      return 'Your zodiac sign sign is the best. Go team ' + zodiacsign;
+  }
+};
