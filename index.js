@@ -33,10 +33,11 @@ app.post('/intent', function(req, res){
   let intentName = req.body.result.metadata.intentName;
   console.log("request: ", req.body);
   console.log("date: ", parameters.date);
+  let parameterDate = new Date(parameters.date);
   
   let response = 'this is doge';
   if (intentName == 'starsign.check') {
-    response = "Your starsign is " + getZodiacSign(parameters.date);
+    response = "Your starsign is " + getZodiacSign(parameterDate);
   }else{
     response = "Hello, this is doge, you triggered the intent:  " + intentName + " parameters " + parameters;
   }
