@@ -26,7 +26,7 @@ app.get('/', function(req, res) {
   res.send("Hello World");
 });
 
-app.post('/intent', function(req, res){
+app.post('/intent', function(req, res) {
   let action = req.body.result.action;
   let actionIncomplete = req.body.result.actionIncomplete;
   let parameters = req.body.result.parameters;
@@ -35,11 +35,17 @@ app.post('/intent', function(req, res){
   console.log("date: ", parameters.date);
   let parameterDate = new Date(parameters.date);
   console.log("parameterDate: ", parameterDate);
-  
+
   let response = 'this is doge';
   if (intentName == 'starsign.check') {
-    response = "Your starsign is " + getZodiacSign(parameterDate);
-  }else{
+    if (parameters.date === '') {
+      response = "The date is not correct."
+    }
+    else {
+      response = "Your starsign is " + getZodiacSign(parameterDate);
+    }
+  }
+  else {
     response = "Hello, this is doge, you triggered the intent: " + intentName + " parameters " + parameters;
   }
   /*
@@ -53,13 +59,14 @@ app.post('/intent', function(req, res){
 "source": "DuckDuckGo"
 }
 */
-  
+
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
-  res.send(JSON.stringify({ "speech": response, "displayText": response 
-  //"speech" is the spoken version of the response, "displayText" is the visual version
-  })
-    );
+  res.send(JSON.stringify({
+    "speech": response,
+    "displayText": response
+    //"speech" is the spoken version of the response, "displayText" is the visual version
+  }));
 })
 
 app.listen(app.get('port'), function() {
@@ -68,10 +75,19 @@ app.listen(app.get('port'), function() {
 
 
 function getZodiacSign(date) {
-  let month = date.getMonth();
+  let month = date.getMonth() + 1;
   let day = date.getDate();
 
-  var zodiacSigns = {
+  // returns the zodiac sign according to day and month ( thanks to http://coursesweb.net/ for this elegant solution )
+  var zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
+  var last_day = ['', 19, 18, 20, 20, 21, 21, 22, 22, 21, 22, 21, 20, 19];
+  return (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
+
+
+
+  /*
+  
+    var zodiacSigns = {
     'capricorn':'capricorn',
     'aquarius':'aquarius',
     'pisces':'pisces',
@@ -86,16 +102,6 @@ function getZodiacSign(date) {
     'sagittarius':'sagittarius'
   }
   
-  console.log("day ", day);
-  console.log("month ", month);
- // returns the zodiac sign according to day and month ( http://coursesweb.net/ )
-  var zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
-  var last_day = ['', 19, 18, 20, 20, 21, 21, 22, 22, 21, 22, 21, 20, 19];
-  return (day > last_day[month]) ? zodiac[month*1 + 1] : zodiac[month];
-
-  
-  
-  /*
   if((month == 1 && day <= 20) || (month == 12 && day >=22)) {
     return zodiacSigns.capricorn;
   } else if ((month == 1 && day >= 21) || (month == 2 && day <= 18)) {
