@@ -31,7 +31,7 @@ app.post('/intent', function(req, res){
   let actionIncomplete = req.body.result.actionIncomplete;
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
-  console.log("request: ", req.body);
+  //console.log("request: ", req.body);
   console.log("date: ", parameters.date);
   let parameterDate = new Date(parameters.date);
   
@@ -39,7 +39,7 @@ app.post('/intent', function(req, res){
   if (intentName == 'starsign.check') {
     response = "Your starsign is " + getZodiacSign(parameterDate);
   }else{
-    response = "Hello, this is doge, you triggered the intent:  " + intentName + " parameters " + parameters;
+    response = "Hello, this is doge, you triggered the intent: " + intentName + " parameters " + parameters;
   }
   /*
   res.set('Content-type', 'application/json')
@@ -84,7 +84,16 @@ function getZodiacSign(date) {
     'scorpio':'scorpio',
     'sagittarius':'sagittarius'
   }
+  
+  
+ // returns the zodiac sign according to day and month ( http://coursesweb.net/ )
+  var zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
+  var last_day = ['', 19, 18, 20, 20, 21, 21, 22, 22, 21, 22, 21, 20, 19];
+  return (day > last_day[month]) ? zodiac[month*1 + 1] : zodiac[month];
 
+  
+  
+  /*
   if((month == 1 && day <= 20) || (month == 12 && day >=22)) {
     return zodiacSigns.capricorn;
   } else if ((month == 1 && day >= 21) || (month == 2 && day <= 18)) {
@@ -110,4 +119,5 @@ function getZodiacSign(date) {
   } else if((month == 11 && day >= 23) || (month == 12 && day <= 21)) {
     return zodiacSigns.sagittarius;
   }
+  */
 }
