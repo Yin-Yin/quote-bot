@@ -138,7 +138,40 @@ function getZodiacSign(date) {
 function getZodiacSignInfo(zodiacsign) {
   switch (zodiacsign) {
     case 'Capricorn':
-      return 'Dates: December 22 – January 19 \nThey are really cool!';
+      return 'Capricorn\nDates: December 22 – January 19 \nThey are really cool animals! They can climb like badasses and are very cheeky';
+    
+    case 'Aquarius':
+      return 'Aquarius\nDates: January 20 – February 18\nAs the name suggests, they like water a lot. Their best abilities lie in watering plants as they have so much. ';
+    
+    case 'Pisces':
+      return 'Pisces\nDates: February 19 – March 20\nPisces are fishes. Living in the water is a cool thing.';
+    
+    case 'Aries':
+      return 'Aries\nDates: March 21 – April 19\nAries are animals that have a very strong will, as they have two horns to ram everyone. Harharhar.';
+    
+    case 'Taurus':
+      return 'Taurus\nDates: April 20 – May 20\nThese animals are very big and strong. Altough most of the time they are very peaceful and just graze.';
+    
+    case 'Gemini':
+      return 'Gemini\nDates: May 21 – June 20\nGemini is cool, because it means sth. like siblings and to have a sibling is a wonderful thing. Even if you may be not have a sibling, with your star sign you do! :)';
+    
+    case 'Cancer':
+      return 'Cancer\nDates: June 21 – July 22\nCancer have two scissors on their hands, which is pretty badass!';
+    
+    case 'Leo':
+      return 'Leo\nDates: July 23 – August 22\nLions are so cool! They are like the kings of animal kingdom!';
+    
+    case 'Virgo':
+      return 'Virgo\nDates: August 23 – September 22\nVirgos are very intelligent! And beautiful! Your are great!';
+    
+    case 'Libra':
+      return 'Libra\nDates: September 23 – October 22\nLibra means sth. like a scale. So they are very harmonious.';
+    
+    case 'Scorpio':
+      return 'Scorpio\nDates: October 23 – November 21\nScorpions are so cool! They have a tail with a sting and two scissor hands!!! Wow! ...';
+    
+    case 'Sagittarius':
+      return 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.';
     
     default:
       return 'Your zodiac sign sign is the best. Go team ' + zodiacsign;
