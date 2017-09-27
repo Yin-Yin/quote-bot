@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
   //response.render('pages/index');
-  res.send('Hi there, this is the serve for the zodiac sign bot. For more info got to: https://github.com/Yin-Yin/zodiac-sign-bot/ (Zodiac Sign Bot GitHub Page)');
+  res.send("Hi there, this is the serve for the zodiac sign bot. For more info got to: https://github.com/Yin-Yin/zodiac-sign-bot/ (Zodiac Sign Bot GitHub Page)");
 });
 
 app.post('/intent', function(req, res) {
