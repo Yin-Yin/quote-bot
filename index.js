@@ -1,4 +1,4 @@
-var bodyParser = require
+var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
 
@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
   //response.render('pages/index');
-  res.send("Hi there, this is the serve for the zodiac sign bot. For more info got to: https://github.com/Yin-Yin/zodiac-sign-bot/ (Zodiac Sign Bot GitHub Page)");
+  res.send('Hi there, this is the serve for the zodiac sign bot. For more info got to: <a href="https://github.com/Yin-Yin/zodiac-sign-bot/">Zodiac Sign Bot GitHub Page</a>');
 });
 
 app.post('/intent', function(req, res) {
@@ -32,7 +32,7 @@ app.post('/intent', function(req, res) {
   //console.log("request: ", req.body);
   //console.log("date: ", parameters.date);
   let parameterDate = new Date(parameters.date);
-  //console.log("parameterDate: ", parameterDate);
+  console.log("parameterDate: ", parameterDate);
 
   let response = 'this is doge';
   if (intentName == 'zodiacsign.check') {
