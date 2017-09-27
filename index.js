@@ -2,8 +2,6 @@ var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
 
-
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -42,7 +40,7 @@ app.post('/intent', function(req, res) {
       response = "The date is not correct."
     }
     else {
-      response = "Your zodiac sign is " + getZodiacSign(parameterDate);
+      response = "The zodiac sign for that date is " + getZodiacSign(parameterDate);
     }
   }
   else if (intentName == 'zodiacsign.info') {
@@ -52,10 +50,12 @@ app.post('/intent', function(req, res) {
   else {
     response = "Hello, this is doge, you triggered the intent: " + intentName + " parameters " + parameters;
   }
-  /*
-  res.set('Content-type', 'application/json')
-  res.send(
-    {
+
+/*
+// example: 
+res.set('Content-type', 'application/json')
+res.send(
+  {
 "speech": "Barack Hussein Obama II was the 44th and current President of the United States.",
 "displayText": "Barack Hussein Obama II was the 44th and current President of the United States, and the first African American to hold the office. Born in Honolulu, Hawaii, Obama is a graduate of Columbia University   and Harvard Law School, where ",
 "data": 'data',
@@ -63,7 +63,6 @@ app.post('/intent', function(req, res) {
 "source": "DuckDuckGo"
 }
 */
-
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   res.send(JSON.stringify({
@@ -84,54 +83,8 @@ function getZodiacSign(date) {
 
   // returns the zodiac sign according to day and month ( thanks to http://coursesweb.net/ for this elegant solution )
   var zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
-  var last_day = ['', 19, 18, 20, 20, 21, 21, 22, 22, 21, 22, 21, 20, 19];
-  return (day >= last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
-
-
-
-  /*
-  
-    var zodiacSigns = {
-    'capricorn':'capricorn',
-    'aquarius':'aquarius',
-    'pisces':'pisces',
-    'aries':'aries',
-    'taurus':'taurus',
-    'gemini':'gemini',
-    'cancer':'cancer',
-    'leo':'leo',
-    'virgo':'virgo',
-    'libra':'libra',
-    'scorpio':'scorpio',
-    'sagittarius':'sagittarius'
-  }
-  
-  if((month == 1 && day <= 20) || (month == 12 && day >=22)) {
-    return zodiacSigns.capricorn;
-  } else if ((month == 1 && day >= 21) || (month == 2 && day <= 18)) {
-    return zodiacSigns.aquarius;
-  } else if((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
-    return zodiacSigns.pisces;
-  } else if((month == 3 && day >= 21) || (month == 4 && day <= 20)) {
-    return zodiacSigns.aries;
-  } else if((month == 4 && day >= 21) || (month == 5 && day <= 20)) {
-    return zodiacSigns.taurus;
-  } else if((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
-    return zodiacSigns.gemini;
-  } else if((month == 6 && day >= 22) || (month == 7 && day <= 22)) {
-    return zodiacSigns.cancer;
-  } else if((month == 7 && day >= 23) || (month == 8 && day <= 23)) {
-    return zodiacSigns.leo;
-  } else if((month == 8 && day >= 24) || (month == 9 && day <= 23)) {
-    return zodiacSigns.virgo;
-  } else if((month == 9 && day >= 24) || (month == 10 && day <= 23)) {
-    return zodiacSigns.libra;
-  } else if((month == 10 && day >= 24) || (month == 11 && day <= 22)) {
-    return zodiacSigns.scorpio;
-  } else if((month == 11 && day >= 23) || (month == 12 && day <= 21)) {
-    return zodiacSigns.sagittarius;
-  }
-  */
+  var last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
+  return (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
 }
 
 
