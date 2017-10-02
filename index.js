@@ -58,7 +58,7 @@ function getResponse(parameters,intentName) {
     else {
       let parameterDate = new Date(parameters.date);
       console.log("parameterDate: ", parameterDate);
-      return "The zodiac sign for " + parameterDate + " is " + getZodiacSign(parameterDate);
+      return "The zodiac sign for that date is: " + getZodiacSign(parameterDate);
     }
   }
   else if (intentName == 'zodiacsign.info') {
