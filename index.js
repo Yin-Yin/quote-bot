@@ -25,44 +25,13 @@ app.get('/', function(req, res) {
 });
 
 app.post('/intent', function(req, res) {
-  let action = req.body.result.action;
-  let actionIncomplete = req.body.result.actionIncomplete;
+  //let action = req.body.result.action;
+  //let actionIncomplete = req.body.result.actionIncomplete;
+  
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
-  //console.log("request: ", req.body);
-  //console.log("date: ", parameters.date);
-  let parameterDate = new Date(parameters.date);
-  console.log("parameterDate: ", parameterDate);
 
-  let response = 'this is doge';
-  if (intentName == 'zodiacsign.check') {
-    if (parameters.date === '') {
-      response = "The date is not correct."
-    }
-    else {
-      response = "The zodiac sign for that date is " + getZodiacSign(parameterDate);
-    }
-  }
-  else if (intentName == 'zodiacsign.info') {
-    console.log("parameters.zodiacsign ", parameters.zodiacsign)
-    response = getZodiacSignInfo(parameters.zodiacsign);
-  }
-  else {
-    response = "Hello, this is doge, you triggered the intent: " + intentName + " parameters " + parameters;
-  }
-
-/*
-// example: 
-res.set('Content-type', 'application/json')
-res.send(
-  {
-"speech": "Barack Hussein Obama II was the 44th and current President of the United States.",
-"displayText": "Barack Hussein Obama II was the 44th and current President of the United States, and the first African American to hold the office. Born in Honolulu, Hawaii, Obama is a graduate of Columbia University   and Harvard Law School, where ",
-"data": 'data',
-"contextOut": 'context out',
-"source": "DuckDuckGo"
-}
-*/
+  let response = getResponse(parameters,intentName);
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   res.send(JSON.stringify({
@@ -77,6 +46,30 @@ app.listen(app.get('port'), function() {
 });
 
 // ## zodiac sign part - "business"-logic ##
+
+function getResponse(parameters,intentName) {
+  if (intentName == 'zodiacsign.check') {
+    if (parameters.date === '') {
+      return "The date is not correct."
+    } else if (parameters.date === 'today') {
+      let parameterDate = new Date();
+      return "The zodiac sign for today is " + getZodiacSign(parameterDate);
+    }
+    else {
+      let parameterDate = new Date(parameters.date);
+      console.log("parameterDate: ", parameterDate);
+      return "The zodiac sign for " + parameterDate + " is " + getZodiacSign(parameterDate);
+    }
+  }
+  else if (intentName == 'zodiacsign.info') {
+    console.log("parameters.zodiacsign ", parameters.zodiacsign)
+    return getZodiacSignInfo(parameters.zodiacsign);
+  }
+  else {
+    return "Hello, this is doge, something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
+  }
+  
+}
 
 const zodiacSignMap = new Map();
 zodiacSignMap.set('Capricorn', 'Capricorn\nDates: December 22 – January 19 \nThey are really cool animals! They can climb like badasses and are very cheeky');
@@ -97,7 +90,7 @@ function getZodiacSign(date) {
   let month = date.getMonth() + 1;
   let day = date.getDate();
 
-  // returns the zodiac sign according to day and month ( thanks to http://coursesweb.net/ for this elegant solution )
+  // returns the zodiac sign according to day and month 
   var zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
   var last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
   return (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
@@ -106,3 +99,20 @@ function getZodiacSign(date) {
 function getZodiacSignInfo(zodiacSign) {
   return zodiacSignMap.get(zodiacSign);
 };
+
+
+
+
+
+/*
+// example: 
+res.set('Content-type', 'application/json')
+res.send(
+  {
+"speech": "Barack Hussein Obama II was the 44th and current President of the United States.",
+"displayText": "Barack Hussein Obama II was the 44th and current President of the United States, and the first African American to hold the office. Born in Honolulu, Hawaii, Obama is a graduate of Columbia University   and Harvard Law School, where ",
+"data": 'data',
+"contextOut": 'context out',
+"source": "DuckDuckGo"
+}
+*/
