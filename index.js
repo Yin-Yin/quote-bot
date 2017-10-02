@@ -25,9 +25,6 @@ app.get('/', function(req, res) {
 });
 
 app.post('/intent', function(req, res) {
-  //let action = req.body.result.action;
-  //let actionIncomplete = req.body.result.actionIncomplete;
-  
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
 
@@ -35,9 +32,9 @@ app.post('/intent', function(req, res) {
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   res.send(JSON.stringify({
+    //"speech" is the spoken version of the response, "displayText" is the visual version
     "speech": response,
     "displayText": response
-    //"speech" is the spoken version of the response, "displayText" is the visual version
   }));
 })
 
@@ -45,7 +42,7 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-// ## zodiac sign part - "business"-logic ##
+// ## zodiac sign part ##
 
 function getResponse(parameters,intentName) {
   switch (intentName) {
@@ -56,13 +53,14 @@ function getResponse(parameters,intentName) {
       }
       let parameterDate = new Date(parameters.date);
       console.log("parameterDate: ", parameterDate);
-      return "The zodiac sign for that date is: " + getZodiacSign(parameterDate); 
+      return "Your zodiac sign is " + getZodiacSign(parameterDate); 
       
     case 'zodiacsign.info':
       return getZodiacSignInfo(parameters.zodiacsign);
       
     default:
-      return "Hello, this is doge, something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
+      return "Something went wrong."
+      // for debugging: return "Something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
   }
 }
 
