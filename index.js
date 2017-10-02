@@ -48,27 +48,21 @@ app.listen(app.get('port'), function() {
 // ## zodiac sign part - "business"-logic ##
 
 function getResponse(parameters,intentName) {
-  if (intentName == 'zodiacsign.check') {
-    if (parameters.date === '') {
-      return "The date is not correct."
-    } else if (parameters.date === 'today') {
-      let parameterDate = new Date();
-      return "The zodiac sign for today is " + getZodiacSign(parameterDate);
-    }
-    else {
+  switch (intentName) {
+    
+    case 'zodiacsign.check':
+      if (parameters.date === '') {
+        return "The date is not correct."
+      }
       let parameterDate = new Date(parameters.date);
       console.log("parameterDate: ", parameterDate);
-      return "The zodiac sign for that date is: " + getZodiacSign(parameterDate);
-    }
-  }
-  else if (intentName == 'zodiacsign.info') {
-    console.log("parameters.zodiacsign ", parameters.zodiacsign)
-    return getZodiacSignInfo(parameters.zodiacsign);
-  }
-  else {
-    return "Hello, this is doge, something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
-  }
-  
+      return "The zodiac sign for that date is: " + getZodiacSign(parameterDate); 
+      
+    case 'zodiacsign.info':
+      return getZodiacSignInfo(parameters.zodiacsign);
+      
+    default:
+      return "Hello, this is doge, something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
 }
 
 const zodiacSignMap = new Map();
