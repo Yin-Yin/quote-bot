@@ -63,6 +63,7 @@ function getResponse(parameters,intentName) {
       
     default:
       return "Hello, this is doge, something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
+  }
 }
 
 const zodiacSignMap = new Map();
