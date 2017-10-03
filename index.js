@@ -1,6 +1,15 @@
+
+// ## express part ##
 var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
+
+
+var zodiacSignModuleTest = require('zodiac-sign/zodiac-sign')
+
+
+var expressAPI = require('/api/express-api');
+console.log("expressAPI", expressAPI)
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -53,13 +62,14 @@ function getResponse(parameters,intentName) {
       }
       let parameterDate = new Date(parameters.date);
       console.log("parameterDate: ", parameterDate);
+      console.log("zodiacSignModuleTest", zodiacSignModuleTest.getZodiacSign(parameterDate))
       return "Your zodiac sign is " + getZodiacSign(parameterDate); 
       
     case 'zodiacsign.info':
       return getZodiacSignInfo(parameters.zodiacsign);
       
     default:
-      return "Something went wrong."
+      return "Something went wrong. Sorry about that."
       // for debugging: return "Something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
   }
 }
@@ -78,7 +88,6 @@ zodiacSignMap.set('Libra', 'Libra\nDates: September 23 – October 22\nLibra mea
 zodiacSignMap.set('Scorpio', 'Scorpio\nDates: October 23 – November 21\nScorpions are so cool! They have a tail with a sting and two scissor hands!!! Wow! ...');
 zodiacSignMap.set('Sagittarius', 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
 
-
 function getZodiacSign(date) {
   let month = date.getMonth() + 1;
   let day = date.getDate();
@@ -92,20 +101,3 @@ function getZodiacSign(date) {
 function getZodiacSignInfo(zodiacSign) {
   return zodiacSignMap.get(zodiacSign);
 };
-
-
-
-
-
-/*
-// example: 
-res.set('Content-type', 'application/json')
-res.send(
-  {
-"speech": "Barack Hussein Obama II was the 44th and current President of the United States.",
-"displayText": "Barack Hussein Obama II was the 44th and current President of the United States, and the first African American to hold the office. Born in Honolulu, Hawaii, Obama is a graduate of Columbia University   and Harvard Law School, where ",
-"data": 'data',
-"contextOut": 'context out',
-"source": "DuckDuckGo"
-}
-*/
