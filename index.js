@@ -8,7 +8,7 @@ var app = express();
 var zodiacSignModuleTest = require('./zodiac-sign/zodiac-sign.js')
 
 
-var expressAPI = require('/api/express-api');
+var expressAPI = require('./api/express-api.js');
 console.log("expressAPI", expressAPI)
 
 // parse application/x-www-form-urlencoded
