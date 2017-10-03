@@ -1,7 +1,4 @@
-module.exports = {
-    // ## zodiac sign part ##
-    
-    zodiacSignMap: new Map();
+    const zodiacSignMap = new Map();
     zodiacSignMap.set('Capricorn', 'Capricorn\nDates: December 22 – January 19 \nThey are really cool animals! They can climb like badasses and are very cheeky');
     zodiacSignMap.set('Aquarius', 'Aquarius\nDates: January 20 – February 18\nAs the name suggests, they like water a lot. Their best abilities lie in watering plants as they have so much. ');
     zodiacSignMap.set('Pisces', 'Pisces\nDates: February 19 – March 20\nPisces are fishes. Living in the water is a cool thing.');
@@ -14,7 +11,12 @@ module.exports = {
     zodiacSignMap.set('Libra', 'Libra\nDates: September 23 – October 22\nLibra means sth. like a scale. So they are very harmonious.');
     zodiacSignMap.set('Scorpio', 'Scorpio\nDates: October 23 – November 21\nScorpions are so cool! They have a tail with a sting and two scissor hands!!! Wow! ...');
     zodiacSignMap.set('Sagittarius', 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
-    
+
+
+module.exports = {
+    // ## zodiac sign part ##
+    zodiacSignMap: zodiacSignMap,
+        
     getResponse: function (parameters,intentName) {
       switch (intentName) {
         
@@ -24,16 +26,16 @@ module.exports = {
           }
           let parameterDate = new Date(parameters.date);
           console.log("parameterDate: ", parameterDate);
-          return "Your zodiac sign is " + getZodiacSign(parameterDate); 
+          return "Your zodiac sign is " + this.getZodiacSign(parameterDate); 
           
         case 'zodiacsign.info':
-          return getZodiacSignInfo(parameters.zodiacsign);
+          return this.getZodiacSignInfo(parameters.zodiacsign);
           
         default:
           return "Something went wrong. Sorry about that."
           // for debugging: return "Something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
       }
-    }
+    },
     
     getZodiacSign: function(date) {
       let month = date.getMonth() + 1;
@@ -43,9 +45,9 @@ module.exports = {
       var zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
       var last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
       return (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
-    }
+    },
     
     getZodiacSignInfo: function(zodiacSign) {
       return zodiacSignMap.get(zodiacSign);
-    };
+    }
 }
