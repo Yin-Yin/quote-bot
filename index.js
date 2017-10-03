@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 
 
-var zodiacSignModuleTest = require('zodiac-sign/zodiac-sign')
+var zodiacSignModuleTest = require('./zodiac-sign/zodiac-sign.js')
 
 
 var expressAPI = require('/api/express-api');
