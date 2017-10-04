@@ -36,7 +36,6 @@ module.exports = {
             return "The date is not correct."
           }
           let parameterDate = new Date(parameters.date);
-          console.log("parameterDate: ", parameterDate);
           return "Your zodiac sign is " + this.getZodiacSign(parameterDate); 
           
         case 'zodiacsign.info':
@@ -65,6 +64,6 @@ module.exports = {
     },
     
     getChineseZodiacSign: function (year) {
-        return "Your chinese zodiac sign is *" + chineseZodiacMap.get((year - 4) % 12) + "*";
+        return "Your chinese zodiac sign is *" + chineseZodiacMap.get((year - 4) % 12) + "*.";
     }
 }

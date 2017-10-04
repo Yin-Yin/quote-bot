@@ -30,7 +30,6 @@ app.get('/', function(req, res) {
 app.post('/intent', function(req, res) {
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
-  console.log("Intent name", intentName)
 
   let response = zodiacSignModule.getResponse(parameters,intentName);
 
@@ -45,28 +44,3 @@ app.post('/intent', function(req, res) {
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
-
-// ## API.ai intents ##
-
-function getResponse(parameters,intentName) {
-  switch (intentName) {
-    
-    case 'zodiacsign.check':
-      if (parameters.date === '') {
-        return "The date is not correct."
-      }
-      let parameterDate = new Date(parameters.date);
-      console.log("parameterDate: ", parameterDate);
-      return "Your zodiac sign is " + zodiacSignModule.getZodiacSign(parameterDate); 
-      
-    case 'zodiacsign.info':
-      return zodiacSignModule.getZodiacSignInfo(parameters.zodiacsign);
-      
-    case 'zodiacsign.year':
-      return zodiacSignModule.getChineseZodiacSign(parameters.age.amount);
-      
-    default:
-      return "Something went wrong. Sorry about that."
-      // for debugging: return "Something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
-  }
-}
