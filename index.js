@@ -67,6 +67,10 @@ function getResponse(parameters,intentName) {
     case 'zodiacsign.info':
       return zodiacSignModule.getZodiacSignInfo(parameters.zodiacsign);
       
+      
+    case 'zodiacsign.year':
+      return zodiacSignModule.getChineseZodiacSign(parameters.age);
+      
     default:
       return "Something went wrong. Sorry about that."
       // for debugging: return "Something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;

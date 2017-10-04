@@ -49,5 +49,9 @@ module.exports = {
     
     getZodiacSignInfo: function(zodiacSign) {
       return zodiacSignMap.get(zodiacSign);
+    },
+    
+    getChineseZodiacSign: function (age) {
+        return "Your age is" + age;
     }
 }
