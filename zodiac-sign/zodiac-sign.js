@@ -13,18 +13,18 @@
     zodiacSignMap.set('Sagittarius', 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
 
     const chineseZodiacMap = new Map();
-    chineseZodiacMap.set('0','Rat');
-    chineseZodiacMap.set('1','Ox');
-    chineseZodiacMap.set('2','Tiger');
-    chineseZodiacMap.set('3','Rabbit');
-    chineseZodiacMap.set('4','Dragon');
-    chineseZodiacMap.set('5','Snake');
-    chineseZodiacMap.set('6','Horse');
-    chineseZodiacMap.set('7','Goat');
-    chineseZodiacMap.set('8','Monkey');
-    chineseZodiacMap.set('9','Rooster');
-    chineseZodiacMap.set('10','Dog');
-    chineseZodiacMap.set('11','Pig');
+    chineseZodiacMap.set(0,'Rat');
+    chineseZodiacMap.set(1,'Ox');
+    chineseZodiacMap.set(2,'Tiger');
+    chineseZodiacMap.set(3,'Rabbit');
+    chineseZodiacMap.set(4,'Dragon');
+    chineseZodiacMap.set(5,'Snake');
+    chineseZodiacMap.set(6,'Horse');
+    chineseZodiacMap.set(7,'Goat');
+    chineseZodiacMap.set(8,'Monkey');
+    chineseZodiacMap.set(9,'Rooster');
+    chineseZodiacMap.set(10,'Dog');
+    chineseZodiacMap.set(11,'Pig');
 
 module.exports = {
     // ## zodiac sign part ##
