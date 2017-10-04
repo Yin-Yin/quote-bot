@@ -61,7 +61,6 @@ function getResponse(parameters,intentName) {
     case 'zodiacsign.info':
       return zodiacSignModule.getZodiacSignInfo(parameters.zodiacsign);
       
-      
     case 'zodiacsign.year':
       return zodiacSignModule.getChineseZodiacSign(parameters.age.amount);
       

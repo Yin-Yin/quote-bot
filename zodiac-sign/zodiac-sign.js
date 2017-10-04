@@ -12,6 +12,19 @@
     zodiacSignMap.set('Scorpio', 'Scorpio\nDates: October 23 – November 21\nScorpions are so cool! They have a tail with a sting and two scissor hands!!! Wow! ...');
     zodiacSignMap.set('Sagittarius', 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
 
+    const chineseZodiacMap = new Map();
+    chineseZodiacMap.set('0','Rat');
+    chineseZodiacMap.set('1','Ox');
+    chineseZodiacMap.set('2','Tiger');
+    chineseZodiacMap.set('3','Rabbit');
+    chineseZodiacMap.set('4','Dragon');
+    chineseZodiacMap.set('5','Snake');
+    chineseZodiacMap.set('6','Horse');
+    chineseZodiacMap.set('7','Goat');
+    chineseZodiacMap.set('8','Monkey');
+    chineseZodiacMap.set('9','Rooster');
+    chineseZodiacMap.set('10','Dog');
+    chineseZodiacMap.set('11','Pig');
 
 module.exports = {
     // ## zodiac sign part ##
@@ -51,7 +64,7 @@ module.exports = {
       return zodiacSignMap.get(zodiacSign);
     },
     
-    getChineseZodiacSign: function (age) {
-        return "Your age is" + age;
+    getChineseZodiacSign: function (year) {
+        return "Your chinese zodiac sign is " + chineseZodiacMap((year - 4) % 12);
     }
 }
