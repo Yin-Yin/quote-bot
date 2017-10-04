@@ -3,13 +3,7 @@
 var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
-
-
 var zodiacSignModule = require('./zodiac-sign/zodiac-sign.js')
-
-
-var expressAPI = require('./api/express-api.js');
-console.log("expressAPI", expressAPI)
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -69,7 +63,7 @@ function getResponse(parameters,intentName) {
       
       
     case 'zodiacsign.year':
-      return zodiacSignModule.getChineseZodiacSign(parameters.age);
+      return zodiacSignModule.getChineseZodiacSign(parameters.age.amount);
       
     default:
       return "Something went wrong. Sorry about that."
