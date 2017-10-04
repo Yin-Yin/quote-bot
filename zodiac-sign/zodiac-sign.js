@@ -65,6 +65,8 @@ module.exports = {
     },
     
     getChineseZodiacSign: function (year) {
+        console.log("year" + year);
+        console.log("calculation" + (year - 4) % 12);
         return "Your chinese zodiac sign is " + chineseZodiacMap.get((year - 4) % 12);
     }
 }
