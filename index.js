@@ -1,29 +1,18 @@
-
-// ## express part ##
+// ## express server ##
 var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
 var zodiacSignModule = require('./zodiac-sign/zodiac-sign.js')
 
-// parse application/x-www-form-urlencoded
+// parse application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: false }))
-
 // parse application/json
 app.use(bodyParser.json())
 
-
 app.set('port', (process.env.PORT || 5000));
-
 app.use(express.static(__dirname + '/public'));
 
-
-// views is directory for all template files
-//app.set('views', __dirname + '/views');
-//app.set('view engine', 'ejs');
-
-
 app.get('/', function(req, res) {
-  //response.render('pages/index');
   res.send('Hi there, this is the webhook for the zodiac sign bot. For more info got to: <a href="https://github.com/Yin-Yin/zodiac-sign-bot/">Zodiac Sign Bot GitHub Page</a>');
 });
 
