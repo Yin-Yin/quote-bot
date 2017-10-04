@@ -27,6 +27,7 @@
     chineseZodiacMap.set(11,'Pig');
 
 module.exports = {
+    // ## API.ai intents ##
     getResponse: function (parameters,intentName) {
       switch (intentName) {
         
@@ -40,6 +41,9 @@ module.exports = {
           
         case 'zodiacsign.info':
           return this.getZodiacSignInfo(parameters.zodiacsign);
+                    
+        case 'zodiacsign.year':
+          return this.getChineseZodiacSign(parameters.age.amount);
           
         default:
           return "Something went wrong. Sorry about that."

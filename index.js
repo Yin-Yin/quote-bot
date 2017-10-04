@@ -30,6 +30,7 @@ app.get('/', function(req, res) {
 app.post('/intent', function(req, res) {
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
+  console.log("Intent name", intentName)
 
   let response = zodiacSignModule.getResponse(parameters,intentName);
 
