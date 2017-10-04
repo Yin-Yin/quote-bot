@@ -31,7 +31,7 @@ app.post('/intent', function(req, res) {
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
 
-  let response = getResponse(parameters,intentName);
+  let response = zodiacSignModule.getResponse(parameters,intentName);
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   res.send(JSON.stringify({

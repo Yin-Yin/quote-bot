@@ -27,9 +27,6 @@
     chineseZodiacMap.set(11,'Pig');
 
 module.exports = {
-    // ## zodiac sign part ##
-    zodiacSignMap: zodiacSignMap,
-        
     getResponse: function (parameters,intentName) {
       switch (intentName) {
         
@@ -51,22 +48,19 @@ module.exports = {
     },
     
     getZodiacSign: function(date) {
-      let month = date.getMonth() + 1;
-      let day = date.getDate();
-    
-      // returns the zodiac sign according to day and month 
-      var zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
-      var last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
-      return (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
+        // returns the zodiac sign according to day and month 
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        const zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
+        const last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
+        return (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
     },
     
     getZodiacSignInfo: function(zodiacSign) {
-      return zodiacSignMap.get(zodiacSign);
+        return zodiacSignMap.get(zodiacSign);
     },
     
     getChineseZodiacSign: function (year) {
-        console.log("year" + year);
-        console.log("calculation" + (year - 4) % 12);
-        return "Your chinese zodiac sign is " + chineseZodiacMap.get((year - 4) % 12);
+        return "Your chinese zodiac sign is *" + chineseZodiacMap.get((year - 4) % 12) + "*";
     }
 }
