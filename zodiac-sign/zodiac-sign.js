@@ -47,7 +47,13 @@ module.exports = {
           return this.getChineseZodiacSign(parameters.age.amount);
           
         case 'zodiacsign.horoscope':
-          return this.getHoroscope(parameters.zodiacsign);
+             console.log("horoscope");
+          this.getHoroscope(parameters.zodiacsign).
+          then((horoscope) => { 
+              console.log("Resolving Promise now")
+              return horoscope })
+          .catch((err) => {return "An error occured while fetching your horoscope: " + err});
+        
           
         case 'zodiacsign.check.horoscope':
             console.log("horoscope");
