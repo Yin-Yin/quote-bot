@@ -82,7 +82,7 @@ module.exports = {
             if (!error && response.statusCode == 200) {
                 console.log(body) // Print the google web page.
                 //this.horoscope = body;
-                return body + requestUrl;
+                return body.horoscope;
              }
         })
         //return horoscope
