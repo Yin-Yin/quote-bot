@@ -77,7 +77,7 @@ module.exports = {
     getHoroscope: function(zodiacSign) {
         
         let horoscope = "Test Horoscope: " + zodiacSign;
-        request('http://sandipbgt.com/theastrologer/api/' + zodiacSign +'/today', function (error, response, body) {
+        request('http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign +'/today', function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body) // Print the google web page.
                 //this.horoscope = body;
