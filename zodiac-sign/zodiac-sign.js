@@ -37,24 +37,24 @@ module.exports = {
         
         case 'zodiacsign.check':
           if (parameters.date === '') {
-            return "The date is not correct."
+            resolve("The date is not correct.")
           }
           let parameterDate = new Date(parameters.date);
-          return "Your zodiac sign is " + this.getZodiacSign(parameterDate); 
+          resolve("Your zodiac sign is " + this.getZodiacSign(parameterDate))
           
         case 'zodiacsign.info':
-          return this.getZodiacSignInfo(parameters.zodiacsign);
+          resolve(this.getZodiacSignInfo(parameters.zodiacsign))
                     
         case 'zodiacsign.year':
-          return this.getChineseZodiacSign(parameters.age.amount);
+          resolve(this.getChineseZodiacSign(parameters.age.amount))
           
         case 'zodiacsign.horoscope':
              console.log("horoscope");
           this.getHoroscope(parameters.zodiacsign).
           then((horoscope) => { 
               console.log("Resolving Promise now")
-              return horoscope })
-          .catch((err) => {return "An error occured while fetching your horoscope: " + err});
+              resolve(horoscope) })
+          .catch((err) => {resolve("An error occured while fetching your horoscope: " + err)});
         
           
         case 'zodiacsign.check.horoscope':
@@ -62,8 +62,8 @@ module.exports = {
           this.getHoroscope(parameters.zodiacsign).
           then((horoscope) => { 
               console.log("Resolving Promise now")
-              return horoscope })
-          .catch((err) => {return "An error occured while fetching your horoscope: " + err});
+              resolve(horoscope) })
+          .catch((err) => {resolve("An error occured while fetching your horoscope: " + err)});
           
         default:
           return "Something went wrong. Sorry about that."
@@ -107,3 +107,46 @@ module.exports = {
         
     }
 }
+
+
+/*
+
+  
+      switch (intentName) {
+        
+        case 'zodiacsign.check':
+          if (parameters.date === '') {
+            return "The date is not correct."
+          }
+          let parameterDate = new Date(parameters.date);
+          return "Your zodiac sign is " + this.getZodiacSign(parameterDate); 
+          
+        case 'zodiacsign.info':
+          return this.getZodiacSignInfo(parameters.zodiacsign);
+                    
+        case 'zodiacsign.year':
+          return this.getChineseZodiacSign(parameters.age.amount);
+          
+        case 'zodiacsign.horoscope':
+             console.log("horoscope");
+          this.getHoroscope(parameters.zodiacsign).
+          then((horoscope) => { 
+              console.log("Resolving Promise now")
+              return horoscope })
+          .catch((err) => {return "An error occured while fetching your horoscope: " + err});
+        
+          
+        case 'zodiacsign.check.horoscope':
+            console.log("horoscope");
+          this.getHoroscope(parameters.zodiacsign).
+          then((horoscope) => { 
+              console.log("Resolving Promise now")
+              return horoscope })
+          .catch((err) => {return "An error occured while fetching your horoscope: " + err});
+          
+        default:
+          return "Something went wrong. Sorry about that."
+          // for debugging: return "Something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
+      
+      
+*/      
