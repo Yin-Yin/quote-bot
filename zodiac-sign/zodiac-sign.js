@@ -50,7 +50,9 @@ module.exports = {
           return this.getHoroscope(parameters.zodiacsign);
           
         case 'zodiacsign.check.horoscope':
-          return this.getHoroscope(parameters.zodiacsign);
+          this.getHoroscope(parameters.zodiacsign).
+          then((horoscope) => { return horoscope })
+          .catch((err) => {return "An error occured while fetching your horoscope: " + err});
           
         default:
           return "Something went wrong. Sorry about that."
@@ -77,16 +79,18 @@ module.exports = {
     },
     getHoroscope: function(zodiacSign) {
         
-        let horoscope = "Test Horoscope: " + zodiacSign;
-        let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign.toLowerCase() +'/today'
-        request(requestUrl, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                console.log(body) 
-                //this.horoscope = body;
-                return "Test " + body.horoscope;
-             } else {
-                 return "There was an error retrieving your horoscope for " + zodiacSign + "."
-             }
+        return new Promise((resolve, reject) => {
+            let horoscope = "Test Horoscope: " + zodiacSign;
+            let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign.toLowerCase() +'/today'
+            request(requestUrl, function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    console.log(body + '/n' + requestUrl) 
+                    //this.horoscope = body;
+                    resolve("Test " + body.horoscope)
+                 } else {
+                     reject("There was an error retrieving your horoscope for " + zodiacSign + ".")
+                 }
+            })
         })
         
     }
