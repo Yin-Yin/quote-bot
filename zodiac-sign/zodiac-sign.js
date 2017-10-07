@@ -96,10 +96,10 @@ module.exports = {
             let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign.toLowerCase() +'/today'
             request(requestUrl, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    let body = JSON.parse(body);
+                    let parsedBody = JSON.parse(body);
                     console.log(body + '/n' + requestUrl) 
                     //this.horoscope = body;
-                    resolve("Test " + body.horoscope + body + body.date + body.mood)
+                    resolve("Test " + parsedBody.horoscope + parsedBody.date + parsedBody.mood)
                  } else {
                      reject("There was an error retrieving your horoscope for " + zodiacSign + ".")
                  }
