@@ -41,8 +41,8 @@ app.post('/intent', function(req, res) {
     */
     {
     "type": 2,
-    "title": "Horoscope?",
-    "replies": ["Horoscope"]
+    "title": "Do you want to know more about it?",
+    "replies": ["Horoscope", "Info"]
     }
     ]
 
