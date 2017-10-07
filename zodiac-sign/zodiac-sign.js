@@ -88,6 +88,6 @@ module.exports = {
              }
         })
         
-        // return horoscope
+        return horoscope
     }
 }
