@@ -32,13 +32,15 @@ app.post('/intent', function(req, res) {
     "type": 0,
     "speech": response
     },
+    /*
     {
     "type": 3,
     "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
-    },
+    }*/
+    ,
     {
     "type": 2,
-    "title": "You can also get the horoscope for this star sign.",
+    "title": "Horoscope?",
     "replies": ["Horoscope"]
     }
     ]
