@@ -44,6 +44,9 @@ module.exports = {
         case 'zodiacsign.year':
           return this.getChineseZodiacSign(parameters.age.amount);
           
+        case 'zodiacsign.horoscope':
+          return this.getHoroscope(parameters.zodiacsign);
+          
         default:
           return "Something went wrong. Sorry about that."
           // for debugging: return "Something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
@@ -65,5 +68,10 @@ module.exports = {
     
     getChineseZodiacSign: function (year) {
         return "Your chinese zodiac sign is " + chineseZodiacMap.get((year - 4) % 12) + ".";
+    },
+    getHoroscope: function(zodiacSign) {
+        
+        let horoscope = "Test Horoscope: " + zodiacSign
+        return horoscope
     }
 }
