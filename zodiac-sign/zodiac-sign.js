@@ -47,6 +47,9 @@ module.exports = {
         case 'zodiacsign.horoscope':
           return this.getHoroscope(parameters.zodiacsign);
           
+        case 'zodiacsign.check.horoscope':
+          return this.getHoroscope(parameters.zodiacsign);
+          
         default:
           return "Something went wrong. Sorry about that."
           // for debugging: return "Something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
@@ -70,7 +73,14 @@ module.exports = {
         return "Your chinese zodiac sign is " + chineseZodiacMap.get((year - 4) % 12) + ".";
     },
     getHoroscope: function(zodiacSign) {
-        
+        var request = require('request');
+        let horoscope = "Test Horoscope: " + zodiacSign;
+        request('http://sandipbgt.com/theastrologer/api/' + zodiacSign +'/today', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body) // Print the google web page.
+                this.horoscope = body;
+             }
+        })
         let horoscope = "Test Horoscope: " + zodiacSign
         return horoscope
     }
