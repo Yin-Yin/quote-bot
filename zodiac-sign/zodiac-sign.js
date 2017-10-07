@@ -80,11 +80,14 @@ module.exports = {
         let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign.toLowerCase() +'/today'
         request(requestUrl, function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body) // Print the google web page.
+                console.log(body) 
                 //this.horoscope = body;
-                return body.horoscope;
+                return "Test " + body.horoscope;
+             } else {
+                 return "There was an error trying to retrieve your horoscope for " + zodiacSign + "."
              }
         })
-        //return horoscope
+        
+        // return horoscope
     }
 }
