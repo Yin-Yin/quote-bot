@@ -19,15 +19,15 @@ app.get('/', function(req, res) {
 app.post('/intent', function(req, res) {
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
-
-  let response = zodiacSignModule.getResponse(parameters,intentName);
-
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
+  
+  zodiacSignModule.getResponse(parameters,intentName).then((response) =>
   res.send(JSON.stringify({
     //"speech" is the spoken version of the response, "displayText" is the visual version
     "speech": response,
     "displayText": response
-  }));
+  }))
+  )
 })
 
 app.listen(app.get('port'), function() {
