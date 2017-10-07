@@ -26,6 +26,18 @@ app.post('/intent', function(req, res) {
     //"speech" is the spoken version of the response, "displayText" is the visual version
     "speech": response,
     "displayText": response
+    ,
+"messages": [
+{
+"type": 0,
+"speech": "look at that image"
+},
+{
+"type": 3,
+"imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+}
+]
+
   }))
   )
 })
