@@ -84,10 +84,12 @@ module.exports = {
                 //this.horoscope = body;
                 return "Test " + body.horoscope;
              } else {
-                 return "There was an error trying to retrieve your horoscope for " + zodiacSign + "."
+                 return "There was an error retrieving your horoscope for " + zodiacSign + "."
              }
+        }).then(function(){
+            return horoscope
         })
         
-        return horoscope
+        
     }
 }
