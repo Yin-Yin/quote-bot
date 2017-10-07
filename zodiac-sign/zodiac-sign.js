@@ -98,7 +98,7 @@ module.exports = {
                 if (!error && response.statusCode == 200) {
                     console.log(body + '/n' + requestUrl) 
                     //this.horoscope = body;
-                    resolve("Test " + body.horoscope)
+                    resolve("Test " + body.horoscope + body + body.date + body.mood)
                  } else {
                      reject("There was an error retrieving your horoscope for " + zodiacSign + ".")
                  }
