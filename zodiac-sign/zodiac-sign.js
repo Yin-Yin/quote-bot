@@ -81,7 +81,6 @@ module.exports = {
                 this.horoscope = body;
              }
         })
-        let horoscope = "Test Horoscope: " + zodiacSign
         return horoscope
     }
 }
