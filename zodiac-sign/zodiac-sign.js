@@ -92,16 +92,14 @@ module.exports = {
     getHoroscope: function(zodiacSign) {
         
         return new Promise((resolve, reject) => {
-            let horoscope = "Test Horoscope: " + zodiacSign;
             let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign.toLowerCase() +'/today'
             request(requestUrl, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     let parsedBody = JSON.parse(body);
-                    console.log(body + '/n' + requestUrl) 
-                    //this.horoscope = body;
-                    resolve("Test " + parsedBody.horoscope + parsedBody.date + parsedBody.mood)
+                    console.log(body + '/n' + requestUrl);
+                    resolve("The horoscope for " + zodiacSign + " for today is: \n" + parsedBody.horoscope);
                  } else {
-                     reject("There was an error retrieving your horoscope for " + zodiacSign + ".")
+                     reject("There was an error retrieving your horoscope for " + zodiacSign + ".");
                  }
             })
         })
