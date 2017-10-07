@@ -39,7 +39,7 @@ app.post('/intent', function(req, res) {
     {
     "type": 2,
     "title": "You can also get the horoscope for this star sign.",
-    "replies": "Horoscope."
+    "replies": ["Horoscope."]
     }
     ]
 
