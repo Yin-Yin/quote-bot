@@ -30,7 +30,7 @@ app.post('/intent', function(req, res) {
 "messages": [
 {
 "type": 0,
-"speech": "look at that image"
+"speech": response
 },
 {
 "type": 3,
