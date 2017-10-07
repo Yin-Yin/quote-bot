@@ -50,8 +50,11 @@ module.exports = {
           return this.getHoroscope(parameters.zodiacsign);
           
         case 'zodiacsign.check.horoscope':
+            console.log("horoscope");
           this.getHoroscope(parameters.zodiacsign).
-          then((horoscope) => { return horoscope })
+          then((horoscope) => { 
+              console.log("Resolving Promise now")
+              return horoscope })
           .catch((err) => {return "An error occured while fetching your horoscope: " + err});
           
         default:
