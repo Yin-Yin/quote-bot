@@ -92,7 +92,7 @@ module.exports = {
     getHoroscope: function(zodiacSign) {
         
         return new Promise((resolve, reject) => {
-            let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign.toLowerCase() +'/today'
+            let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign +'/today'
             request(requestUrl, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     let parsedBody = JSON.parse(body);
