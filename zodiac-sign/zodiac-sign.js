@@ -28,6 +28,8 @@ chineseZodiacMap.set(9,'Rooster');
 chineseZodiacMap.set(10,'Dog');
 chineseZodiacMap.set(11,'Pig');
 
+
+// toDO: put this code in its own module
 module.exports = {
     // ## API.ai intents ##
     getResponse: function (parameters,intentName) {
@@ -67,6 +69,11 @@ module.exports = {
     })
     },
     
+    // toDO: add debugging, wether with console.logs or with a loghinh tool. THen add logging for the input and output to make sure I can debug errors later
+    // toDo: make the documentation better
+    // toDO: take apart the code into logical modules
+    // toDO: add a bug report intent
+    // to do: one functionality per one function!! Take apart the part where the message is constructed and the logic about the star sign
     getZodiacSign: function(date) {
         // returns the zodiac sign according to day and month 
         let month = date.getMonth() + 1;
@@ -164,6 +171,7 @@ module.exports = {
     },
     getHoroscope: function(zodiacSign) {
         return new Promise((resolve, reject) => {
+            console.log("Requesting horoscope for zodiac sign: ", zodiacSign);
             let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign +'/today'
             request(requestUrl, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
