@@ -160,29 +160,6 @@ module.exports = {
         return response;
     },
     getHoroscope: function(zodiacSign) {
-        let response = {}
-        response.speech = "Your zodiac sign is " + zodiacSign 
-        response.displayText = "Your zodiac sign is " + zodiacSign
-        response.messages = [
-        {
-        "type": 0,
-        "speech": "Your zodiac sign is " + response
-        },
-        /*
-        {
-        "type": 3,
-        "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
-        }
-        ,
-        */
-        {
-        "type": 2,
-        "title": "Do you want to know more?",
-        "replies": ["Horoscope", "Info"]
-        }
-        ]
-        return response;
-        
         return new Promise((resolve, reject) => {
             let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign +'/today'
             request(requestUrl, function (error, response, body) {
