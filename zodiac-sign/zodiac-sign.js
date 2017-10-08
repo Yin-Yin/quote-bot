@@ -76,6 +76,14 @@ module.exports = {
               resolve(horoscope) })
           .catch((err) => {resolve("An error occured while fetching your horoscope: " + err)});
           
+        case 'zodiacsign.horoscope.context':
+          console.log("Triggerd intent zodiacSign.horoscope.context with params: ", parameters.zodiacsign);
+          this.getHoroscope(parameters.zodiacsign).
+          then((horoscope) => { 
+              console.log("Resolving Promise now")
+              resolve(horoscope) })
+          .catch((err) => {resolve("An error occured while fetching your horoscope: " + err)});
+          
         default:
           return "Something went wrong. Sorry about that."
           // for debugging: return "Something went wrong. You triggered the intent: " + intentName + ", with the parameters: " + parameters;
