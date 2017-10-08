@@ -53,6 +53,7 @@ module.exports = {
             console.log("The date is from this year; ", dateYear);
           }
           // toDO: the output of the intent cannot work, because the result comes from the backend and not from api ai itself
+          // I could use context.out here and pass the output context parameters forectly from the backend. read it online, need to conrom
           resolve(this.getZodiacSign(parameterDate))
           
         case 'zodiacsign.info':
@@ -115,6 +116,7 @@ module.exports = {
         "replies": ["Horoscope", "Info"]
         }
         ]
+        response.contextOut = [{"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":zodiacSign}}];
         return response;
     },
     
