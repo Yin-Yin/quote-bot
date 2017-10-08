@@ -44,6 +44,15 @@ module.exports = {
             reject("The date is not correct.")
           }
           let parameterDate = new Date(parameters.date);
+          let currentYear = new Date().getFullYear(); // I uzse this in another place as well => declare on top for whole module
+          let dateYear = parameterDate.getFullYear();
+          if (dateYear !== currentYear) {
+          console.log("Year is different: ", dateYear)
+          console.log("CHinese Zodiac", this.getChineseZodiacSign(dateYear))
+          } else {
+            console.log("The date is from this year; ", dateYear);
+          }
+          
           resolve(this.getZodiacSign(parameterDate))
           
         case 'zodiacsign.info':
