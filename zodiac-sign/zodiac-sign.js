@@ -46,16 +46,18 @@ module.exports = {
           resolve(this.getZodiacSign(parameterDate))
           
         case 'zodiacsign.info':
+          console.log("Triggerd intent zodiacSign.info");
           resolve(this.getZodiacSignInfo(parameters.zodiacsign))
           
         case 'zodiacsign.info.context':
+          console.log("Triggerd intent zodiacSign.info.context");
           resolve(this.getZodiacSignInfo(parameters.zodiacsign))
                     
         case 'zodiacsign.year':
           resolve(this.getChineseZodiacSign(parameters.age.amount))
           
         case 'zodiacsign.horoscope':
-             console.log("horoscope");
+          console.log("Triggerd intent zodiacSign.horoscope");
           this.getHoroscope(parameters.zodiacsign).
           then((horoscope) => { 
               console.log("Resolving Promise now")
