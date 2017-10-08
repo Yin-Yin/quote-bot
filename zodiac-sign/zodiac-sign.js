@@ -77,7 +77,7 @@ module.exports = {
         response.messages = [
         {
         "type": 0,
-        "speech": "Your zodiac sign is " + response
+        "speech": "Your zodiac sign is " + zodiacSign
         },
         /*
         {
