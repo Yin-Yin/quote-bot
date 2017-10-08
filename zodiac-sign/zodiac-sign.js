@@ -46,13 +46,13 @@ module.exports = {
           let parameterDate = new Date(parameters.date);
           let currentYear = new Date().getFullYear(); // I uzse this in another place as well => declare on top for whole module
           let dateYear = parameterDate.getFullYear();
-          if (dateYear !== currentYear) {
+          if (dateYear < currentYear) {
           console.log("Year is different: ", dateYear)
           console.log("CHinese Zodiac", this.getChineseZodiacSign(dateYear))
           } else {
             console.log("The date is from this year; ", dateYear);
           }
-          
+          // toDO: the output of the intent cannot work, because the result comes from the backend and not from api ai itself
           resolve(this.getZodiacSign(parameterDate))
           
         case 'zodiacsign.info':
