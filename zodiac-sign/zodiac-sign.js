@@ -107,8 +107,8 @@ module.exports = {
         response.contextOut = [{
           "name": "zodiac-sign",
           "parameters": {
-            "zodiacsign": zodiacSign,
-            "zodiacsign-context": zodiacSign
+            "zodiacsign": zodiacSign.toLowerCase(),
+            "zodiacsign-context": zodiacSign.toLowerCase()
           },
           "lifespan": 12
         }]
