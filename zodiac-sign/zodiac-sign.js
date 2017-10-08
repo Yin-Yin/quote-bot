@@ -107,9 +107,8 @@ module.exports = {
         response.contextOut = [{
           "name": "zodiac-sign",
           "parameters": {
-            "zodiacsign.original": "aries",
-            "zodiacsign": "aries",
-            "zodiacsign-context": "aries"
+            "zodiacsign": zodiacSign,
+            "zodiacsign-context": zodiacSign
           },
           "lifespan": 12
         }]
