@@ -116,6 +116,7 @@ module.exports = {
         "replies": ["Horoscope", "Info"]
         }
         ]
+        console.log("ZodiacSign parameter is: ", zodiacSign);
         response.contextOut = [{"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":zodiacSign}}];
         return response;
     },
