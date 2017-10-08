@@ -45,6 +45,9 @@ module.exports = {
           
         case 'zodiacsign.info':
           resolve(this.getZodiacSignInfo(parameters.zodiacsign))
+          
+        case 'zodiacsign.info.context':
+          resolve(this.getZodiacSignInfo(parameters.zodiacsign))
                     
         case 'zodiacsign.year':
           resolve(this.getChineseZodiacSign(parameters.age.amount))
