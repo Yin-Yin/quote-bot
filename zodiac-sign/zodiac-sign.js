@@ -90,7 +90,7 @@ module.exports = {
       console.log("year", year);
       if(year < 120) {
         let today = new Date();
-        let currentYear = new Date().getYear();
+        let currentYear = new Date().getFullYear();
         let birthdayYear = currentYear - year;
 
         console.log("today", today);
