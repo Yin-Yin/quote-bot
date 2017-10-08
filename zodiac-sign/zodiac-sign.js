@@ -89,8 +89,11 @@ module.exports = {
     getChineseZodiacSign: function (year) {
       console.log("year", year);
       if(year < 120) {
+        let today = new Date();
         let currentYear = new Date().getYear();
         let birthdayYear = currentYear - year;
+
+        console.log("today", today);
         console.log("currentYear", currentYear);
         console.log("birthdayYear ", birthdayYear);
         return "Your chinese zodiac sign is " + chineseZodiacMap.get((birthdayYear - 4) % 12) + ".";
