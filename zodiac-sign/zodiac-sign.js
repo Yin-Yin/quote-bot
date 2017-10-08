@@ -39,6 +39,7 @@ module.exports = {
         
         // ## zodiac sign ##
         case 'zodiacsign.check':
+          console.log("Triggerd intent zodiacSign.check with params: ", parameters.date);
           if (parameters.date === '') {
             reject("The date is not correct.")
           }
@@ -46,18 +47,19 @@ module.exports = {
           resolve(this.getZodiacSign(parameterDate))
           
         case 'zodiacsign.info':
-          console.log("Triggerd intent zodiacSign.info");
+          console.log("Triggerd intent zodiacSign.info with params: ", parameters.zodiacsign);
           resolve(this.getZodiacSignInfo(parameters.zodiacsign))
           
         case 'zodiacsign.info.context':
-          console.log("Triggerd intent zodiacSign.info.context");
+          console.log("Triggerd intent zodiacSign.info.context with params: ", parameters.zodiacsign);
           resolve(this.getZodiacSignInfo(parameters.zodiacsign))
                     
         case 'zodiacsign.year':
+          console.log("Triggerd intent zodiacSign.year with params: ", parameters.age.amount);
           resolve(this.getChineseZodiacSign(parameters.age.amount))
           
         case 'zodiacsign.horoscope':
-          console.log("Triggerd intent zodiacSign.horoscope");
+          console.log("Triggerd intent zodiacSign.horoscope with params: ", parameters.zodiacsign);
           this.getHoroscope(parameters.zodiacsign).
           then((horoscope) => { 
               console.log("Resolving Promise now")
