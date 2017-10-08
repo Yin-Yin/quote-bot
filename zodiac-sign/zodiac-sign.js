@@ -15,18 +15,18 @@ zodiacSignMap.set('scorpio', 'Scorpio\nDates: October 23 – November 21\nScorpi
 zodiacSignMap.set('sagittarius', 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
 
 const chineseZodiacMap = new Map();
-chineseZodiacMap.set(0,'rat');
-chineseZodiacMap.set(1,'ox');
-chineseZodiacMap.set(2,'tiger');
-chineseZodiacMap.set(3,'rabbit');
-chineseZodiacMap.set(4,'dragon');
-chineseZodiacMap.set(5,'snake');
-chineseZodiacMap.set(6,'horse');
-chineseZodiacMap.set(7,'goat');
-chineseZodiacMap.set(8,'monkey');
-chineseZodiacMap.set(9,'rooster');
-chineseZodiacMap.set(10,'dog');
-chineseZodiacMap.set(11,'pig');
+chineseZodiacMap.set(0,'Rat');
+chineseZodiacMap.set(1,'Ox');
+chineseZodiacMap.set(2,'Tiger');
+chineseZodiacMap.set(3,'Rabbit');
+chineseZodiacMap.set(4,'Dragon');
+chineseZodiacMap.set(5,'Snake');
+chineseZodiacMap.set(6,'Horse');
+chineseZodiacMap.set(7,'Goat');
+chineseZodiacMap.set(8,'Monkey');
+chineseZodiacMap.set(9,'Rooster');
+chineseZodiacMap.set(10,'Dog');
+chineseZodiacMap.set(11,'Pig');
 
 module.exports = {
     // ## API.ai intents ##
@@ -35,12 +35,13 @@ module.exports = {
         
       switch (intentName) {
         
+        // ## zodiac sign ##
         case 'zodiacsign.check':
           if (parameters.date === '') {
-            resolve("The date is not correct.")
+            reject("The date is not correct.")
           }
           let parameterDate = new Date(parameters.date);
-          resolve("Your zodiac sign is " + this.getZodiacSign(parameterDate))
+          resolve(this.getZodiacSign(parameterDate))
           
         case 'zodiacsign.info':
           resolve(this.getZodiacSignInfo(parameters.zodiacsign))
@@ -50,15 +51,6 @@ module.exports = {
           
         case 'zodiacsign.horoscope':
              console.log("horoscope");
-          this.getHoroscope(parameters.zodiacsign).
-          then((horoscope) => { 
-              console.log("Resolving Promise now")
-              resolve(horoscope) })
-          .catch((err) => {resolve("An error occured while fetching your horoscope: " + err)});
-        
-          
-        case 'zodiacsign.check.horoscope':
-            console.log("horoscope");
           this.getHoroscope(parameters.zodiacsign).
           then((horoscope) => { 
               console.log("Resolving Promise now")
@@ -76,31 +68,120 @@ module.exports = {
         // returns the zodiac sign according to day and month 
         let month = date.getMonth() + 1;
         let day = date.getDate();
-        const zodiac = ['', 'capricorn', 'aquarius', 'pisces', 'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn'];
+        const zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
         const last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
-        return (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
+        let zodiacSign = (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
+        let response = {}
+        response.speech = "Your zodiac sign is " + zodiacSign 
+        response.displayText = "Your zodiac sign is " + zodiacSign
+        response.messages = [
+        {
+        "type": 0,
+        "speech": "Your zodiac sign is " + response
+        },
+        /*
+        {
+        "type": 3,
+        "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+        }
+        ,
+        */
+        {
+        "type": 2,
+        "title": "Do you want to know more?",
+        "replies": ["Horoscope", "Info"]
+        }
+        ]
+        return response;
     },
     
     getZodiacSignInfo: function(zodiacSign) {
         console.log("zodiacSign.Info", zodiacSign);
-        return zodiacSignMap.get(zodiacSign);
+        let zodiacInfo = zodiacSignMap.get(zodiacSign);
+        
+        let response = {}
+        response.speech = zodiacInfo;
+        response.displayText = zodiacInfo;
+        response.messages = [
+        {
+        "type": 0,
+        "speech": zodiacInfo
+        },
+        /*
+        {
+        "type": 3,
+        "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+        }
+        ,
+        */
+        {
+        "type": 2,
+        "title": "You can get the horoscope for this zodiac sign.",
+        "replies": ["Horoscope"]
+        }
+        ]
+        return response;
+    
+        
     },
     
     getChineseZodiacSign: function (year) {
-      console.log("year", year);
-      if(year < 120) {
-        let today = new Date();
+      let chineseZodiacSign = ''
+      if(year < 120) { // calculate the birthday if user gives his age and not a year
         let currentYear = new Date().getFullYear();
         let birthdayYear = currentYear - year;
-
-        console.log("today", today);
-        console.log("currentYear", currentYear);
-        console.log("birthdayYear ", birthdayYear);
-        return "Your chinese zodiac sign is " + chineseZodiacMap.get((birthdayYear - 4) % 12) + ".";
-      } 
-        return "Your chinese zodiac sign is " + chineseZodiacMap.get((year - 4) % 12) + ".";
+        chineseZodiacSign = chineseZodiacMap.get((birthdayYear - 4) % 12) + ".";
+      } else {
+        chineseZodiacSign = "Your chinese zodiac sign is " + chineseZodiacMap.get((year - 4) % 12) + ".";
+      }
+                
+        let response = {}
+        response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
+        response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
+        response.messages = [
+        {
+        "type": 0,
+        "speech": "Your chinese zodiac sign is " + chineseZodiacSign
+        },
+        /*
+        {
+        "type": 3,
+        "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+        }
+        ,
+        
+        {
+        "type": 2,
+        "title": "You can get the horoscope for this zodiac sign.",
+        "replies": ["Horoscope"]
+        }
+        */
+        ]
+        return response;
     },
     getHoroscope: function(zodiacSign) {
+        let response = {}
+        response.speech = "Your zodiac sign is " + zodiacSign 
+        response.displayText = "Your zodiac sign is " + zodiacSign
+        response.messages = [
+        {
+        "type": 0,
+        "speech": "Your zodiac sign is " + response
+        },
+        /*
+        {
+        "type": 3,
+        "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+        }
+        ,
+        */
+        {
+        "type": 2,
+        "title": "Do you want to know more?",
+        "replies": ["Horoscope", "Info"]
+        }
+        ]
+        return response;
         
         return new Promise((resolve, reject) => {
             let requestUrl =  'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign +'/today'
@@ -108,7 +189,30 @@ module.exports = {
                 if (!error && response.statusCode == 200) {
                     let parsedBody = JSON.parse(body);
                     console.log(body + '/n' + requestUrl);
-                    resolve("The horoscope for " + zodiacSign + " for today is: \n" + parsedBody.horoscope);
+                    let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + parsedBody.horoscope;
+                    let response = {}
+                    response.speech = horoscope;
+                    response.displayText = horoscope;
+                    response.messages = [
+                    {
+                    "type": 0,
+                    "speech": horoscope
+                    },
+                    /*
+                    {
+                    "type": 3,
+                    "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+                    }
+                    ,
+                    {
+                    "type": 2,
+                    "title": "Do you want to know more?",
+                    "replies": ["Info"]
+                    }
+                    */
+                    ]
+                    
+                    resolve(response);
                  } else {
                      reject("There was an error retrieving your horoscope for " + zodiacSign + ".");
                  }

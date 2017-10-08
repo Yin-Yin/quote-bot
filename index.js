@@ -24,28 +24,9 @@ app.post('/intent', function(req, res) {
   zodiacSignModule.getResponse(parameters,intentName).then((response) =>
   res.send(JSON.stringify({
     //"speech" is the spoken version of the response, "displayText" is the visual version
-    "speech": response,
-    "displayText": response
-    ,
-    "messages": [
-    {
-    "type": 0,
-    "speech": response
-    },
-    /*
-    {
-    "type": 3,
-    "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
-    }
-    ,
-    */
-    {
-    "type": 2,
-    "title": "Do you want to know more about it?",
-    "replies": ["Horoscope", "Info"]
-    }
-    ]
-
+    "speech": response.speech,
+    "displayText": response.displayText,
+    "messages": response.messages
   }))
   )
 })
