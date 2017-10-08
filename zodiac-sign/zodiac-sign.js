@@ -132,7 +132,7 @@ module.exports = {
         let birthdayYear = currentYear - year;
         chineseZodiacSign = chineseZodiacMap.get((birthdayYear - 4) % 12) + ".";
       } else {
-        chineseZodiacSign = "Your chinese zodiac sign is " + chineseZodiacMap.get((year - 4) % 12) + ".";
+        chineseZodiacSign = chineseZodiacMap.get((year - 4) % 12) + ".";
       }
                 
         let response = {}
