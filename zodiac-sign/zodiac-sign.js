@@ -105,13 +105,14 @@ module.exports = {
         let zodiacSign = (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
         let response = {}
         response.contextOut = [{
-                      "name": "zodiac-sign",
-                      "parameters": {
-                        "zodiacsign.original": "aries",
-                        "zodiacsign": "aries"
-                      },
-                      "lifespan": 10
-                    }]
+          "name": "zodiac-sign",
+          "parameters": {
+            "zodiacsign.original": "aries",
+            "zodiacsign": "aries",
+            "zodiacsign-context": "aries"
+          },
+          "lifespan": 12
+        }]
         response.speech = "Your zodiac sign is " + zodiacSign 
         response.displayText = "Your zodiac sign is " + zodiacSign
         response.messages = [
