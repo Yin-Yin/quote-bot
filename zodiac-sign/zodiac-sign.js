@@ -118,9 +118,10 @@ module.exports = {
         ]
         console.log("ZodiacSign parameter is: ", zodiacSign);
         //zodiacSign.toLowerCase()
-        response.contextOut = {"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":"Aries"}};
+        response.contextOut = [{"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":"Aries"}}];
         
-        response.context = {"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":"aries"}};
+        response.context = [{"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":"aries"}}];
+        console.log("response: ", response);
         return response;
     },
     
