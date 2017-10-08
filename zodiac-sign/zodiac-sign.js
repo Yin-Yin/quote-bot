@@ -104,6 +104,14 @@ module.exports = {
         const last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
         let zodiacSign = (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
         let response = {}
+        response.contextOut = [{
+                      "name": "zodiac-sign",
+                      "parameters": {
+                        "zodiacsign.original": "aries",
+                        "zodiacsign": "aries"
+                      },
+                      "lifespan": 10
+                    }]
         response.speech = "Your zodiac sign is " + zodiacSign 
         response.displayText = "Your zodiac sign is " + zodiacSign
         response.messages = [
@@ -126,9 +134,9 @@ module.exports = {
         ]
         console.log("ZodiacSign parameter is: ", zodiacSign);
         //zodiacSign.toLowerCase()
-        response.contextOut = [{"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":"Aries"}}];
+        //response.contextOut = [{"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":"Aries"}}];
         
-        response.contexts = [{"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":"aries"}}];
+        //response.contexts = [{"name":"zodiac-sign", "lifespan":20, "parameters":{"zodiacsign":"aries"}}];
         console.log("response: ", response);
         return response;
     },
