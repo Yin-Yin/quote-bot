@@ -2,7 +2,7 @@
 var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
-var zodiacSignModule = require('./zodiac-sign/zodiac-sign.js')
+var apiAiModule = require('./api-ai/api-ai.js')
 
 // parse application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -22,7 +22,7 @@ app.post('/intent', function(req, res) {
   let intentName = req.body.result.metadata.intentName;
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   
-  zodiacSignModule.getResponse(parameters,intentName).then((response) =>
+  apiAiModule.getResponse(parameters,intentName).then((response) =>
   res.send(JSON.stringify({
     //"speech" is the spoken version of the response, "displayText" is the visual version, "messages" are for the different messengers, "contextOut" is the context for api.ai
     "speech": response.speech,
