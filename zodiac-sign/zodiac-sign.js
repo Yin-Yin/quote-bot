@@ -49,13 +49,11 @@ module.exports = {
           break;
 
         case 'zodiacsign.info.context':
-          console.log("Triggerd intent zodiacSign.info.context with params: ", parameters.zodiacsign);
-          resolve(this.getZodiacSignInfo(parameters.zodiacsign))
+          resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign))
           break;
 
         case 'zodiacsign.year':
-          console.log("Triggerd intent zodiacSign.year with params: ", parameters.age.amount);
-          resolve(this.getChineseZodiacSign(parameters.age.amount))
+          resolve(this.getZodiacSignYearResponse(parameters.age.amount))
           break;
 
         case 'zodiacsign.horoscope':
@@ -165,6 +163,33 @@ module.exports = {
     ]
     return response;
   },
+  
+  getZodiacSignYearResponse: function(year) {
+    console.log("Triggered intent zodiacSign.year with params: ", year);
+    let chineseZodiacSign = this.getChineseZodiacSign(year)
+    let response = {}
+    response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
+    response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
+    response.messages = [{
+        "type": 0,
+        "speech": "Your chinese zodiac sign is " + chineseZodiacSign
+      },
+      /*
+      {
+      "type": 3,
+      "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+      }
+      ,
+
+      {
+      "type": 2,
+      "title": "Do you want to know more about this sign?",
+      "replies": ["Info Chinese Zodiac Sign"]
+      }
+      */
+    ]
+    return response;
+  },
 
 
 
@@ -202,29 +227,7 @@ module.exports = {
     else {
       chineseZodiacSign = chineseZodiacMap.get((year - 4) % 12) + ".";
     }
-
-    let response = {}
-    response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
-    response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
-    response.messages = [{
-        "type": 0,
-        "speech": "Your chinese zodiac sign is " + chineseZodiacSign
-      },
-      /*
-      {
-      "type": 3,
-      "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
-      }
-      ,
-
-      {
-      "type": 2,
-      "title": "You can get the horoscope for this zodiac sign.",
-      "replies": ["Horoscope"]
-      }
-      */
-    ]
-    return response;
+    return chineseZodiacSign;
   },
   getHoroscope: function(zodiacSign) {
     return new Promise((resolve, reject) => {

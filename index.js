@@ -24,7 +24,7 @@ app.post('/intent', function(req, res) {
   
   zodiacSignModule.getResponse(parameters,intentName).then((response) =>
   res.send(JSON.stringify({
-    //"speech" is the spoken version of the response, "displayText" is the visual version
+    //"speech" is the spoken version of the response, "displayText" is the visual version, "messages" are for the different messengers, "contextOut" is the context for api.ai
     "speech": response.speech,
     "displayText": response.displayText,
     "messages": response.messages,
