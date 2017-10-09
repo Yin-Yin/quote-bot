@@ -17,6 +17,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/intent', function(req, res) {
+  console.log("req.body",req.body)
   let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
