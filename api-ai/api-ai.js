@@ -12,30 +12,30 @@ module.exports = {
 
         // ## zodiac signs ##
         case 'zodiacsign.check':
-          resolve(zodiacSignModule.getZodiacSignCheckResponse(parameters.date))
+          resolve(this.getZodiacSignCheckResponse(parameters.date))
           break;
 
         case 'zodiacsign.info':
-          resolve(zodiacSignModule.getZodiacSignInfoResponse(parameters.zodiacsign))
+          resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign))
           break;
 
         case 'zodiacsign.info.context':
-          resolve(zodiacSignModule.getZodiacSignInfoResponse(parameters.zodiacsign))
+          resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign))
           break;
 
         case 'zodiacsign.year':
-          resolve(zodiacSignModule.getZodiacSignYearResponse(parameters.age.amount))
+          resolve(this.getZodiacSignYearResponse(parameters.age.amount))
           break;
 
         case 'zodiacsign.horoscope':
-          zodiacSignModule.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
+          this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
           then((horoscope) => {
               resolve(horoscope)
             })
           break;
 
         case 'zodiacsign.horoscope.context':
-          zodiacSignModule.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
+          this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
           then((horoscope) => {
               resolve(horoscope)
             })
