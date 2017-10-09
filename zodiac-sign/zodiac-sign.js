@@ -37,7 +37,7 @@ module.exports = {
         
       switch (intentName) {
         
-        // ## zodiac sign ##
+        // ## zodiac signs ##
         case 'zodiacsign.check':
           console.log("Triggerd intent zodiacSign.check with params: ", parameters.date);
           if (parameters.date === '') {
@@ -90,6 +90,19 @@ module.exports = {
       }
     })
     },
+    
+    getResponseForZodiacSignCheck: function (date) {
+      // body...
+    },
+    
+    getZodiacSignCheckResponse: function (date) {
+      // body...
+    },
+    
+    
+    
+  
+    
     
     // toDO: add debugging, wether with console.logs or with a loghinh tool. THen add logging for the input and output to make sure I can debug errors later
     // toDo: make the documentation better
