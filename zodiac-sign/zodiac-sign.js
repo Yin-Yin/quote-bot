@@ -94,6 +94,26 @@ module.exports = {
     }
     let zodiacSign = this.getZodiacSign(date);
     
+    
+    // build the response
+    response.speech = "Your zodiac sign is " + zodiacSign
+    response.displayText = "Your zodiac sign is " + zodiacSign
+
+    
+    response.messages = [{
+        "type": 0,
+        "speech": "Your zodiac sign is " + zodiacSign
+      },
+      /*
+      {
+      "type": 3,
+      "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+      }
+      ,
+      */
+    ]
+    
+    
     // also get chinese zodiac sign if a date in the past is provided
     let parameterDate = new Date(date);
     let currentYear = new Date().getFullYear(); // I uzse this in another place as well => declare on top for whole module
@@ -107,29 +127,12 @@ module.exports = {
       console.log("The date is from this year; ", dateYear);
     }
     
-    // build the response
-    response.speech = "Your zodiac sign is " + zodiacSign
-    response.displayText = "Your zodiac sign is " + zodiacSign
-    
-    
-    
-    response.messages = [{
-        "type": 0,
-        "speech": "Your zodiac sign is " + zodiacSign
-      },
-      /*
-      {
-      "type": 3,
-      "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
-      }
-      ,
-      */
+    response.messages.push(
       {
         "type": 2,
         "title": "Want to know more?",
         "replies": ["horoscope", "info"]
-      }
-    ]
+      })
     response.contextOut = [{
       "name": "zodiac-sign",
       "parameters": {
@@ -137,8 +140,6 @@ module.exports = {
       },
       "lifespan": 20
     }]
-    
-    
     
     return response;
   },
