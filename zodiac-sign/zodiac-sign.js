@@ -15,6 +15,7 @@ zodiacSignMap.set('scorpio', 'Scorpio\nDates: October 23 – November 21\nScorpi
 zodiacSignMap.set('sagittarius', 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
 
 const zodiacSignPictureMap = new Map();
+// toDO: use only really free pictures from wikipedia to be safe!
 zodiacSignPictureMap.set('capricorn', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Zoo-Capricorn-Mountain-Goat-2389416.jpg');
 // https://cdn.pixabay.com/photo/2017/07/26/18/06/capricorn-2542608_960_720.png
 zodiacSignPictureMap.set('aquarius', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Poseidon-Zodiac-Sign-Aquarius-Neptune-Composing-1865691.jpg');

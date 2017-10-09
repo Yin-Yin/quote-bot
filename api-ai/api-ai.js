@@ -110,17 +110,15 @@ module.exports = {
     let response = {}
     response.speech = zodiacInfo;
     response.displayText = zodiacInfo;
-    response.messages = [{
-        "type": 0,
-        "speech": zodiacInfo
-      },
-      
+    response.messages = [
       {
       "type": 3,
       "imageUrl": zodiacSignPicture
-      }
-      ,
-      
+      },
+      {
+        "type": 0,
+        "speech": zodiacInfo
+      },
       {
         "type": 2,
         "title": "Do you want to see the horoscope?",
