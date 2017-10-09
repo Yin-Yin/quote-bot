@@ -126,7 +126,7 @@ module.exports = {
         response.displayText = "Your zodiac sign is " + zodiacSign
         response.messages = [
         {
-        "type": 0,
+        "type": 1,
         "speech": "Your zodiac sign is " + zodiacSign
         },
         /*
