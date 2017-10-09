@@ -15,14 +15,21 @@ zodiacSignMap.set('scorpio', 'Scorpio\nDates: October 23 – November 21\nScorpi
 zodiacSignMap.set('sagittarius', 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
 
 const zodiacSignPictureMap = new Map();
-zodiacSignPictureMap.set('capricorn', 'https://cdn.pixabay.com/photo/2017/07/26/18/06/capricorn-2542608_960_720.png');
-zodiacSignPictureMap.set('aquarius', 'https://cdn.pixabay.com/photo/2017/05/08/23/51/aquarius-2296922_960_720.png');
-zodiacSignPictureMap.set('pisces', 'https://cdn.pixabay.com/photo/2017/05/10/16/18/fish-2301218_960_720.png');
+zodiacSignPictureMap.set('capricorn', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Zoo-Capricorn-Mountain-Goat-2389416.jpg');
+// https://cdn.pixabay.com/photo/2017/07/26/18/06/capricorn-2542608_960_720.png
+zodiacSignPictureMap.set('aquarius', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Poseidon-Zodiac-Sign-Aquarius-Neptune-Composing-1865691.jpg');
+// https://cdn.pixabay.com/photo/2017/05/08/23/51/aquarius-2296922_960_720.png
+zodiacSignPictureMap.set('pisces', 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Pisces_-_Horoscope_from_%27The_book_of_birth_of_Iskandar%22_Wellcome_L0040147.jpg');
+// https://cdn.pixabay.com/photo/2017/05/10/16/18/fish-2301218_960_720.png
 //zodiacSignPictureMap.set('aries', 'https://upload.wikimedia.org/wikipedia/commons/6/69/Aries2.jpg');
-zodiacSignPictureMap.set('aries', 'https://cdn.pixabay.com/photo/2017/05/09/00/08/ram-2296942_960_720.png');
-zodiacSignPictureMap.set('taurus', 'https://cdn.pixabay.com/photo/2017/07/06/17/56/bull-2478801_960_720.png');
-zodiacSignPictureMap.set('gemini', 'https://cdn.pixabay.com/photo/2017/05/09/15/45/gemini-2298596_960_720.png');
-zodiacSignPictureMap.set('cancer', 'https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png');
+zodiacSignPictureMap.set('aries', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Horoscope-Aries-Icon-Images-Astrology-Zodiac-639126.jpg');
+//https://cdn.pixabay.com/photo/2017/05/09/00/08/ram-2296942_960_720.png
+zodiacSignPictureMap.set('taurus', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Bos-Primigenius-Taurus-Beef-Cow-Domestic-Cattle-56014.jpg');
+// https://cdn.pixabay.com/photo/2017/07/06/17/56/bull-2478801_960_720.png
+zodiacSignPictureMap.set('gemini', 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Gemini_-_Horoscope_from_%27The_book_of_birth_of_Iskandar%22_Wellcome_L0040144.jpg');
+// https://cdn.pixabay.com/photo/2017/05/09/15/45/gemini-2298596_960_720.png
+zodiacSignPictureMap.set('cancer', 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Sidney_Hall_-_Urania%27s_Mirror_-_Scorpio.jpg');
+//https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png
 zodiacSignPictureMap.set('leo', 'https://upload.wikimedia.org/wikipedia/commons/4/47/Lion_%28Panthera_leo%29_eye_close-up.jpg');
 //https://cdn.pixabay.com/photo/2017/05/07/17/40/lion-2293073_960_720.png
 zodiacSignPictureMap.set('virgo', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg/1200px-Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg');

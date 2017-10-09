@@ -98,7 +98,7 @@ module.exports = {
       "parameters": {
         "zodiacsign": zodiacSign.toLowerCase()
       },
-      "lifespan": 20
+      "lifespan": 250
     }]
     return response;
   },
