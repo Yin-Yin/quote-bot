@@ -176,12 +176,12 @@ module.exports = {
             "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
             }
             ,
-            */
             {
             "type": 2,
             "title": "Get info about the zodiac sign?",
             "replies": ["info"]
             }
+            */
           ]
           resolve(response)
         }
