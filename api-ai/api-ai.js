@@ -106,7 +106,7 @@ module.exports = {
   getZodiacSignInfoResponse: function(zodiacSign) {
     console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
     let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacSign);
-    let zodiacSignPicture = "'" + zodiacSignModule.getZodiacSignPicture(zodiacSign) + "'"; 
+    // let zodiacSignPicture = "'" + zodiacSignModule.getZodiacSignPicture(zodiacSign) + "'"; 
     let response = {}
     response.speech = zodiacInfo;
     response.displayText = zodiacInfo;
@@ -114,13 +114,13 @@ module.exports = {
         "type": 0,
         "speech": zodiacInfo
       },
-      
+      /*
       {
       "type": 3,
       "imageUrl": zodiacSignPicture
       }
       ,
-      
+      */
       {
         "type": 2,
         "title": "Do you want the horoscope?",
