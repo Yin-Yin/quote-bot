@@ -63,11 +63,13 @@ module.exports = {
         "type": 0,
         "speech": "Your zodiac sign is " + zodiacSign
       },
+      /*
       {
       "type": 3,
       "imageUrl": zodiacSignModule.getZodiacSignPicture(zodiacSign)
       }
       ,
+      */
       {
       "type": 2,
       "title": "Want to know more?",
@@ -101,9 +103,10 @@ module.exports = {
     return response;
   },
 
-  getZodiacSignInfoResponse: function(zodiacsign) {
-    console.log("Triggerd intent zodiacSign.info with params: ", zodiacsign);
-    let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacsign)
+  getZodiacSignInfoResponse: function(zodiacSign) {
+    console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
+    let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacSign);
+    let zodiacSignPicture = "'" + zodiacSignModule.getZodiacSignPicture(zodiacSign) + "'"; 
     let response = {}
     response.speech = zodiacInfo;
     response.displayText = zodiacInfo;
@@ -111,13 +114,13 @@ module.exports = {
         "type": 0,
         "speech": zodiacInfo
       },
-      /*
+      
       {
       "type": 3,
-      "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+      "imageUrl": zodiacSignPicture
       }
       ,
-      */
+      
       {
         "type": 2,
         "title": "Do you want the horoscope?",
