@@ -45,8 +45,7 @@ module.exports = {
           break;
 
         case 'zodiacsign.info':
-          console.log("Triggerd intent zodiacSign.info with params: ", parameters.zodiacsign);
-          resolve(this.getZodiacSignInfo(parameters.zodiacsign))
+          resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign))
           break;
 
         case 'zodiacsign.info.context':
@@ -88,17 +87,15 @@ module.exports = {
   },
 
   getZodiacSignCheckResponse: function(date) {
-    console.log("Triggerd intent *zodiacSign.check with params: ", date);
+    console.log("Triggerd intent *zodiacSign.check with params, date: ", date);
     if (!date) {
       console.error("Intent: zodiacsign.check, Error: The date is missing.")
     }
     let zodiacSign = this.getZodiacSign(date);
     
-    
     // build the response
     response.speech = "Your zodiac sign is " + zodiacSign
     response.displayText = "Your zodiac sign is " + zodiacSign
-
     
     response.messages = [{
         "type": 0,
@@ -112,7 +109,6 @@ module.exports = {
       ,
       */
     ]
-    
     
     // also get chinese zodiac sign if a date in the past is provided
     let parameterDate = new Date(date);
@@ -144,36 +140,9 @@ module.exports = {
     return response;
   },
 
-  getZodiacSignInfoResponse: function(date) {
-    // body...
-  },
-
-
-
-
-
-
-  // toDO: add debugging, wether with console.logs or with a loghinh tool. THen add logging for the input and output to make sure I can debug errors later
-  // toDo: make the documentation better
-  // toDO: take apart the code into logical modules
-  // toDO: add a bug report intent
-  // to do: one functionality per one function!! Take apart the part where the message is constructed and the logic about the star sign
-
-
-  getZodiacSign: function(date) {
-    // returns the zodiac sign according to day and month
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    const zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
-    const last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
-    let zodiacSign = (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
-    return zodiacSign;
-  },
-
-  getZodiacSignInfo: function(zodiacSign) {
-    console.log("zodiacSign.Info", zodiacSign);
-    let zodiacInfo = zodiacSignMap.get(zodiacSign);
-
+  getZodiacSignInfoResponse: function(zodiacsign) {
+    console.log("Triggerd intent zodiacSign.info with params: ", zodiacsign);
+    let zodiacInfo = this.getZodiacSignInfo(zodiacsign)
     let response = {}
     response.speech = zodiacInfo;
     response.displayText = zodiacInfo;
@@ -195,8 +164,32 @@ module.exports = {
       }
     ]
     return response;
+  },
 
 
+
+  // toDO: add debugging, wether with console.logs or with a loghinh tool. THen add logging for the input and output to make sure I can debug errors later
+  // toDo: make the documentation better
+  // toDO: take apart the code into logical modules
+  // toDO: add a bug report intent
+  // to do: one functionality per one function!! Take apart the part where the message is constructed and the logic about the star sign
+
+
+  getZodiacSign: function(parameterDate) {
+    // returns the zodiac sign according to day and month
+    let date = new Date(parameterDate);
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    const zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
+    const last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
+    let zodiacSign = (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
+    return zodiacSign;
+  },
+
+  getZodiacSignInfo: function(zodiacSign) {
+    console.log("zodiacSign.Info", zodiacSign);
+    let zodiacInfo = zodiacSignMap.get(zodiacSign);
+    return zodiacInfo;
   },
 
   getChineseZodiacSign: function(year) {
