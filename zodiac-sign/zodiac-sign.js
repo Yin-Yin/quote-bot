@@ -112,6 +112,15 @@ module.exports = {
           },
           "lifespan": 12
         }]
+        response.followupEvent = {
+            "data": {
+                "amount": "1000",
+                "phone": "08001234567",
+                "food": "bread",
+                "zodiacsign": zodiacSign.toLowerCase(),
+            },
+            "name": "fill_slots"
+        }
         response.speech = "Your zodiac sign is " + zodiacSign 
         response.displayText = "Your zodiac sign is " + zodiacSign
         response.messages = [
