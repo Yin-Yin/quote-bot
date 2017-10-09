@@ -225,14 +225,6 @@ module.exports = {
                     console.log(body + '/n' + requestUrl);
                     let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + parsedBody.horoscope;
                     let response = {}
-                    response.contextOut = [{
-                      "name": "zodiac-sign",
-                      "parameters": {
-                        "zodiacsign.original": "aries",
-                        "zodiacsign": "aries"
-                      },
-                      "lifespan": 10
-                    }]
                     response.speech = horoscope;
                     response.displayText = horoscope;
                     response.messages = [
