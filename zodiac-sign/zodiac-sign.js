@@ -104,6 +104,7 @@ module.exports = {
         const last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
         let zodiacSign = (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
         let response = {}
+        response.data = {"Test": "Test Data"};
         response.contextOut = [{
           "name": "zodiac-sign",
           "parameters": {
