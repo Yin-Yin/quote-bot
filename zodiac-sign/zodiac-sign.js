@@ -14,6 +14,26 @@ zodiacSignMap.set('libra', 'Libra\nDates: September 23 – October 22\nLibra mea
 zodiacSignMap.set('scorpio', 'Scorpio\nDates: October 23 – November 21\nScorpions are so cool! They have a tail with a sting and two scissor hands!!! Wow! ...');
 zodiacSignMap.set('sagittarius', 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
 
+const zodiacSignPictureMap = new Map();
+zodiacSignMap.set('capricorn', 'https://cdn.pixabay.com/photo/2017/07/26/18/06/capricorn-2542608_960_720.png');
+zodiacSignMap.set('aquarius', 'https://cdn.pixabay.com/photo/2017/05/08/23/51/aquarius-2296922_960_720.png');
+zodiacSignMap.set('pisces', 'https://cdn.pixabay.com/photo/2017/05/10/16/18/fish-2301218_960_720.png');
+//zodiacSignMap.set('aries', 'https://upload.wikimedia.org/wikipedia/commons/6/69/Aries2.jpg');
+zodiacSignMap.set('aries', 'https://cdn.pixabay.com/photo/2017/05/09/00/08/ram-2296942_960_720.png');
+zodiacSignMap.set('taurus', 'https://cdn.pixabay.com/photo/2017/07/06/17/56/bull-2478801_960_720.png');
+zodiacSignMap.set('gemini', 'https://cdn.pixabay.com/photo/2017/05/09/15/45/gemini-2298596_960_720.png');
+zodiacSignMap.set('cancer', 'https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png');
+zodiacSignMap.set('leo', 'https://upload.wikimedia.org/wikipedia/commons/4/47/Lion_%28Panthera_leo%29_eye_close-up.jpg');
+//https://cdn.pixabay.com/photo/2017/05/07/17/40/lion-2293073_960_720.png
+zodiacSignMap.set('virgo', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg/1200px-Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg');
+// https://cdn.pixabay.com/photo/2017/05/05/22/07/miss-2288356_960_720.png
+zodiacSignMap.set('libra', 'https://upload.wikimedia.org/wikipedia/commons/3/35/LibraCC.jpg');
+// https://cdn.pixabay.com/photo/2017/05/10/17/19/libra-2301362_960_720.png
+zodiacSignMap.set('scorpio', 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Scorpio-bonatti.png');
+// https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png
+zodiacSignMap.set('sagittarius', 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Milky_Way_and_Sagittarius_%28with_note%29.JPG');
+// https://cdn.pixabay.com/photo/2017/05/05/21/50/sagittarius-2288323_960_720.png
+
 const chineseZodiacMap = new Map();
 chineseZodiacMap.set(0, 'Rat');
 chineseZodiacMap.set(1, 'Ox');
@@ -45,6 +65,12 @@ module.exports = {
     const last_day = ['', 19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21, 19];
     let zodiacSign = (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
     return zodiacSign;
+  },
+  
+  getZodiacSignPicture: function(zodiacSign) {
+    console.log("Getting zodiacSign picture for: ", zodiacSign);
+    let zodiacPicture = zodiacSignPictureMap.get(zodiacSign);
+    return zodiacPicture;
   },
 
   getZodiacSignInfo: function(zodiacSign) {

@@ -2,8 +2,6 @@ const zodiacSignModule = require('../zodiac-sign/zodiac-sign.js')
 var response = {}
 
 module.exports = {
-    
-    
    // ## API.ai intents ##
   getResponse: function(parameters, intentName) {
     return new Promise((resolve, reject) => {
@@ -29,15 +27,15 @@ module.exports = {
 
         case 'zodiacsign.horoscope':
           this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
-          then((horoscope) => {
-              resolve(horoscope)
+          then((response) => {
+              resolve(response)
             })
           break;
 
         case 'zodiacsign.horoscope.context':
           this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
-          then((horoscope) => {
-              resolve(horoscope)
+          then((response) => {
+              resolve(response)
             })
           break;
 
@@ -65,13 +63,11 @@ module.exports = {
         "type": 0,
         "speech": "Your zodiac sign is " + zodiacSign
       },
-      /*
       {
       "type": 3,
-      "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+      "imageUrl": zodiacSignModule.getZodiacSignPicture(zodiacSign)
       }
       ,
-      */
       {
       "type": 2,
       "title": "Want to know more?",
@@ -79,7 +75,7 @@ module.exports = {
     }]
 
     /*
-    //toDo: Delete this. I makes the code and the app more complicated. When I see the two responses I get confused.
+    //toDo: Add context out and show button to get chinese zodiac sign
     // also get chinese zodiac sign if a date in the past is provided
     let parameterDate = new Date(date);
     let currentYear = new Date().getFullYear(); // I use this in another place as well => declare on top for whole module
@@ -150,7 +146,7 @@ module.exports = {
 
       {
       "type": 2,
-      "title": "Do you want to know more about this sign?",
+      "title": "Want to know more?",
       "replies": ["Info Chinese Zodiac Sign"]
       }
       */
@@ -177,12 +173,12 @@ module.exports = {
             "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
             }
             ,
+            */
             {
             "type": 2,
-            "title": "Do you want to know more?",
-            "replies": ["Info"]
+            "title": "Get info about the zodiac sign?",
+            "replies": ["info"]
             }
-            */
           ]
           resolve(response)
         }
