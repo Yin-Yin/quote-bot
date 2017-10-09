@@ -27,7 +27,8 @@ app.post('/intent', function(req, res) {
     //"speech" is the spoken version of the response, "displayText" is the visual version
     "speech": response.speech,
     "displayText": response.displayText,
-    "messages": response.messages
+    "messages": response.messages,
+    "contextOut": response.contextOut
   }))
   )
 })
