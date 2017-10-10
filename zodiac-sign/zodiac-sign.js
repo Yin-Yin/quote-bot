@@ -16,30 +16,30 @@ zodiacSignMap.set('Sagittarius', 'Sagittarius\nDates: November 22 – December 2
 
 const zodiacSignPictureMap = new Map();
 // toDO: use only really free pictures from wikipedia to be safe!
-zodiacSignPictureMap.set('capricorn', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Zoo-Capricorn-Mountain-Goat-2389416.jpg');
+zodiacSignPictureMap.set('Capricorn', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Zoo-Capricorn-Mountain-Goat-2389416.jpg');
 // https://cdn.pixabay.com/photo/2017/07/26/18/06/capricorn-2542608_960_720.png
-zodiacSignPictureMap.set('aquarius', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Poseidon-Zodiac-Sign-Aquarius-Neptune-Composing-1865691.jpg');
+zodiacSignPictureMap.set('Aquarius', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Poseidon-Zodiac-Sign-Aquarius-Neptune-Composing-1865691.jpg');
 // https://cdn.pixabay.com/photo/2017/05/08/23/51/aquarius-2296922_960_720.png
-zodiacSignPictureMap.set('pisces', 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Pisces_-_Horoscope_from_%27The_book_of_birth_of_Iskandar%22_Wellcome_L0040147.jpg');
+zodiacSignPictureMap.set('Pisces', 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Pisces_-_Horoscope_from_%27The_book_of_birth_of_Iskandar%22_Wellcome_L0040147.jpg');
 // https://cdn.pixabay.com/photo/2017/05/10/16/18/fish-2301218_960_720.png
 //zodiacSignPictureMap.set('aries', 'https://upload.wikimedia.org/wikipedia/commons/6/69/Aries2.jpg');
-zodiacSignPictureMap.set('aries', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Horoscope-Aries-Icon-Images-Astrology-Zodiac-639126.jpg');
+zodiacSignPictureMap.set('Aries', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Horoscope-Aries-Icon-Images-Astrology-Zodiac-639126.jpg');
 //https://cdn.pixabay.com/photo/2017/05/09/00/08/ram-2296942_960_720.png
-zodiacSignPictureMap.set('taurus', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Bos-Primigenius-Taurus-Beef-Cow-Domestic-Cattle-56014.jpg');
+zodiacSignPictureMap.set('Taurus', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Bos-Primigenius-Taurus-Beef-Cow-Domestic-Cattle-56014.jpg');
 // https://cdn.pixabay.com/photo/2017/07/06/17/56/bull-2478801_960_720.png
-zodiacSignPictureMap.set('gemini', 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Gemini_-_Horoscope_from_%27The_book_of_birth_of_Iskandar%22_Wellcome_L0040144.jpg');
+zodiacSignPictureMap.set('Gemini', 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Gemini_-_Horoscope_from_%27The_book_of_birth_of_Iskandar%22_Wellcome_L0040144.jpg');
 // https://cdn.pixabay.com/photo/2017/05/09/15/45/gemini-2298596_960_720.png
-zodiacSignPictureMap.set('cancer', 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Sidney_Hall_-_Urania%27s_Mirror_-_Scorpio.jpg');
+zodiacSignPictureMap.set('Cancer', 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Sidney_Hall_-_Urania%27s_Mirror_-_Scorpio.jpg');
 //https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png
-zodiacSignPictureMap.set('leo', 'https://upload.wikimedia.org/wikipedia/commons/4/47/Lion_%28Panthera_leo%29_eye_close-up.jpg');
+zodiacSignPictureMap.set('Leo', 'https://upload.wikimedia.org/wikipedia/commons/4/47/Lion_%28Panthera_leo%29_eye_close-up.jpg');
 //https://cdn.pixabay.com/photo/2017/05/07/17/40/lion-2293073_960_720.png
-zodiacSignPictureMap.set('virgo', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg/1200px-Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg');
+zodiacSignPictureMap.set('Virgo', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg/1200px-Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg');
 // https://cdn.pixabay.com/photo/2017/05/05/22/07/miss-2288356_960_720.png
-zodiacSignPictureMap.set('libra', 'https://upload.wikimedia.org/wikipedia/commons/3/35/LibraCC.jpg');
+zodiacSignPictureMap.set('Libra', 'https://upload.wikimedia.org/wikipedia/commons/3/35/LibraCC.jpg');
 // https://cdn.pixabay.com/photo/2017/05/10/17/19/libra-2301362_960_720.png
-zodiacSignPictureMap.set('scorpio', 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Scorpio-bonatti.png');
+zodiacSignPictureMap.set('Scorpio', 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Scorpio-bonatti.png');
 // https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png
-zodiacSignPictureMap.set('sagittarius', 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Milky_Way_and_Sagittarius_%28with_note%29.JPG');
+zodiacSignPictureMap.set('Sagittarius', 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Milky_Way_and_Sagittarius_%28with_note%29.JPG');
 // https://cdn.pixabay.com/photo/2017/05/05/21/50/sagittarius-2288323_960_720.png
 
 const chineseZodiacMap = new Map();
