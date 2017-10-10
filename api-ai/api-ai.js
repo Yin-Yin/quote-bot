@@ -167,7 +167,7 @@ module.exports = {
   getZodiacSignYearResponse: function(year) {
     console.log("Triggered intent zodiacSign.year with params: ", year);
     let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(year);
-    let chineseZodiacPicture = zodiacSignModule.getChineseZodiacSignPicture(chineseZodiacSign);
+    let chineseZodiacPicture = zodiacSignModule.getChineseZodiacSignPicture(year);
     console.log("chineseZodiacSign", chineseZodiacSign);
     console.log("chineseZodiacPicture", chineseZodiacPicture);
     let response = {}
