@@ -24,6 +24,11 @@ module.exports = {
         case 'zodiacsign.year':
           resolve(this.getZodiacSignYearResponse(parameters.age.amount))
           break;
+          
+          
+        case 'zodiacsign.year.context':
+          resolve(this.getZodiacSignYearResponse(parameters.age.amount))
+          break;
 
         case 'zodiacsign.horoscope':
           this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
@@ -59,7 +64,52 @@ module.exports = {
     // build the response
     response.speech = "Your zodiac sign is " + zodiacSign
     response.displayText = "Your zodiac sign is " + zodiacSign
-    response.messages = [{
+
+
+    
+    //toDo: Add context out and show button to get chinese zodiac sign
+    // also get chinese zodiac sign if a date in the past is provided
+    let parameterDate = new Date(date);
+    let currentYear = new Date().getFullYear(); // I use this in another place as well => declare on top for whole module
+    let dateYear = parameterDate.getFullYear();
+    if (dateYear < currentYear) {
+      console.log("Year is different: ", dateYear)
+      console.log("CHinese Zodiac", this.getChineseZodiacSign(dateYear))
+      //response.messages.push({ "type": 0, "speech": "Your chinese zodiac sign is " + this.getChineseZodiacSign(dateYear) })
+                response.messages = [{
+        "type": 0,
+        "speech": "Your zodiac sign is " + zodiacSign
+      },
+      /*
+      {
+      "type": 3,
+      "imageUrl": zodiacSignModule.getZodiacSignPicture(zodiacSign)
+      }
+      ,
+      */
+      {
+      "type": 2,
+      "title": "Want to know more?",
+      "replies": ["horoscope", "info", "chinese zodiac"]
+    }]
+        response.contextOut = [{
+      "name": "zodiac-sign",
+      "parameters": {
+        "zodiacsign": zodiacSign.toLowerCase()
+      },
+      "lifespan": 250
+    },
+    {
+      "name": "year",
+      "parameters": {
+        "age": {"amount":dateYear}
+      },
+      "lifespan": 30
+    }]
+    }
+    else {
+      console.log("The date is from this year; ", dateYear);
+          response.messages = [{
         "type": 0,
         "speech": "Your zodiac sign is " + zodiacSign
       },
@@ -75,31 +125,15 @@ module.exports = {
       "title": "Want to know more?",
       "replies": ["horoscope", "info"]
     }]
-
-    /*
-    //toDo: Add context out and show button to get chinese zodiac sign
-    // also get chinese zodiac sign if a date in the past is provided
-    let parameterDate = new Date(date);
-    let currentYear = new Date().getFullYear(); // I use this in another place as well => declare on top for whole module
-    let dateYear = parameterDate.getFullYear();
-    if (dateYear < currentYear) {
-      console.log("Year is different: ", dateYear)
-      console.log("CHinese Zodiac", this.getChineseZodiacSign(dateYear))
-      response.messages.push({ "type": 0, "speech": "Your chinese zodiac sign is " + this.getChineseZodiacSign(dateYear) })
-    }
-    else {
-      console.log("The date is from this year; ", dateYear);
-    }
-    response.messages.push()
-    */
-    
-    response.contextOut = [{
+        response.contextOut = [{
       "name": "zodiac-sign",
       "parameters": {
         "zodiacsign": zodiacSign.toLowerCase()
       },
       "lifespan": 250
     }]
+    }
+
     return response;
   },
 
