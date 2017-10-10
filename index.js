@@ -18,11 +18,12 @@ app.get('/', function(req, res) {
 
 app.post('/intent', function(req, res) {
   console.log("req.body",req.body)
-  let parameters = req.body.result.parameters;
   let intentName = req.body.result.metadata.intentName;
+  let parameters = req.body.result.parameters;
+  let contexts = req.body.result.contexts;
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   
-  apiAiModule.getResponse(parameters,intentName).then((response) =>
+  apiAiModule.getResponse(intentName,parameters,contexts).then((response) =>
   res.send(JSON.stringify({
     //"speech" is the spoken version of the response, "displayText" is the visual version, "messages" are for the different messengers, "contextOut" is the context for api.ai
     "speech": response.speech,

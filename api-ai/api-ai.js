@@ -3,7 +3,7 @@ var response = {}
 
 module.exports = {
    // ## API.ai intents ##
-  getResponse: function(parameters, intentName) {
+  getResponse: function(intentName, parameters, contexts) {
     return new Promise((resolve, reject) => {
 
       switch (intentName) {
@@ -22,7 +22,7 @@ module.exports = {
           break;
 
         case 'zodiacsign.year':
-          resolve(this.getZodiacSignYearResponse(parameters.age.amount))
+          resolve(this.getZodiacSignYearResponse(contexts.age.amount))
           break;
           
           
@@ -74,7 +74,7 @@ module.exports = {
     let dateYear = parameterDate.getFullYear();
     if (dateYear < currentYear) {
       console.log("Year is different: ", dateYear)
-      console.log("CHinese Zodiac", zodiacSignModule.getChineseZodiacSign(dateYear))
+      console.log("Chinese Zodiac", zodiacSignModule.getChineseZodiacSign(dateYear))
       //response.messages.push({ "type": 0, "speech": "Your chinese zodiac sign is " + this.getChineseZodiacSign(dateYear) })
                 response.messages = [{
         "type": 0,
