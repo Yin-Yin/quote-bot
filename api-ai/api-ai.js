@@ -196,13 +196,13 @@ module.exports = {
   getZodiacSignYearContextResponse: function(contexts) {
     let providedYear = '';
     let zodiacSign = '';
-    for (var i = 0; i < contexts.length; i++) {
+    for (var i = 0; i < contexts.length; i++) { // get values from contexts
       console.log("Iterating over contexts ... ")
-      if (contexts.name === "year") {
+      if (contexts[i].name === "year") {
         providedYear = contexts[i].parameters.age.amount
         console.log("providedYear is " + providedYear)
       }
-      if (contexts.name === "zodiac-sign") {
+      if (contexts[i].name === "zodiac-sign") {
         zodiacSign = contexts[i].parameters.zodiacsign
         console.log("Zodiac SIgn from Context: ", zodiacSign)
       }
