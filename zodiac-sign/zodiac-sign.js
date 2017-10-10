@@ -118,7 +118,7 @@ module.exports = {
   
   getChineseZodiacSignPicture: function(chineseZodiacSign) {
     console.log("Getting chinese zodiacSign picture for: ", chineseZodiacSign);
-    let chineseZodiacPicture = zodiacSignPictureMap.get(chineseZodiacSign);
+    let chineseZodiacPicture = chineseZodiacPicturesMap.get(chineseZodiacSign);
     console.log("chineseZodiacPicture in getChineseZodiacSignPicture: ",chineseZodiacPicture)
     return chineseZodiacPicture;
   },
