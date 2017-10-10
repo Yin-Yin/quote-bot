@@ -201,7 +201,7 @@ module.exports = {
         providedYear = contexts[i].parameters.age.amount
       }
       if (contexts.name === "zodiac-sign") {
-        this.zodiacSign = contexts[i].parameters.zodiacsign
+        zodiacSign = contexts[i].parameters.zodiacsign
         console.log("Zodiac SIgn from Context: ", zodiacSign)
       }
     }
