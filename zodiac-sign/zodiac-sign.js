@@ -115,9 +115,10 @@ module.exports = {
     return chineseZodiacSign;
   },
   
-  getChineseZodiacSignPicture: function(chineseZodiacSign) {
+  getChineseZodiacSignPicture: function(year) {
+    let chineseZodiacSign = this.getChineseZodiacSign(year);
     console.log("Getting chinese zodiacSign picture for: ", chineseZodiacSign);
-    let chineseZodiacPicture = chineseZodiacPicturesMap.get("Pig");
+    let chineseZodiacPicture = chineseZodiacPicturesMap.get(chineseZodiacSign);
     console.log("chineseZodiacPicture in getChineseZodiacSignPicture: ",chineseZodiacPicture)
     return chineseZodiacPicture;
   },

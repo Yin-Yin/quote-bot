@@ -33,8 +33,10 @@ I tried to make the help useful by providing quick actions that guide the user t
 The bot also knows a bit of small talk.
 **Input Examples**: "Hi", "Tell me a joke,", "How are you?"
 
-**Known bugs/improvements**: 
+**Known bugs**: 
 - When there are quick actions visible and you are away for more than 10 (?) minutes the context is lost and the user will be asked for input again. 
+
+**Improvements**
 - Make quick responses smarter: I would like to not show the quick responses all the time. For example if I press the quick response for horoscope and then when I get the horoscope I press the info button, under the info text the horoscope button will appear again. I don't want to show the button again in this case, because it is redundant and gets the user in a kind of loop. Also the chinese zodiac sign quick action button is now only shown, when the user enters a date with a year once. It would be cool to show it also after the user has gotten the info or a horoscope. 
 A way to achieve this would be to memorize which button we have shown with an output context. Or remember in the context out which button we don't want to show for the next 3 or something times. A concern about this is that the code gets really complicated. Also is this transparent for the user?
 
