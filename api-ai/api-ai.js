@@ -22,12 +22,12 @@ module.exports = {
           break;
 
         case 'zodiacsign.year':
-          resolve(this.getZodiacSignYearResponse(contexts.age.amount))
+          resolve(this.getZodiacSignYearResponse(parameters.age.amount))
           break;
           
           
         case 'zodiacsign.year.context':
-          resolve(this.getZodiacSignYearResponse(parameters.age.amount))
+          resolve(this.getZodiacSignYearContextResponse(contexts))
           break;
 
         case 'zodiacsign.horoscope':
@@ -185,6 +185,39 @@ module.exports = {
       "replies": ["Info Chinese Zodiac Sign"]
       }
       */
+    ]
+    return response;
+  },
+  
+  getZodiacSignYearContextResponse: function(contexts) {
+    var providedYear = '';
+    for (var i; i < contexts.length; i++) {
+      if (contexts.name === "year") {
+        providedYear = contexts[i].parameters.age.amount
+      }
+    }
+    console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
+    let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(providedYear)
+    let response = {}
+    response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
+    response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
+    response.messages = [{
+        "type": 0,
+        "speech": "Your chinese zodiac sign is " + chineseZodiacSign
+      },
+      /*
+      {
+      "type": 3,
+      "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+      }
+      ,
+      */
+      {
+      "type": 2,
+      "title": "Want to know more about your zodiac sign?",
+      "replies": ["zodiac info", "horoscope"]
+      }
+      
     ]
     return response;
   },
