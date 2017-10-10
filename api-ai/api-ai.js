@@ -29,6 +29,10 @@ module.exports = {
         case 'zodiacsign.year.context':
           resolve(this.getZodiacSignYearContextResponse(contexts))
           break;
+          
+        case 'zodiacsign.list':
+          resolve(this.getZodiacSignList())
+          break;
 
         case 'zodiacsign.horoscope':
           this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
@@ -220,6 +224,21 @@ module.exports = {
       "type": 2,
       "title": "Want to know more about "+ zodiacsign +"?",
       "replies": ["Zodiac info", "Horoscope"]
+      }
+      
+    ]
+    return response;
+  },
+  
+  getZodiacSignList: function() {
+    let response = {}
+    response.speech = "This is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";
+    response.displayText = "Here is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";;
+    response.messages = [
+      {
+      "type": 2,
+      "title": "Select a zodiac sign to get information about it:",
+      "replies": ['Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius']
       }
       
     ]
