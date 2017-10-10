@@ -90,7 +90,7 @@ module.exports = {
       {
       "type": 2,
       "title": "Want to know more?",
-      "replies": ["horoscope", "info", "chinese zodiac"]
+      "replies": ["Horoscope", "Info", "Chinese zodiac"]
     }]
         response.contextOut = [{
       "name": "zodiac-sign",
@@ -123,7 +123,7 @@ module.exports = {
       {
       "type": 2,
       "title": "Want to know more?",
-      "replies": ["horoscope", "info"]
+      "replies": ["Horoscope", "Info"]
     }]
         response.contextOut = [{
       "name": "zodiac-sign",
@@ -156,7 +156,7 @@ module.exports = {
       {
         "type": 2,
         "title": "Do you want to see the horoscope?",
-        "replies": ["horoscope"]
+        "replies": ["Horoscope"]
       }
     ]
     return response;
@@ -190,10 +190,14 @@ module.exports = {
   },
   
   getZodiacSignYearContextResponse: function(contexts) {
-    var providedYear = '';
+    let providedYear = '';
+    let zodiacsign = '';
     for (var i; i < contexts.length; i++) {
       if (contexts.name === "year") {
         providedYear = contexts[i].parameters.age.amount
+      }
+      if (contexts.name === "zodiac-sign") {
+        zodiacsign = contexts[i].parameters.zodiacsign
       }
     }
     console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
@@ -214,8 +218,8 @@ module.exports = {
       */
       {
       "type": 2,
-      "title": "Want to know more about your zodiac sign?",
-      "replies": ["zodiac info", "horoscope"]
+      "title": "Want to know more about "+ zodiacsign +"?",
+      "replies": ["Zodiac info", "Horoscope"]
       }
       
     ]
@@ -241,12 +245,13 @@ module.exports = {
             "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
             }
             ,
+            */
             {
             "type": 2,
-            "title": "Get info about the zodiac sign?",
-            "replies": ["info"]
+            "title": "Want to know more about " + zodiacsign + "?",
+            "replies": ["Info"]
             }
-            */
+            
           ]
           resolve(response)
         }
