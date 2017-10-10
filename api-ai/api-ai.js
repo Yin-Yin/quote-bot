@@ -74,7 +74,7 @@ module.exports = {
     let dateYear = parameterDate.getFullYear();
     if (dateYear < currentYear) {
       console.log("Year is different: ", dateYear)
-      console.log("CHinese Zodiac", this.getChineseZodiacSign(dateYear))
+      console.log("CHinese Zodiac", zodiacSignModule.getChineseZodiacSign(dateYear))
       //response.messages.push({ "type": 0, "speech": "Your chinese zodiac sign is " + this.getChineseZodiacSign(dateYear) })
                 response.messages = [{
         "type": 0,
