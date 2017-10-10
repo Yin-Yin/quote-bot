@@ -210,7 +210,7 @@ module.exports = {
     }
     console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
     let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(providedYear);
-    let chineseZodiacPicture = zodiacSignModule.getChineseZodiacSignPicture(chineseZodiacSign);
+    let chineseZodiacPicture = zodiacSignModule.getChineseZodiacSignPicture(providedYear);
     let response = {}
     response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
     response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
