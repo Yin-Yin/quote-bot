@@ -107,10 +107,10 @@ module.exports = {
     if (year < 120) { // calculate the birthday if user gives his age and not a year
       let currentYear = new Date().getFullYear();
       let birthdayYear = currentYear - year;
-      chineseZodiacSign = chineseZodiacMap.get((birthdayYear - 4) % 12) + ".";
+      chineseZodiacSign = chineseZodiacMap.get((birthdayYear - 4) % 12);
     }
     else {
-      chineseZodiacSign = chineseZodiacMap.get((year - 4) % 12) + ".";
+      chineseZodiacSign = chineseZodiacMap.get((year - 4) % 12);
     }
     return chineseZodiacSign;
   },

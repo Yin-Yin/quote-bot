@@ -181,7 +181,7 @@ module.exports = {
       ,
       {
         "type": 0,
-        "speech": "Your chinese zodiac sign is " + chineseZodiacSign
+        "speech": "Your chinese zodiac sign is " + chineseZodiacSign + "."
       },
       /*
       {
@@ -221,7 +221,7 @@ module.exports = {
       },
       {
         "type": 0,
-        "speech": "Your chinese zodiac sign is " + chineseZodiacSign
+        "speech": "Your chinese zodiac sign is " + chineseZodiacSign + "."
       },
       {
       "type": 2,
