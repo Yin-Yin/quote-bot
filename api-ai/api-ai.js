@@ -99,7 +99,7 @@ module.exports = {
         response.contextOut = [{
       "name": "zodiac-sign",
       "parameters": {
-        "zodiacsign": zodiacSign.toLowerCase()
+        "zodiacsign": zodiacSign
       },
       "lifespan": 250
     },
@@ -132,7 +132,7 @@ module.exports = {
         response.contextOut = [{
       "name": "zodiac-sign",
       "parameters": {
-        "zodiacsign": zodiacSign.toLowerCase()
+        "zodiacsign": zodiacSign
       },
       "lifespan": 250
     }]
@@ -231,6 +231,7 @@ module.exports = {
   },
   
   getZodiacSignList: function() {
+    console.log("Intent zodiacsign.list triggered");
     let response = {}
     response.speech = "This is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";
     response.displayText = "Here is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";;
