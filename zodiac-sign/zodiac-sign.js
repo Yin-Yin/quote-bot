@@ -114,7 +114,7 @@ module.exports = {
           resolve(horoscope);
         }
         else {
-          reject("There was an error retrieving your horoscope for " + zodiacSign + ".");
+          reject("The API request for ther horoscope for " + zodiacSign + " failed.");
         }
       })
     })
