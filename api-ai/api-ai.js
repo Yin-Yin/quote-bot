@@ -195,13 +195,14 @@ module.exports = {
   
   getZodiacSignYearContextResponse: function(contexts) {
     let providedYear = '';
-    let zodiacsign = '';
+    let zodiacSign = '';
     for (var i; i < contexts.length; i++) {
       if (contexts.name === "year") {
         providedYear = contexts[i].parameters.age.amount
       }
       if (contexts.name === "zodiac-sign") {
-        zodiacsign = contexts[i].parameters.zodiacsign
+        this.zodiacSign = contexts[i].parameters.zodiacsign
+        console.log("Zodiac SIgn from Context: ", zodiacSign)
       }
     }
     console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
@@ -222,7 +223,7 @@ module.exports = {
       */
       {
       "type": 2,
-      "title": "Want to know more about "+ zodiacsign +"?",
+      "title": "Want to know more about "+ zodiacSign +"?",
       "replies": ["Zodiac info", "Horoscope"]
       }
       
