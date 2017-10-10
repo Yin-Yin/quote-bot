@@ -56,7 +56,6 @@ chineseZodiacMap.set(9, 'Rooster');
 chineseZodiacMap.set(10, 'Dog');
 chineseZodiacMap.set(11, 'Pig');
 
-
 const chineseZodiacPicturesMap = new Map();
 chineseZodiacPicturesMap.set('Rat', '');
 chineseZodiacPicturesMap.set('Ox', '');
@@ -118,7 +117,7 @@ module.exports = {
   
   getChineseZodiacSignPicture: function(chineseZodiacSign) {
     console.log("Getting chinese zodiacSign picture for: ", chineseZodiacSign);
-    let chineseZodiacPicture = chineseZodiacPicturesMap.get(chineseZodiacSign);
+    let chineseZodiacPicture = chineseZodiacPicturesMap.get("Pig");
     console.log("chineseZodiacPicture in getChineseZodiacSignPicture: ",chineseZodiacPicture)
     return chineseZodiacPicture;
   },
