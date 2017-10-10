@@ -56,6 +56,21 @@ chineseZodiacMap.set(9, 'Rooster');
 chineseZodiacMap.set(10, 'Dog');
 chineseZodiacMap.set(11, 'Pig');
 
+
+const chineseZodiacPicturesMap = new Map();
+chineseZodiacPicturesMap.set('Rat', '');
+chineseZodiacPicturesMap.set('Ox', '');
+chineseZodiacPicturesMap.set('Tiger', '');
+chineseZodiacPicturesMap.set('Rabbit', '');
+chineseZodiacPicturesMap.set('Dragon', '');
+chineseZodiacPicturesMap.set('Snake', '');
+chineseZodiacPicturesMap.set('Horse', '');
+chineseZodiacPicturesMap.set('Goat', '');
+chineseZodiacPicturesMap.set('Monkey', '');
+chineseZodiacPicturesMap.set('Rooster', '');
+chineseZodiacPicturesMap.set('Dog', '');
+chineseZodiacPicturesMap.set('Pig', 'https://cdn.pixabay.com/photo/2016/07/14/15/36/pig-1516956_960_720.jpg');
+
 // toDO: put this code in its own module
 module.exports = {
   // toDO: add debugging, wether with console.logs or with a loghinh tool. THen add logging for the input and output to make sure I can debug errors later
@@ -99,6 +114,12 @@ module.exports = {
       chineseZodiacSign = chineseZodiacMap.get((year - 4) % 12) + ".";
     }
     return chineseZodiacSign;
+  },
+  
+  getChineseZodiacSignPicture: function(chineseZodiacSign) {
+    console.log("Getting chinese zodiacSign picture for: ", chineseZodiacSign);
+    let chineseZodiacPicture = zodiacSignPictureMap.get(chineseZodiacSign);
+    return chineseZodiacPicture;
   },
 
   getHoroscope: function(zodiacSign) {

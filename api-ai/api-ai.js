@@ -166,21 +166,22 @@ module.exports = {
 
   getZodiacSignYearResponse: function(year) {
     console.log("Triggered intent zodiacSign.year with params: ", year);
-    let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(year)
+    let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(year);
+    let chineseZodiacPicture = zodiacSignModule.getChineseZodiacSignPicture(chineseZodiacSign);
     let response = {}
     response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
     response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
-    response.messages = [{
+    response.messages = [
+      {
+      "type": 3,
+      "imageUrl": chineseZodiacPicture
+      }
+      ,
+      {
         "type": 0,
         "speech": "Your chinese zodiac sign is " + chineseZodiacSign
       },
       /*
-      {
-      "type": 3,
-      "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
-      }
-      ,
-
       {
       "type": 2,
       "title": "Want to know more?",
@@ -206,21 +207,20 @@ module.exports = {
       }
     }
     console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
-    let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(providedYear)
+    let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(providedYear);
+    let chineseZodiacPicture = zodiacSignModule.getChineseZodiacSignPicture(chineseZodiacSign);
     let response = {}
     response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
     response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
-    response.messages = [{
+    response.messages = [
+      {
+      "type": 3,
+      "imageUrl": chineseZodiacPicture
+      },
+      {
         "type": 0,
         "speech": "Your chinese zodiac sign is " + chineseZodiacSign
       },
-      /*
-      {
-      "type": 3,
-      "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
-      }
-      ,
-      */
       {
       "type": 2,
       "title": "Want to know more about "+ zodiacSign +"?",
