@@ -68,8 +68,6 @@ module.exports = {
     // build the response
     response.speech = "Your zodiac sign is " + zodiacSign
     response.displayText = "Your zodiac sign is " + zodiacSign
-
-
     
     //toDo: Add context out and show button to get chinese zodiac sign
     // also get chinese zodiac sign if a date in the past is provided
@@ -77,8 +75,8 @@ module.exports = {
     let currentYear = new Date().getFullYear(); // I use this in another place as well => declare on top for whole module
     let dateYear = parameterDate.getFullYear();
     if (dateYear < currentYear) {
-      console.log("Year is different: ", dateYear)
-      console.log("Chinese Zodiac", zodiacSignModule.getChineseZodiacSign(dateYear))
+      // onsole.log("Year is different: ", dateYear)
+      // console.log("Chinese Zodiac", zodiacSignModule.getChineseZodiacSign(dateYear))
       //response.messages.push({ "type": 0, "speech": "Your chinese zodiac sign is " + this.getChineseZodiacSign(dateYear) })
                 response.messages = [{
         "type": 0,
