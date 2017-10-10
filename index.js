@@ -23,7 +23,7 @@ app.post('/intent', function(req, res) {
   let contexts = req.body.result.contexts;
   console.log("contexts",contexts);
   console.log("parameters",parameters);
-  res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
+  //es.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   
   apiAiModule.getResponse(intentName,parameters,contexts).then((response) =>
   res.send(JSON.stringify({
