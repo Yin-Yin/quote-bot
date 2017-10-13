@@ -44,3 +44,4 @@ A way to achieve this would be to memorize which button we have shown with an ou
 - improve texts of zodiac signs
 - improve pictures of zodiac signs
 - Add some jokes that are not too bad
+- - start intents

@@ -62,12 +62,12 @@ chineseZodiacPicturesMap.set('Ox', '');
 chineseZodiacPicturesMap.set('Tiger', '');
 chineseZodiacPicturesMap.set('Rabbit', '');
 chineseZodiacPicturesMap.set('Dragon', '');
-chineseZodiacPicturesMap.set('Snake', '');
-chineseZodiacPicturesMap.set('Horse', '');
-chineseZodiacPicturesMap.set('Goat', '');
-chineseZodiacPicturesMap.set('Monkey', '');
-chineseZodiacPicturesMap.set('Rooster', '');
-chineseZodiacPicturesMap.set('Dog', '');
+chineseZodiacPicturesMap.set('Snake', 'https://cdn.pixabay.com/photo/2016/03/28/22/08/cobra-1287036_960_720.png');
+chineseZodiacPicturesMap.set('Horse', 'https://cdn.pixabay.com/photo/2017/02/13/20/22/horse-2063673_960_720.jpg');
+chineseZodiacPicturesMap.set('Goat', 'https://static.pexels.com/photos/459127/pexels-photo-459127.jpeg');
+chineseZodiacPicturesMap.set('Monkey', 'https://images.pexels.com/photos/40653/japanmakake-monkey-makake-animal-40653.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
+chineseZodiacPicturesMap.set('Rooster', 'https://cdn.pixabay.com/photo/2017/05/05/20/40/chicken-head-2288234_960_720.jpg');
+chineseZodiacPicturesMap.set('Dog', 'https://images.pexels.com/photos/8521/animal-dog-pet-eyes.jpg?w=1260&h=750&auto=compress&cs=tinysrgb');
 chineseZodiacPicturesMap.set('Pig', 'https://cdn.pixabay.com/photo/2016/07/14/15/36/pig-1516956_960_720.jpg');
 
 // toDO: put this code in its own module
