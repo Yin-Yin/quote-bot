@@ -1,18 +1,19 @@
 const request = require('request');
 
 const zodiacSignMap = new Map();
-zodiacSignMap.set('Capricorn', 'Capricorn\nDates: December 22 – January 19 \nThey are really cool animals! They can climb like badasses and are very cheeky');
-zodiacSignMap.set('Aquarius', 'Aquarius\nDates: January 20 – February 18\nAs the name suggests, they like water a lot. Their best abilities lie in watering plants as they have so much. ');
-zodiacSignMap.set('Pisces', 'Pisces\nDates: February 19 – March 20\nPisces are fishes. Living in the water is a cool thing.');
-zodiacSignMap.set('Aries', 'Aries\nDates: March 21 – April 19\nAries are animals that have a very strong will, as they have two horns to ram everyone. Harharhar.');
-zodiacSignMap.set('Taurus', 'Taurus\nDates: April 20 – May 20\nThese animals are very big and strong. Altough most of the time they are very peaceful and just graze.');
-zodiacSignMap.set('Gemini', 'Gemini\nDates: May 21 – June 20\nGemini is cool, because it means sth. like siblings and to have a sibling is a wonderful thing. Even if you may be not have a sibling, with your star sign you do! :)');
-zodiacSignMap.set('Cancer', 'Cancer\nDates: June 21 – July 22\nCancer have two scissors on their hands, which is pretty badass!');
-zodiacSignMap.set('Leo', 'Leo\nDates: July 23 – August 22\nLions are so cool! They are like the kings of animal kingdom!');
-zodiacSignMap.set('Virgo', 'Virgo\nDates: August 23 – September 22\nVirgos are very intelligent! And beautiful! Your are great!');
-zodiacSignMap.set('Libra', 'Libra\nDates: September 23 – October 22\nLibra means sth. like a scale. So they are very harmonious.');
-zodiacSignMap.set('Scorpio', 'Scorpio\nDates: October 23 – November 21\nScorpions are so cool! They have a tail with a sting and two scissor hands!!! Wow! ...');
-zodiacSignMap.set('Sagittarius', 'Sagittarius\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
+zodiacSignMap.set('Capricorn', 'Capricorn\nDates: December 22 – January 19 \nAlternative name: "The Mountain Sea-goat"\nThey are really cool animals! They can climb like badasses and are very cheeky');
+zodiacSignMap.set('Aquarius', 'Aquarius\nDates: January 20 – February 18\nAlternative name: "The Waterbearer"\nAs the name suggests, they like water a lot. Their best abilities lie in watering plants as they have so much. ');
+zodiacSignMap.set('Pisces', 'Pisces\nDates: February 19 – March 20\nAlternative name: "The Fish"\nPisces are fishes. Living in the water is a cool thing.');
+zodiacSignMap.set('Aries', 'Aries\nDates: March 21 – April 19\nAlternative name: "The Ram"\nAries are animals that have a very strong will, as they have two horns to ram everyone. Harharhar.');
+zodiacSignMap.set('Taurus', 'Taurus\nDates: April 20 – May 20\nAlternative name: "The Bull"\nThese animals are very big and strong. Altough most of the time they are very peaceful and just graze.');
+zodiacSignMap.set('Gemini', 'Gemini\nDates: May 21 – June 20\nAlternative name: "The Twins"\nGemini is cool, because it means sth. like siblings and to have a sibling is a wonderful thing. Even if you may be not have a sibling, with your star sign you do! :)');
+zodiacSignMap.set('Cancer', 'Cancer\nDates: June 21 – July 22\nAlternative name: "The Crab"\nCancer have two scissors on their hands, which is pretty badass!');
+zodiacSignMap.set('Leo', 'Leo\nDates: July 23 – August 22\nAlternative name: "The Lion"\nLions are so cool! They are like the kings of animal kingdom!');
+zodiacSignMap.set('Virgo', 'Virgo\nDates: August 23 – September 22\nAlternative name: "The Maiden"\nVirgos are very intelligent! And beautiful! Your are great!');
+zodiacSignMap.set('Libra', 'Libra\nDates: September 23 – October 22\nAlternative name: "The Scales"\nLibra means sth. like a scale. So they are very harmonious.');
+zodiacSignMap.set('Scorpio', 'Scorpio\nDates: October 23 – November 21\nAlternative name: "The Scorpion"\nScorpions are so cool! They have a tail with a sting and two scissor hands!!! Wow! ...');
+zodiacSignMap.set('Sagittarius', 'Sagittarius\nDates: November 22 – December 21\nAlternative name: "The Archer"\nSagittarius is like bow and arrow. So they know whre to aim.');
+zodiacSignMap.set('General', 'General information from Wikipedia:\nWhile Western astrology is essentially a product of Greco-Roman culture, some of its more basic concepts originated in Babylonia. Isolated references to celestial "signs" in Sumerian sources are insufficient to speak of a Sumerian zodiac. Specifically, the division of the ecliptic in twelve equal sectors is a Babylonian conceptual construction.\n\nBy the 4th century BC, Babylonian astronomy and its system of celestial omens had an influence on the culture of ancient Greece, as did the astrology of ancient Egypt by late 2nd century BC. This resulted, unlike the Mesopotamian tradition, in a strong focus on the birth chart of the individual and in the creation of horoscopic astrology, employing the use of the Ascendant (the rising degree of the ecliptic, at the time of birth), and of the twelve houses. Association of the astrological signs with Empedocles four classical elements was another important development in the characterization of the twelve signs.\nThe body of astrological knowledge by the 2nd century AD is described in Ptolemys Tetrabiblos, a work that was responsible for astrologys successful spread across Europe and the Middle East, and remained a reference for almost seventeen centuries as later traditions made few substantial changes to its core teachings.\nSource: https://en.wikipedia.org/wiki/Astrological_sign');
 
 const zodiacSignPictureMap = new Map();
 // toDO: use only really free pictures from wikipedia to be safe!
@@ -57,11 +58,11 @@ chineseZodiacMap.set(10, 'Dog');
 chineseZodiacMap.set(11, 'Pig');
 
 const chineseZodiacPicturesMap = new Map();
-chineseZodiacPicturesMap.set('Rat', '');
-chineseZodiacPicturesMap.set('Ox', '');
-chineseZodiacPicturesMap.set('Tiger', '');
-chineseZodiacPicturesMap.set('Rabbit', '');
-chineseZodiacPicturesMap.set('Dragon', '');
+chineseZodiacPicturesMap.set('Rat', 'https://cdn.pixabay.com/photo/2016/03/05/18/54/animal-1238228_960_720.jpg');
+chineseZodiacPicturesMap.set('Ox', 'https://upload.wikimedia.org/wikipedia/commons/7/77/Euceratherium_BW.jpg');
+chineseZodiacPicturesMap.set('Tiger', 'https://upload.wikimedia.org/wikipedia/commons/6/62/Panthera_tigris_sumatran_subspecies.jpg');
+chineseZodiacPicturesMap.set('Rabbit', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Grass-Cute-Rabbit-Hare-Lawn-Animal-Adorable-1903016.jpg');
+chineseZodiacPicturesMap.set('Dragon', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Bhutanese_dragon_%28%27druk%27%29.jpg/320px-Bhutanese_dragon_%28%27druk%27%29.jpg');
 chineseZodiacPicturesMap.set('Snake', 'https://cdn.pixabay.com/photo/2016/03/28/22/08/cobra-1287036_960_720.png');
 chineseZodiacPicturesMap.set('Horse', 'https://cdn.pixabay.com/photo/2017/02/13/20/22/horse-2063673_960_720.jpg');
 chineseZodiacPicturesMap.set('Goat', 'https://static.pexels.com/photos/459127/pexels-photo-459127.jpeg');
@@ -116,11 +117,9 @@ module.exports = {
   },
   
   getChineseZodiacSignPicture: function(year) {
-    console.log("getChineseZodiacSignPicture", year)
     let chineseZodiacSign = this.getChineseZodiacSign(year);
     console.log("Getting chinese zodiacSign picture for: ", chineseZodiacSign);
     let chineseZodiacPicture = chineseZodiacPicturesMap.get(chineseZodiacSign);
-    console.log("chineseZodiacPicture in getChineseZodiacSignPicture: ",chineseZodiacPicture)
     return chineseZodiacPicture;
   },
 
