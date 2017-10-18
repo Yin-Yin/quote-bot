@@ -181,6 +181,7 @@ module.exports = {
   getZodiacSignYearContextResponse: function(contexts) {
     let providedYear = '';
     let zodiacSign = '';
+    let quickRepliesButtons = ["Horoscope", "Info", "Chinese zodiac"] // it is not good, that this logic is so far apart - fix !!!!
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
       console.log("Iterating over contexts ... ")
       if (contexts[i].name === "year") {
@@ -189,6 +190,11 @@ module.exports = {
       }
       if (contexts[i].name === "zodiac-sign") {
         zodiacSign = contexts[i].parameters.zodiacsign
+        console.log("Zodiac SIgn from Context: ", zodiacSign)
+      }
+      
+      if (contexts[i].name === "zodiac-info-triggered") {
+        quickRepliesButtons.filter(results => results !== "Info");
         console.log("Zodiac SIgn from Context: ", zodiacSign)
       }
     }
@@ -205,14 +211,10 @@ module.exports = {
       {
         "type": 0,
         "speech": "Your chinese zodiac sign is " + chineseZodiacSign + "."
-      },
-      {
-        "type": 2,
-        "title": "Want to know more about " + zodiacSign + "?",
-        "replies": ["Zodiac info", "Horoscope"]
       }
-
     ]
+    let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
+    response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
     return response;
   },
 
