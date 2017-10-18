@@ -2,7 +2,7 @@ const zodiacSignModule = require('../zodiac-sign/zodiac-sign.js')
 var response = {}
 
 module.exports = {
-   // ## API.ai intents ##
+  // ## API.ai intents ##
   getResponse: function(intentName, parameters, contexts) {
     return new Promise((resolve, reject) => {
 
@@ -24,12 +24,12 @@ module.exports = {
         case 'zodiacsign.year':
           resolve(this.getZodiacSignYearResponse(parameters.age.amount))
           break;
-          
-          
+
+
         case 'zodiacsign.year.context':
           resolve(this.getZodiacSignYearContextResponse(contexts))
           break;
-          
+
         case 'zodiacsign.list':
           resolve(this.getZodiacSignList())
           break;
@@ -37,15 +37,15 @@ module.exports = {
         case 'zodiacsign.horoscope':
           this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
           then((response) => {
-              resolve(response)
-            })
+            resolve(response)
+          })
           break;
 
         case 'zodiacsign.horoscope.context':
           this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
           then((response) => {
-              resolve(response)
-            })
+            resolve(response)
+          })
           break;
 
         default:
@@ -67,8 +67,8 @@ module.exports = {
 
     // build the response
     response.speech = "Your zodiac sign is " + zodiacSign
-    response.displayText = "Your zodiac sign is " + zodiacSign
-    
+    response.displayText = "Your zodiac sign is " + zodiacSign + "."
+
     //toDo: Add context out and show button to get chinese zodiac sign
     // also get chinese zodiac sign if a date in the past is provided
     let parameterDate = new Date(date);
@@ -78,62 +78,49 @@ module.exports = {
       // onsole.log("Year is different: ", dateYear)
       // console.log("Chinese Zodiac", zodiacSignModule.getChineseZodiacSign(dateYear))
       //response.messages.push({ "type": 0, "speech": "Your chinese zodiac sign is " + this.getChineseZodiacSign(dateYear) })
-                response.messages = [{
+      response.messages = [];
+      response.messages.push({
         "type": 0,
-        "speech": "Your zodiac sign is " + zodiacSign
-      },
-      /*
-      {
-      "type": 3,
-      "imageUrl": zodiacSignModule.getZodiacSignPicture(zodiacSign)
-      }
-      ,
-      */
-      {
-      "type": 2,
-      "title": "Want to know more?",
-      "replies": ["Horoscope", "Info", "Chinese zodiac"]
-    }]
-        response.contextOut = [{
-      "name": "zodiac-sign",
-      "parameters": {
-        "zodiacsign": zodiacSign
-      },
-      "lifespan": 250
-    },
-    {
-      "name": "year",
-      "parameters": {
-        "age": {"amount":dateYear}
-      },
-      "lifespan": 30
-    }]
+        "speech": "Your zodiac sign is " + zodiacSign + "."
+      });
+      let quickRepliesTitle = "Want to know more?"
+      let quickRepliesButtons = ["Horoscope", "Info", "Chinese zodiac"]
+      response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
+      response.contextOut = [{
+          "name": "zodiac-sign",
+          "parameters": {
+            "zodiacsign": zodiacSign
+          },
+          "lifespan": 250
+        },
+        {
+          "name": "year",
+          "parameters": {
+            "age": { "amount": dateYear }
+          },
+          "lifespan": 30
+        }
+      ]
     }
     else {
       console.log("The date is from this year; ", dateYear);
-          response.messages = [{
-        "type": 0,
-        "speech": "Your zodiac sign is " + zodiacSign
-      },
-      /*
-      {
-      "type": 3,
-      "imageUrl": zodiacSignModule.getZodiacSignPicture(zodiacSign)
-      }
-      ,
-      */
-      {
-      "type": 2,
-      "title": "Want to know more?",
-      "replies": ["Horoscope", "Info"]
-    }]
-        response.contextOut = [{
-      "name": "zodiac-sign",
-      "parameters": {
-        "zodiacsign": zodiacSign
-      },
-      "lifespan": 250
-    }]
+      response.messages = [{
+          "type": 0,
+          "speech": "Your zodiac sign is " + zodiacSign
+        },
+        {
+          "type": 2,
+          "title": "Want to know more?",
+          "replies": ["Horoscope", "Info"]
+        }
+      ]
+      response.contextOut = [{
+        "name": "zodiac-sign",
+        "parameters": {
+          "zodiacsign": zodiacSign
+        },
+        "lifespan": 250
+      }]
     }
 
     return response;
@@ -142,14 +129,13 @@ module.exports = {
   getZodiacSignInfoResponse: function(zodiacSign) {
     console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
     let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacSign);
-    let zodiacSignPicture = zodiacSignModule.getZodiacSignPicture(zodiacSign); 
+    let zodiacSignPicture = zodiacSignModule.getZodiacSignPicture(zodiacSign);
     let response = {}
     response.speech = zodiacInfo;
     response.displayText = zodiacInfo;
-    response.messages = [
-      {
-      "type": 3,
-      "imageUrl": zodiacSignPicture
+    response.messages = [{
+        "type": 3,
+        "imageUrl": zodiacSignPicture
       },
       {
         "type": 0,
@@ -173,12 +159,10 @@ module.exports = {
     let response = {}
     response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
     response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
-    response.messages = [
-      {
-      "type": 3,
-      "imageUrl": chineseZodiacPicture
-      }
-      ,
+    response.messages = [{
+        "type": 3,
+        "imageUrl": chineseZodiacPicture
+      },
       {
         "type": 0,
         "speech": "Your chinese zodiac sign is " + chineseZodiacSign + "."
@@ -193,7 +177,7 @@ module.exports = {
     ]
     return response;
   },
-  
+
   getZodiacSignYearContextResponse: function(contexts) {
     let providedYear = '';
     let zodiacSign = '';
@@ -214,37 +198,35 @@ module.exports = {
     let response = {}
     response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
     response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
-    response.messages = [
-      {
-      "type": 3,
-      "imageUrl": chineseZodiacPicture
+    response.messages = [{
+        "type": 3,
+        "imageUrl": chineseZodiacPicture
       },
       {
         "type": 0,
         "speech": "Your chinese zodiac sign is " + chineseZodiacSign + "."
       },
       {
-      "type": 2,
-      "title": "Want to know more about "+ zodiacSign +"?",
-      "replies": ["Zodiac info", "Horoscope"]
+        "type": 2,
+        "title": "Want to know more about " + zodiacSign + "?",
+        "replies": ["Zodiac info", "Horoscope"]
       }
-      
+
     ]
     return response;
   },
-  
+
   getZodiacSignList: function() {
     console.log("Intent zodiacsign.list triggered");
     let response = {}
     response.speech = "This is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";
     response.displayText = "Here is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";;
-    response.messages = [
-      {
-      "type": 2,
-      "title": "Select a zodiac sign to get information about it:",
-      "replies": ['Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius']
+    response.messages = [{
+        "type": 2,
+        "title": "Select a zodiac sign to get information about it:",
+        "replies": ['Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius']
       }
-      
+
     ]
     return response;
   },
@@ -262,23 +244,24 @@ module.exports = {
               "type": 0,
               "speech": horoscope
             },
-            /*
             {
-            "type": 3,
-            "imageUrl": "https://farm2.staticflickr.com/1523/26246892485_fc796b57df_h.jpg"
+              "type": 2,
+              "title": "Want to know more about " + zodiacsign + "?",
+              "replies": ["Info"]
             }
-            ,
-            */
-            {
-            "type": 2,
-            "title": "Want to know more about " + zodiacsign + "?",
-            "replies": ["Info"]
-            }
-            
+
           ]
           resolve(response)
         }
       )
     })
+  },
+
+  getQuickReplies: function(title, replies) {
+    return {
+      "type": 2,
+      "title": title,
+      "replies": replies
+    }
   }
 }
