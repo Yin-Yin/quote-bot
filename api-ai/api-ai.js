@@ -136,7 +136,7 @@ module.exports = {
       console.log("Iterating over contexts ... ")
       if (contexts[i].name === "year") {
         quickRepliesButtons.push("Chinese Zodiac")
-        let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign?"
+        quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign?"
       }
     }
 
