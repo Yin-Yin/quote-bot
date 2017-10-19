@@ -14,17 +14,16 @@ module.exports = {
           break;
 
         case 'zodiacsign.info':
-          resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign))
+          resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign, contexts))
           break;
 
         case 'zodiacsign.info.context':
-          resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign))
+          resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign, contexts))
           break;
 
         case 'zodiacsign.year':
           resolve(this.getZodiacSignYearResponse(parameters.age.amount))
           break;
-
 
         case 'zodiacsign.year.context':
           resolve(this.getZodiacSignYearContextResponse(contexts))
@@ -35,14 +34,14 @@ module.exports = {
           break;
 
         case 'zodiacsign.horoscope':
-          this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
+          this.getZodiacSignHoroscopeResponse(parameters.zodiacsign, contexts).
           then((response) => {
             resolve(response)
           })
           break;
 
         case 'zodiacsign.horoscope.context':
-          this.getZodiacSignHoroscopeResponse(parameters.zodiacsign).
+          this.getZodiacSignHoroscopeResponse(parameters.zodiacsign, contexts).
           then((response) => {
             resolve(response)
           })
@@ -126,11 +125,23 @@ module.exports = {
     return response;
   },
 
-  getZodiacSignInfoResponse: function(zodiacSign) {
+  getZodiacSignInfoResponse: function(zodiacSign, contexts) {
     console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
     let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacSign);
     let zodiacSignPicture = zodiacSignModule.getZodiacSignPicture(zodiacSign);
     let response = {}
+
+    let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + "?"
+    let quickRepliesButtons = ["Horoscope", "Info"]
+
+    for (var i = 0; i < contexts.length; i++) { // get values from contexts
+      console.log("Iterating over contexts ... ")
+      if (contexts[i].name === "year") {
+        quickRepliesButtons.push("Chinese Zodiac")
+        let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign?"
+      }
+    }
+
     response.speech = zodiacInfo;
     response.displayText = zodiacInfo;
     response.messages = [{
@@ -140,13 +151,9 @@ module.exports = {
       {
         "type": 0,
         "speech": zodiacInfo
-      },
-      {
-        "type": 2,
-        "title": "Do you want to see the horoscope?",
-        "replies": ["Horoscope"]
       }
     ]
+    response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
     return response;
   },
 
@@ -166,14 +173,7 @@ module.exports = {
       {
         "type": 0,
         "speech": "Your chinese zodiac sign is " + chineseZodiacSign + "."
-      },
-      /*
-      {
-      "type": 2,
-      "title": "Want to know more?",
-      "replies": ["Info Chinese Zodiac Sign"]
       }
-      */
     ]
     return response;
   },
@@ -181,7 +181,6 @@ module.exports = {
   getZodiacSignYearContextResponse: function(contexts) {
     let providedYear = '';
     let zodiacSign = '';
-    let quickRepliesButtons = ["Horoscope", "Info", "Chinese zodiac"] // it is not good, that this logic is so far apart - fix !!!!
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
       console.log("Iterating over contexts ... ")
       if (contexts[i].name === "year") {
@@ -190,11 +189,6 @@ module.exports = {
       }
       if (contexts[i].name === "zodiac-sign") {
         zodiacSign = contexts[i].parameters.zodiacsign
-        console.log("Zodiac SIgn from Context: ", zodiacSign)
-      }
-      
-      if (contexts[i].name === "zodiac-info-triggered") {
-        quickRepliesButtons.filter(results => results !== "Info");
         console.log("Zodiac SIgn from Context: ", zodiacSign)
       }
     }
@@ -214,6 +208,7 @@ module.exports = {
       }
     ]
     let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
+    let quickRepliesButtons = ["Horoscope", "Info"]
     response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
     return response;
   },
@@ -233,26 +228,35 @@ module.exports = {
     return response;
   },
 
-  getZodiacSignHoroscopeResponse: function(zodiacsign) {
+  getZodiacSignHoroscopeResponse: function(zodiacSign, contexts) {
     // toDo: we have three promises now. Only because of the asynchronous API call to the horoscope API. Is there a better way to tackle this?
-    console.log("Triggerd intent zodiacSign.horoscope with params: ", zodiacsign);
+    console.log("Triggerd intent zodiacSign.horoscope with params: ", zodiacSign);
     return new Promise((resolve, reject) => {
       let response = {}
-      zodiacSignModule.getHoroscope(zodiacsign).then(
+      zodiacSignModule.getHoroscope(zodiacSign).then(
         (horoscope) => {
           response.speech = horoscope;
           response.displayText = horoscope;
+
+
+          let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
+          let quickRepliesButtons = ["Info"]
+
+          for (var i = 0; i < contexts.length; i++) {
+            console.log("Iterating over contexts ... ")
+            if (contexts[i].name === "year") {
+              quickRepliesButtons.push("Chinese Zodiac")
+              let quickRepliesTitle = "Do you want to get more information about " + zodiacSign + " or find out your Chinese Zodiac Sign?"
+            }
+          }
+
           response.messages = [{
               "type": 0,
               "speech": horoscope
-            },
-            {
-              "type": 2,
-              "title": "Want to know more about " + zodiacsign + "?",
-              "replies": ["Info"]
             }
 
           ]
+          response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
           resolve(response)
         }
       )
