@@ -132,7 +132,7 @@ module.exports = {
     let response = {}
 
     let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + "?"
-    let quickRepliesButtons = ["Horoscope", "Info"]
+    let quickRepliesButtons = ["Horoscope"]
 
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
       console.log("Iterating over contexts ... ")
@@ -238,20 +238,20 @@ module.exports = {
           response.speech = horoscope;
           response.displayText = horoscope;
 
-          let quickRepliesTitle = ''
-          
-          let quickRepliesButtons = []
+          let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
+        
+          let quickRepliesButtons = ["Info"]
 
           for (var i = 0; i < contexts.length; i++) {
             console.log("Iterating over contexts ... ")
-
+            /*
             if (contexts[i].name === "zodiac-sign") {
               //zodiacSign = contexts[i].parameters.zodiacsign
               //console.log("Zodiac SIgn from Context: ", zodiacSign)
               // toDo: Can it be that there is no zodiac sign in contet and the function is triggered anyways?
               let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
               quickRepliesButtons.push("Info")
-            }
+            }*/
             if (contexts[i].name === "year") {
               quickRepliesButtons.push("Chinese Zodiac")
               let quickRepliesTitle = "Do you want to get more information about " + zodiacSign + " or find out your Chinese Zodiac Sign?"
