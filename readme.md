@@ -35,6 +35,7 @@ The bot also knows a bit of small talk.
 
 **Known bugs**: 
 - When there are quick actions visible and you are away for more than 10 (?) minutes the context is lost and the user will be asked for input again. 
+- If there is no zodiac-sign context and the info intent is triggered by typing "info", the user is aske for a zodiac sign. Most inputs are fine, but if the user inputs "cancel" a request to the backend is send and the quick reply for a horoscope is returned.
 
 **Improvements**
 - Make quick responses smarter: I would like to not show the quick responses all the time. For example if I press the quick response for horoscope and then when I get the horoscope I press the info button, under the info text the horoscope button will appear again. I don't want to show the button again in this case, because it is redundant and gets the user in a kind of loop. Also the chinese zodiac sign quick action button is now only shown, when the user enters a date with a year once. It would be cool to show it also after the user has gotten the info or a horoscope. 

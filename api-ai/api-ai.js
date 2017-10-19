@@ -109,19 +109,20 @@ module.exports = {
       let quickRepliesButtons = ["Horoscope", "Info"]
       response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
       response.contextOut = [{
-        "name": "zodiac-sign",
-        "parameters": {
-          "zodiacsign": zodiacSign
+          "name": "zodiac-sign",
+          "parameters": {
+            "zodiacsign": zodiacSign
+          },
+          "lifespan": 4
         },
-        "lifespan": 4
-      },
         {
           "name": "year",
           "parameters": {
             "age": { "amount": dateYear }
           },
           "lifespan": 0
-        }]
+        }
+      ]
     }
 
     return response;
@@ -133,6 +134,7 @@ module.exports = {
     let zodiacSignPicture = zodiacSignModule.getZodiacSignPicture(zodiacSign);
     let response = {}
 
+    // build the quick reply buttons according if a context has been given
     let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope"]
 
@@ -155,6 +157,17 @@ module.exports = {
         "speech": zodiacInfo
       }
     ]
+    
+    /*
+    // we also should delete the context if the input is just the aries sign itself
+    response.contextOut = [{ // we also need to delete the contextOut if a year has been given previously
+      "name": "year",
+      "parameters": {
+        "age": { "amount": 0 }
+      },
+      "lifespan": 0
+    }]*/
+    
     response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
     return response;
   },
@@ -177,6 +190,13 @@ module.exports = {
         "speech": "Your chinese zodiac sign is " + chineseZodiacSign + "."
       }
     ]
+    response.contextOut = [{ // don't give any contextOut year at the moment
+      "name": "year",
+      "parameters": {
+        "age": { "amount": 0 }
+      },
+      "lifespan": 0
+    }]
     return response;
   },
 

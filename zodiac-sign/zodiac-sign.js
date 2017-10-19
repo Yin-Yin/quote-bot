@@ -4,7 +4,7 @@ const zodiacSignMap = new Map();
 zodiacSignMap.set('Capricorn', 'Capricorn\nDates: December 22 – January 19 \nAlternative name: "The Mountain Sea-goat"\nThey are really cool animals! They can climb like badasses and are very cheeky');
 zodiacSignMap.set('Aquarius', 'Aquarius\nDates: January 20 – February 18\nAlternative name: "The Waterbearer"\nAs the name suggests, they like water a lot. Their best abilities lie in watering plants as they have so much. ');
 zodiacSignMap.set('Pisces', 'Pisces\nDates: February 19 – March 20\nAlternative name: "The Fish"\nPisces are fishes. Living in the water is a cool thing.');
-zodiacSignMap.set('Aries', 'Aries\nDates: March 21 – April 19\nAlternative name: "The Ram"\nAries are animals that have a very strong will, as they have two horns to ram everyone. Harharhar.');
+zodiacSignMap.set('Aries', 'Aries ("The Ram")\nDates: March 21 – April 19\nAries is symbolized by the ram, an animal that is strong, impulsive and has a hot temper.\nThis is also explained by his planet, the planet Mars. ');
 zodiacSignMap.set('Taurus', 'Taurus\nDates: April 20 – May 20\nAlternative name: "The Bull"\nThese animals are very big and strong. Altough most of the time they are very peaceful and just graze.');
 zodiacSignMap.set('Gemini', 'Gemini\nDates: May 21 – June 20\nAlternative name: "The Twins"\nGemini is cool, because it means sth. like siblings and to have a sibling is a wonderful thing. Even if you may be not have a sibling, with your star sign you do! :)');
 zodiacSignMap.set('Cancer', 'Cancer\nDates: June 21 – July 22\nAlternative name: "The Crab"\nCancer have two scissors on their hands, which is pretty badass!');
@@ -30,7 +30,7 @@ zodiacSignPictureMap.set('Taurus', 'http://maxpixel.freegreatpicture.com/static/
 // https://cdn.pixabay.com/photo/2017/07/06/17/56/bull-2478801_960_720.png
 zodiacSignPictureMap.set('Gemini', 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Gemini_-_Horoscope_from_%27The_book_of_birth_of_Iskandar%22_Wellcome_L0040144.jpg');
 // https://cdn.pixabay.com/photo/2017/05/09/15/45/gemini-2298596_960_720.png
-zodiacSignPictureMap.set('Cancer', 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Sidney_Hall_-_Urania%27s_Mirror_-_Scorpio.jpg');
+zodiacSignPictureMap.set('Cancer', 'https://cdn.pixabay.com/photo/2015/02/22/09/39/horoscope-644864_960_720.jpg');
 //https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png
 zodiacSignPictureMap.set('Leo', 'https://upload.wikimedia.org/wikipedia/commons/4/47/Lion_%28Panthera_leo%29_eye_close-up.jpg');
 //https://cdn.pixabay.com/photo/2017/05/07/17/40/lion-2293073_960_720.png
@@ -40,6 +40,7 @@ zodiacSignPictureMap.set('Libra', 'https://upload.wikimedia.org/wikipedia/common
 // https://cdn.pixabay.com/photo/2017/05/10/17/19/libra-2301362_960_720.png
 zodiacSignPictureMap.set('Scorpio', 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Scorpio-bonatti.png');
 // https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png
+// https://upload.wikimedia.org/wikipedia/commons/c/cf/Sidney_Hall_-_Urania%27s_Mirror_-_Scorpio.jpg
 zodiacSignPictureMap.set('Sagittarius', 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Milky_Way_and_Sagittarius_%28with_note%29.JPG');
 // https://cdn.pixabay.com/photo/2017/05/05/21/50/sagittarius-2288323_960_720.png
 
@@ -60,7 +61,8 @@ chineseZodiacMap.set(11, 'Pig');
 const chineseZodiacPicturesMap = new Map();
 chineseZodiacPicturesMap.set('Rat', 'https://cdn.pixabay.com/photo/2016/03/05/18/54/animal-1238228_960_720.jpg');
 chineseZodiacPicturesMap.set('Ox', 'https://upload.wikimedia.org/wikipedia/commons/7/77/Euceratherium_BW.jpg');
-chineseZodiacPicturesMap.set('Tiger', 'https://upload.wikimedia.org/wikipedia/commons/6/62/Panthera_tigris_sumatran_subspecies.jpg');
+chineseZodiacPicturesMap.set('Tiger', 'https://cdn.pixabay.com/photo/2014/10/11/00/21/tiger-484097_960_720.jpg');
+// https://upload.wikimedia.org/wikipedia/commons/6/62/Panthera_tigris_sumatran_subspecies.jpg
 chineseZodiacPicturesMap.set('Rabbit', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Grass-Cute-Rabbit-Hare-Lawn-Animal-Adorable-1903016.jpg');
 chineseZodiacPicturesMap.set('Dragon', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Bhutanese_dragon_%28%27druk%27%29.jpg/320px-Bhutanese_dragon_%28%27druk%27%29.jpg');
 chineseZodiacPicturesMap.set('Snake', 'https://cdn.pixabay.com/photo/2016/03/28/22/08/cobra-1287036_960_720.png');
