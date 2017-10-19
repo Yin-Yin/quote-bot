@@ -5,9 +5,7 @@ module.exports = {
   // ## API.ai intents ##
   getResponse: function(intentName, parameters, contexts) {
     return new Promise((resolve, reject) => {
-
       switch (intentName) {
-
         // ## zodiac signs ##
         case 'zodiacsign.check':
           resolve(this.getZodiacSignCheckResponse(parameters.date))
@@ -239,7 +237,6 @@ module.exports = {
           response.displayText = horoscope;
 
           let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
-        
           let quickRepliesButtons = ["Info"]
 
           for (var i = 0; i < contexts.length; i++) {
@@ -254,7 +251,7 @@ module.exports = {
             }*/
             if (contexts[i].name === "year") {
               quickRepliesButtons.push("Chinese Zodiac")
-              let quickRepliesTitle = "Do you want to get more information about " + zodiacSign + " or find out your Chinese Zodiac Sign?"
+              quickRepliesTitle = "Do you want to get more information about " + zodiacSign + " or find out your Chinese Zodiac Sign?"
             }
           }
 
