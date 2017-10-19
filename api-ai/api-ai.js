@@ -102,22 +102,26 @@ module.exports = {
     else {
       console.log("The date is from this year; ", dateYear);
       response.messages = [{
-          "type": 0,
-          "speech": "Your zodiac sign is " + zodiacSign
-        },
-        {
-          "type": 2,
-          "title": "Want to know more?",
-          "replies": ["Horoscope", "Info"]
-        }
-      ]
+        "type": 0,
+        "speech": "Your zodiac sign is " + zodiacSign
+      }]
+      let quickRepliesTitle = "Want to know more?"
+      let quickRepliesButtons = ["Horoscope", "Info"]
+      response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
       response.contextOut = [{
         "name": "zodiac-sign",
         "parameters": {
           "zodiacsign": zodiacSign
         },
         "lifespan": 4
-      }]
+      },
+        {
+          "name": "year",
+          "parameters": {
+            "age": { "amount": dateYear }
+          },
+          "lifespan": 0
+        }]
     }
 
     return response;
@@ -261,8 +265,8 @@ module.exports = {
             }
 
           ]
-          if(quickRepliesTitle){
-          response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))  
+          if (quickRepliesTitle) {
+            response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
           }
           resolve(response)
         }
