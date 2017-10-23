@@ -165,7 +165,10 @@ module.exports = {
     let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope", "Info"]
     
+    console.log("Response before: " + response);
     response = this.getZodiacSignYearResponse(providedYear);
+    
+    console.log("Response after response = this.getZodiacSignYearResponse(providedYear): " + response);
     response.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
     return response
    
