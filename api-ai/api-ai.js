@@ -144,7 +144,7 @@ module.exports = {
   },
 
   getZodiacSignYearContextResponse: function(contexts) {
-    // toDo: this intent is very similar to the one above > reuse the code from above to get the texts and only add the information that is new, which is only the quickReply buttons ?!!?!?!!
+    // when is this intent triggered and why do we do what we do?
     let providedYear = '';
     let zodiacSign = '';
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
@@ -159,7 +159,17 @@ module.exports = {
       }
     }
     console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
-
+    
+    // toDo: this intent is very similar to the one above > reuse the code from above to get the texts and only add the information that is new, which is only the quickReply buttons ?!!?!?!!
+    
+    let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
+    let quickRepliesButtons = ["Horoscope", "Info"]
+    
+    response = this.getZodiacSignYearResponse(providedYear);
+    response.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
+    return response
+   
+    /* 
     let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(providedYear);
     let chineseZodiacSignPicturUrl = zodiacSignModule.getChineseZodiacSignPicture(providedYear);
 
@@ -172,6 +182,7 @@ module.exports = {
     response.displayText = responseMessageText
     response.messages = [this.getImage(chineseZodiacSignPicturUrl), this.getResponseMessage(responseMessageText), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)];
     return response;
+     */
   },
 
   getZodiacSignList: function() {
