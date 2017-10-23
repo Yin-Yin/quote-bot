@@ -62,73 +62,62 @@ module.exports = {
     }
     let zodiacSign = zodiacSignModule.getZodiacSign(date);
 
-    // build the response
-    response.speech = "Your zodiac sign is " + zodiacSign
-    response.displayText = "Your zodiac sign is " + zodiacSign + "."
+    let responseMessageText = "Your zodiac sign is " + zodiacSign + "."
 
-    //toDo: Add context out and show button to get chinese zodiac sign
+    let quickRepliesTitle = "Want to know more?"
+    let quickRepliesButtons = '';
+
+    let contextOut = [];
+    let zodiacSignParameters = { "zodiacsign": zodiacSign }
+    contextOut.push(this.getContextOut("zodiac-sign", zodiacSignParameters, 4))
+
     // also get chinese zodiac sign if a date in the past is provided
     let parameterDate = new Date(date);
-    let currentYear = new Date().getFullYear(); // I use this in another place as well => declare on top for whole module
+    let currentYear = new Date().getFullYear();
     let dateYear = parameterDate.getFullYear();
-    if (dateYear < currentYear) {
-      // onsole.log("Year is different: ", dateYear)
-      // console.log("Chinese Zodiac", zodiacSignModule.getChineseZodiacSign(dateYear))
-      //response.messages.push({ "type": 0, "speech": "Your chinese zodiac sign is " + this.getChineseZodiacSign(dateYear) })
-      response.messages = [];
-      let responseMessageText = "Your zodiac sign is " + zodiacSign + "."
-      response.messages.push(this.getResponseMessage(responseMessageText));
+    if (dateYear < currentYear) { // if a year is provided that is in the past give the user also the option to find out about the chinese zodiac sign of that year
+      quickRepliesButtons = ["Horoscope", "Info", "Chinese zodiac"]
 
-      let quickRepliesTitle = "Want to know more?"
-      let quickRepliesButtons = ["Horoscope", "Info", "Chinese zodiac"]
-      response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
-
-      response.contextOut = [];
-      let zodiacSignParameters = { "zodiacsign": zodiacSign }
-      response.contextOut.push(this.getContextOut("zodiac-sign", zodiacSignParameters, 4))
+      // save the year as context that is available later for querying the chinese zodiac
       let yearParameters = { "age": { "amount": dateYear } }
-      response.contextOut.push(this.getContextOut("year", yearParameters, 3))
+      contextOut.push(this.getContextOut("year", yearParameters, 3))
 
     }
     else {
-      console.log("The date is from this year; ", dateYear);
-      response.messages = [];
-      let responseMessageText = "Your zodiac sign is " + zodiacSign + "."
-      response.messages.push(this.getResponseMessage(responseMessageText));
+      quickRepliesButtons = ["Horoscope", "Info"]
 
-      let quickRepliesTitle = "Want to know more?"
-      let quickRepliesButtons = ["Horoscope", "Info"]
-      response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
-
-      response.contextOut = [];
-      let zodiacSignParameters = { "zodiacsign": zodiacSign }
-      response.contextOut.push(this.getContextOut("zodiac-sign", zodiacSignParameters, 4))
+      // make sure there is no year context if no year is given by the user
       let yearParameters = { "age": { "amount": dateYear } }
-      response.contextOut.push(this.getContextOut("year", yearParameters, 0))
+      contextOut.push(this.getContextOut("year", yearParameters, 0))
     }
 
+
+    // build the response
+    response.speech = responseMessageText
+    response.displayText = responseMessageText
+    response.messages = [this.getResponseMessage(responseMessageText), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)];
+    response.contextOut = contextOut;
     return response;
   },
 
   getZodiacSignInfoResponse: function(zodiacSign, contexts) {
     console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
-    let response = {} // toDO: declare this on top
 
     let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacSign);
     let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPicture(zodiacSign); //toDo: rename to Image to be conssitent
-    
+
     let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope"]
 
     // add more quick reply buttons if a context is given
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
-      console.log("Iterating over contexts ... ")
+      // console.log("Iterating over contexts ... ")
       if (contexts[i].name === "year") {
         quickRepliesButtons.push("Chinese Zodiac")
         quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign?"
       }
     }
-    
+
     response.speech = zodiacInfo;
     response.displayText = zodiacInfo;
     response.messages = [this.getImage(zodiacSignPicturUrl), this.getResponseMessage(zodiacInfo), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)];
@@ -137,33 +126,25 @@ module.exports = {
 
   getZodiacSignYearResponse: function(year) {
     console.log("Triggered intent zodiacSign.year with params: ", year);
+
     let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(year);
-    let chineseZodiacPicture = zodiacSignModule.getChineseZodiacSignPicture(year);
-    console.log("chineseZodiacSign", chineseZodiacSign);
-    console.log("chineseZodiacPicture", chineseZodiacPicture);
-    let response = {}
-    response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
-    response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
-    response.messages = [{
-        "type": 3,
-        "imageUrl": chineseZodiacPicture
-      },
-      {
-        "type": 0,
-        "speech": "Your chinese zodiac sign is " + chineseZodiacSign + "."
-      }
-    ]
-    response.contextOut = [{ // don't give any contextOut year at the moment
-      "name": "year",
-      "parameters": {
-        "age": { "amount": 0 }
-      },
-      "lifespan": 0
-    }]
+    let chineseZodiacSignPicturUrl = zodiacSignModule.getChineseZodiacSignPicture(year);
+
+    let responseMessageText = "Your chinese zodiac sign is " + chineseZodiacSign + "."
+
+    let yearParameters = { "age": { "amount": year } }
+
+    response.speech = responseMessageText
+    response.displayText = responseMessageText
+    response.messages = [this.getImage(chineseZodiacSignPicturUrl), this.getResponseMessage(responseMessageText)];
+    // don't give any contextOut year at the moment (lifespan is 0)
+    response.contextOut = [this.getContextOut("year", yearParameters, 0)]
+
     return response;
   },
 
   getZodiacSignYearContextResponse: function(contexts) {
+    // toDo: this intent is very similar to the one above > reuse the code from above to get the texts and only add the information that is new, which is only the quickReply buttons ?!!?!?!!
     let providedYear = '';
     let zodiacSign = '';
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
@@ -178,38 +159,30 @@ module.exports = {
       }
     }
     console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
+
     let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(providedYear);
-    let chineseZodiacPicture = zodiacSignModule.getChineseZodiacSignPicture(providedYear);
-    let response = {}
-    response.speech = "Your chinese zodiac sign is " + chineseZodiacSign;
-    response.displayText = "Your chinese zodiac sign is " + chineseZodiacSign;;
-    response.messages = [{
-        "type": 3,
-        "imageUrl": chineseZodiacPicture
-      },
-      {
-        "type": 0,
-        "speech": "Your chinese zodiac sign is " + chineseZodiacSign + "."
-      }
-    ]
+    let chineseZodiacSignPicturUrl = zodiacSignModule.getChineseZodiacSignPicture(providedYear);
+
+    let responseMessageText = "Your chinese zodiac sign is " + chineseZodiacSign + "."
+
     let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope", "Info"]
-    response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)) // is it better radability if we put the texts in this function here? Yes: we save a line of code and it is more obvious where we put it in --- no: if we declare the variables we know what text is used for what:: I would like to do it both in one line and may be add a comment
+
+    response.speech = responseMessageText
+    response.displayText = responseMessageText
+    response.messages = [this.getImage(chineseZodiacSignPicturUrl), this.getResponseMessage(responseMessageText), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)];
     return response;
   },
 
   getZodiacSignList: function() {
     console.log("Intent zodiacsign.list triggered");
-    let response = {}
-    response.speech = "This is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";
-    response.displayText = "Here is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";;
-    response.messages = [{
-        "type": 2,
-        "title": "Select a zodiac sign to get information about it:",
-        "replies": ['Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius']
-      }
 
-    ]
+    let quickRepliesTitle = "Select a zodiac sign to get information about it:"
+    let quickRepliesButtons = ['Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius']
+
+    response.speech = "These are all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";
+    response.displayText = "Here is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";;
+    response.messages = [this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)]
     return response;
   },
 
