@@ -169,7 +169,7 @@ module.exports = {
     response = this.getZodiacSignYearResponse(providedYear);
     
     console.log("Response after response = this.getZodiacSignYearResponse(providedYear): " + response);
-    response.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
+    response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
     return response
    
     /* 
