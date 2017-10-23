@@ -114,17 +114,9 @@ module.exports = {
     console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
     let response = {} // toDO: declare this on top
 
-    response.speech = zodiacInfo;
-    response.displayText = zodiacInfo;
-    
-    response.messages = [];
-    
-    let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPicture(zodiacSign); //toDo: rename to Image to be conssitent
-    response.messages.push(this.getImage(zodiacSignPicturUrl))
-    
     let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacSign);
-    response.messages.push(this.getResponseMessage(zodiacInfo))
-
+    let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPicture(zodiacSign); //toDo: rename to Image to be conssitent
+    
     let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope"]
 
@@ -136,7 +128,10 @@ module.exports = {
         quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign?"
       }
     }
-    response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
+    
+    response.speech = zodiacInfo;
+    response.displayText = zodiacInfo;
+    response.messages = [this.getImage(zodiacSignPicturUrl), this.getResponseMessage(zodiacInfo), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)];
     return response;
   },
 
