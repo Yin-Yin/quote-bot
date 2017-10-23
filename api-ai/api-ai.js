@@ -76,53 +76,35 @@ module.exports = {
       // console.log("Chinese Zodiac", zodiacSignModule.getChineseZodiacSign(dateYear))
       //response.messages.push({ "type": 0, "speech": "Your chinese zodiac sign is " + this.getChineseZodiacSign(dateYear) })
       response.messages = [];
-      response.messages.push({
-        "type": 0,
-        "speech": "Your zodiac sign is " + zodiacSign + "."
-      });
+      let responseMessageText = "Your zodiac sign is " + zodiacSign + "."
+      response.messages.push(this.getResponseMessage(responseMessageText));
+
       let quickRepliesTitle = "Want to know more?"
       let quickRepliesButtons = ["Horoscope", "Info", "Chinese zodiac"]
       response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
-      response.contextOut = [{
-          "name": "zodiac-sign",
-          "parameters": {
-            "zodiacsign": zodiacSign
-          },
-          "lifespan": 4
-        },
-        {
-          "name": "year",
-          "parameters": {
-            "age": { "amount": dateYear }
-          },
-          "lifespan": 3
-        }
-      ]
+
+      response.contextOut = [];
+      let zodiacSignParameters = { "zodiacsign": zodiacSign }
+      response.contextOut.push(this.getContextOut("zodiac-sign", zodiacSignParameters, 4))
+      let yearParameters = { "age": { "amount": dateYear } }
+      response.contextOut.push(this.getContextOut("year", yearParameters, 3))
+
     }
     else {
       console.log("The date is from this year; ", dateYear);
-      response.messages = [{
-        "type": 0,
-        "speech": "Your zodiac sign is " + zodiacSign
-      }]
+      response.messages = [];
+      let responseMessageText = "Your zodiac sign is " + zodiacSign + "."
+      response.messages.push(this.getResponseMessage(responseMessageText));
+
       let quickRepliesTitle = "Want to know more?"
       let quickRepliesButtons = ["Horoscope", "Info"]
       response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
-      response.contextOut = [{
-          "name": "zodiac-sign",
-          "parameters": {
-            "zodiacsign": zodiacSign
-          },
-          "lifespan": 4
-        },
-        {
-          "name": "year",
-          "parameters": {
-            "age": { "amount": dateYear }
-          },
-          "lifespan": 0
-        }
-      ]
+
+      response.contextOut = [];
+      let zodiacSignParameters = { "zodiacsign": zodiacSign }
+      response.contextOut.push(this.getContextOut("zodiac-sign", zodiacSignParameters, 4))
+      let yearParameters = { "age": { "amount": dateYear } }
+      response.contextOut.push(this.getContextOut("year", yearParameters, 0))
     }
 
     return response;
@@ -130,14 +112,23 @@ module.exports = {
 
   getZodiacSignInfoResponse: function(zodiacSign, contexts) {
     console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
-    let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacSign);
-    let zodiacSignPicture = zodiacSignModule.getZodiacSignPicture(zodiacSign);
-    let response = {}
+    let response = {} // toDO: declare this on top
 
-    // build the quick reply buttons according if a context has been given
+    response.speech = zodiacInfo;
+    response.displayText = zodiacInfo;
+    
+    response.messages = [];
+    
+    let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPicture(zodiacSign); //toDo: rename to Image to be conssitent
+    response.messages.push(this.getImage(zodiacSignPicturUrl))
+    
+    let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacSign);
+    response.messages.push(this.getResponseMessage(zodiacInfo))
+
     let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope"]
 
+    // add more quick reply buttons if a context is given
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
       console.log("Iterating over contexts ... ")
       if (contexts[i].name === "year") {
@@ -145,29 +136,6 @@ module.exports = {
         quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign?"
       }
     }
-
-    response.speech = zodiacInfo;
-    response.displayText = zodiacInfo;
-    response.messages = [{
-        "type": 3,
-        "imageUrl": zodiacSignPicture
-      },
-      {
-        "type": 0,
-        "speech": zodiacInfo
-      }
-    ]
-    
-    /*
-    // we also should delete the context if the input is just the aries sign itself
-    response.contextOut = [{ // we also need to delete the contextOut if a year has been given previously
-      "name": "year",
-      "parameters": {
-        "age": { "amount": 0 }
-      },
-      "lifespan": 0
-    }]*/
-    
     response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
     return response;
   },
@@ -231,7 +199,7 @@ module.exports = {
     ]
     let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope", "Info"]
-    response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
+    response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)) // is it better radability if we put the texts in this function here? Yes: we save a line of code and it is more obvious where we put it in --- no: if we declare the variables we know what text is used for what:: I would like to do it both in one line and may be add a comment
     return response;
   },
 
@@ -294,11 +262,36 @@ module.exports = {
     })
   },
 
+  // construct the reponse objects for api.ai 
+
+  getResponseMessage: function(messageText) { // may be it would be better to call this a more specific name: like getResponseMessageObject - because what we are doing here is creating an object!
+    return {
+      "type": 0,
+      "speech": messageText
+    }
+  },
+
   getQuickReplies: function(title, replies) {
     return {
       "type": 2,
       "title": title,
       "replies": replies
     }
-  }
+  },
+
+  getImage: function(imageUrl) {
+    return {
+      "type": 3,
+      "imageUrl": imageUrl
+    }
+  },
+
+  getContextOut: function(name, paremeters, lifespan) {
+    return {
+      "name": name,
+      "parameters": paremeters,
+      "lifespan": lifespan
+    }
+  },
+
 }
