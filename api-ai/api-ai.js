@@ -151,7 +151,7 @@ module.exports = {
   getZodiacSignYearContextResponse: function(contexts) {
     console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
 
-    let providedYear = '';
+    let providedYear = '2001';
     let zodiacSign = '';
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
       console.log("Iterating over contexts ... ")
