@@ -1,7 +1,7 @@
 const request = require('request');
 
 const zodiacSignMap = new Map();
-zodiacSignMap.set('Capricorn', 'Capricorn\nDates: December 22 – January 19 \nAlternative name: "The Mountain Sea-goat"\nThey are really cool animals! They can climb like badasses and are very cheeky');
+zodiacSignMap.set('Capricorn', 'Capricorn ("The Mountain Sea-goat")\nDates: December 22 – January 19 \nThey are really cool animals! They can climb like badasses and are very cheeky');
 zodiacSignMap.set('Aquarius', 'Aquarius\nDates: January 20 – February 18\nAlternative name: "The Waterbearer"\nAs the name suggests, they like water a lot. Their best abilities lie in watering plants as they have so much. ');
 zodiacSignMap.set('Pisces', 'Pisces\nDates: February 19 – March 20\nAlternative name: "The Fish"\nPisces are fishes. Living in the water is a cool thing.');
 zodiacSignMap.set('Aries', 'Aries ("The Ram")\nDates: March 21 – April 19\nAries is symbolized by the ram, which fits very well as this sign is strong, impulsive and has a hot temper. They attack any goal without fear and do not stop until they reach their goal. They get mad fast when they cannot reach a goal, but on the other hand do not hold a grudge for long.\nIts planet is the planet Mars, the planet of fire.');
@@ -85,7 +85,7 @@ module.exports = {
     let zodiacSign = (day > last_day[month]) ? zodiac[month * 1 + 1] : zodiac[month];
     return zodiacSign;
   },
-  
+
   /* Returns the image url for a zodiac sign */
   getZodiacSignPictureUrl: function(zodiacSign) {
     console.log("Getting zodiacSign picture for: ", zodiacSign);
@@ -113,7 +113,7 @@ module.exports = {
     }
     return chineseZodiacSign;
   },
-  
+
   /* Returns the url of the picture for a chinese zodiac sign */
   getChineseZodiacSignPictureUrl: function(year) {
     let chineseZodiacSign = this.getChineseZodiacSign(year);

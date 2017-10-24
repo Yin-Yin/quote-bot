@@ -123,7 +123,7 @@ module.exports = {
     response.contextOut = [this.getContextOutObject("zodiac-sign", zodiacSignParameters, 4)]
     return response;
   },
-  
+
   /* 
   Give the user the chinese zodiac sign for a year or age he provides. 
   */
@@ -150,7 +150,7 @@ module.exports = {
   */
   getZodiacSignYearContextResponse: function(contexts) {
     console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
-    
+
     let providedYear = '';
     let zodiacSign = '';
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
@@ -158,6 +158,10 @@ module.exports = {
       if (contexts[i].name === "year") {
         providedYear = contexts[i].parameters.age.amount
         console.log("providedYear is " + providedYear)
+        
+        console.log("contexts[i].parameters.age.amount " + contexts[i].parameters.age.amount)
+        //console.log("contexts[i].parameters " + contexts[i].parameters)
+        console.log("contexts[i].parameters.age " + contexts[i].parameters.age)
       }
       if (contexts[i].name === "zodiac-sign") {
         zodiacSign = contexts[i].parameters.zodiacsign
@@ -194,7 +198,7 @@ module.exports = {
   */
   getZodiacSignHoroscopeResponse: function(zodiacSign, contexts) {
     console.log("Triggerd intent zodiacSign.horoscope with params: ", zodiacSign);
-    
+
     return new Promise((resolve, reject) => {
       zodiacSignModule.getHoroscope(zodiacSign).then(
         (horoscope) => {
@@ -223,7 +227,7 @@ module.exports = {
   },
 
   // ### construct the reponse objects for api.ai/dialogflow ###
-  
+
   getResponseMessageObject: function(messageText) { // may be it would be better to call this a more specific name: like getResponseMessageObjectObject - because what we are doing here is creating an object!
     return {
       "type": 0,
