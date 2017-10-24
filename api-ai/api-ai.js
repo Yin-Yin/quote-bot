@@ -70,7 +70,7 @@ module.exports = {
 
     let contextOut = [];
     let zodiacSignParameters = { "zodiacsign": zodiacSign }
-    contextOut.push(this.getContextOut("zodiac-sign", zodiacSignParameters, 4))
+    contextOut.push(this.getContextOutObject("zodiac-sign", zodiacSignParameters, 4))
 
     // also get chinese zodiac sign if a date in the past is provided
     let parameterDate = new Date(date);
@@ -80,17 +80,17 @@ module.exports = {
       quickRepliesButtons = ["Horoscope", "Info", "Chinese zodiac"]
       // save the year as context that is available later for querying the chinese zodiac
       let yearParameters = { "age": { "amount": dateYear } }
-      contextOut.push(this.getContextOut("year", yearParameters, 3))
+      contextOut.push(this.getContextOutObject("year", yearParameters, 3))
     }
     else { // make sure there is no year context if no year is given by the user
       quickRepliesButtons = ["Horoscope", "Info"]
       let yearParameters = { "age": { "amount": dateYear } }
-      contextOut.push(this.getContextOut("year", yearParameters, 0))
+      contextOut.push(this.getContextOutObject("year", yearParameters, 0))
     }
 
     response.speech = responseMessageText
     response.displayText = responseMessageText
-    response.messages = [this.getResponseMessage(responseMessageText), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)];
+    response.messages = [this.getResponseMessageObject(responseMessageText), this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons)];
     response.contextOut = contextOut;
     return response;
   },
@@ -119,8 +119,8 @@ module.exports = {
 
     response.speech = zodiacInfo;
     response.displayText = zodiacInfo;
-    response.messages = [this.getImage(zodiacSignPicturUrl), this.getResponseMessage(zodiacInfo), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)];
-    response.contextOut = [this.getContextOut("zodiac-sign", zodiacSignParameters, 4)]
+    response.messages = [this.getImageObject(zodiacSignPicturUrl), this.getResponseMessageObject(zodiacInfo), this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons)];
+    response.contextOut = [this.getContextOutObject("zodiac-sign", zodiacSignParameters, 4)]
     return response;
   },
   
@@ -138,9 +138,9 @@ module.exports = {
 
     response.speech = responseMessageText
     response.displayText = responseMessageText
-    response.messages = [this.getImage(chineseZodiacSignPicturUrl), this.getResponseMessage(responseMessageText)];
+    response.messages = [this.getImageObject(chineseZodiacSignPicturUrl), this.getResponseMessageObject(responseMessageText)];
     // don't give any contextOut year at the moment (lifespan is 0)
-    response.contextOut = [this.getContextOut("year", yearParameters, 0)]
+    response.contextOut = [this.getContextOutObject("year", yearParameters, 0)]
     return response;
   },
 
@@ -168,7 +168,7 @@ module.exports = {
     let quickRepliesButtons = ["Horoscope", "Info"]
 
     response = this.getZodiacSignYearResponse(providedYear);
-    response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
+    response.messages.push(this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons))
     return response;
   },
 
@@ -184,7 +184,7 @@ module.exports = {
 
     response.speech = "These are all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";
     response.displayText = "Here is a list of all the zodiac signs: Capricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius";;
-    response.messages = [this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)]
+    response.messages = [this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons)]
     return response;
   },
 
@@ -212,8 +212,8 @@ module.exports = {
 
           response.speech = horoscope;
           response.displayText = horoscope;
-          response.messages = [this.getResponseMessage(horoscope), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)]
-          response.contextOut = [this.getContextOut("zodiac-sign", zodiacSignParameters, 4)]
+          response.messages = [this.getResponseMessageObject(horoscope), this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons)]
+          response.contextOut = [this.getContextOutObject("zodiac-sign", zodiacSignParameters, 4)]
           resolve(response)
         }
       )
@@ -222,14 +222,14 @@ module.exports = {
 
   // ### construct the reponse objects for api.ai/dialogflow ###
   
-  getResponseMessage: function(messageText) { // may be it would be better to call this a more specific name: like getResponseMessageObject - because what we are doing here is creating an object!
+  getResponseMessageObject: function(messageText) { // may be it would be better to call this a more specific name: like getResponseMessageObjectObject - because what we are doing here is creating an object!
     return {
       "type": 0,
       "speech": messageText
     }
   },
 
-  getQuickReplies: function(title, replies) {
+  getQuickRepliesObject: function(title, replies) {
     return {
       "type": 2,
       "title": title,
@@ -237,14 +237,14 @@ module.exports = {
     }
   },
 
-  getImage: function(imageUrl) {
+  getImageObject: function(imageUrl) {
     return {
       "type": 3,
       "imageUrl": imageUrl
     }
   },
 
-  getContextOut: function(name, paremeters, lifespan) {
+  getContextOutObject: function(name, paremeters, lifespan) {
     return {
       "name": name,
       "parameters": paremeters,
