@@ -57,9 +57,7 @@ module.exports = {
   // Here we construct the messages and buttons that go back to api.ai
   getZodiacSignCheckResponse: function(date) {
     console.log("Triggerd intent *zodiacSign.check with params, date: ", date);
-    if (!date) {
-      console.error("Intent: zodiacsign.check, Error: The date is missing.")
-    }
+
     let zodiacSign = zodiacSignModule.getZodiacSign(date);
 
     let responseMessageText = "Your zodiac sign is " + zodiacSign + "."
@@ -77,20 +75,16 @@ module.exports = {
     let dateYear = parameterDate.getFullYear();
     if (dateYear < currentYear) { // if a year is provided that is in the past give the user also the option to find out about the chinese zodiac sign of that year
       quickRepliesButtons = ["Horoscope", "Info", "Chinese zodiac"]
-
       // save the year as context that is available later for querying the chinese zodiac
       let yearParameters = { "age": { "amount": dateYear } }
       contextOut.push(this.getContextOut("year", yearParameters, 3))
-
     }
     else {
       quickRepliesButtons = ["Horoscope", "Info"]
-
       // make sure there is no year context if no year is given by the user
       let yearParameters = { "age": { "amount": dateYear } }
       contextOut.push(this.getContextOut("year", yearParameters, 0))
     }
-
 
     // build the response
     response.speech = responseMessageText
@@ -129,9 +123,8 @@ module.exports = {
 
     let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(year);
     let chineseZodiacSignPicturUrl = zodiacSignModule.getChineseZodiacSignPicture(year);
-
+    
     let responseMessageText = "Your chinese zodiac sign is " + chineseZodiacSign + "."
-
     let yearParameters = { "age": { "amount": year } }
 
     response.speech = responseMessageText
@@ -139,7 +132,6 @@ module.exports = {
     response.messages = [this.getImage(chineseZodiacSignPicturUrl), this.getResponseMessage(responseMessageText)];
     // don't give any contextOut year at the moment (lifespan is 0)
     response.contextOut = [this.getContextOut("year", yearParameters, 0)]
-
     return response;
   },
 
@@ -160,32 +152,12 @@ module.exports = {
     }
     console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
     
-    // toDo: this intent is very similar to the one above > reuse the code from above to get the texts and only add the information that is new, which is only the quickReply buttons ?!!?!?!!
-    
     let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope", "Info"]
     
-    console.log("Response before: " + response);
     response = this.getZodiacSignYearResponse(providedYear);
-    
-    console.log("Response after response = this.getZodiacSignYearResponse(providedYear): " + response);
     response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
-    return response
-   
-    /* 
-    let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(providedYear);
-    let chineseZodiacSignPicturUrl = zodiacSignModule.getChineseZodiacSignPicture(providedYear);
-
-    let responseMessageText = "Your chinese zodiac sign is " + chineseZodiacSign + "."
-
-    let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
-    let quickRepliesButtons = ["Horoscope", "Info"]
-
-    response.speech = responseMessageText
-    response.displayText = responseMessageText
-    response.messages = [this.getImage(chineseZodiacSignPicturUrl), this.getResponseMessage(responseMessageText), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)];
     return response;
-     */
   },
 
   getZodiacSignList: function() {
@@ -204,48 +176,30 @@ module.exports = {
     // toDo: we have three promises now. Only because of the asynchronous API call to the horoscope API. Is there a better way to tackle this?
     console.log("Triggerd intent zodiacSign.horoscope with params: ", zodiacSign);
     return new Promise((resolve, reject) => {
-      let response = {}
       zodiacSignModule.getHoroscope(zodiacSign).then(
         (horoscope) => {
-          response.speech = horoscope;
-          response.displayText = horoscope;
 
           let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
           let quickRepliesButtons = ["Info"]
 
           for (var i = 0; i < contexts.length; i++) {
             console.log("Iterating over contexts ... ")
-            /*
-            if (contexts[i].name === "zodiac-sign") {
-              //zodiacSign = contexts[i].parameters.zodiacsign
-              //console.log("Zodiac SIgn from Context: ", zodiacSign)
-              // toDo: Can it be that there is no zodiac sign in contet and the function is triggered anyways?
-              let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
-              quickRepliesButtons.push("Info")
-            }*/
             if (contexts[i].name === "year") {
-              quickRepliesButtons.push("Chinese Zodiac")
               quickRepliesTitle = "Do you want to get more information about " + zodiacSign + " or find out your Chinese Zodiac Sign?"
+              quickRepliesButtons.push("Chinese Zodiac")
             }
           }
-
-          response.messages = [{
-              "type": 0,
-              "speech": horoscope
-            }
-
-          ]
-          if (quickRepliesTitle) {
-            response.messages.push(this.getQuickReplies(quickRepliesTitle, quickRepliesButtons))
-          }
+          
+          response.speech = horoscope;
+          response.displayText = horoscope;
+          response.messages = [this.getResponseMessage(horoscope), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)]
           resolve(response)
         }
       )
     })
   },
 
-  // construct the reponse objects for api.ai 
-
+  // construct the reponse objects for api.ai/dialogflow
   getResponseMessage: function(messageText) { // may be it would be better to call this a more specific name: like getResponseMessageObject - because what we are doing here is creating an object!
     return {
       "type": 0,
