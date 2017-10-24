@@ -5,8 +5,8 @@ module.exports = {
   // ## API.ai intents ##
   getResponse: function(intentName, parameters, contexts) {
     return new Promise((resolve, reject) => {
-      
       console.log("Triggerd intent: " + intentName + "with params: " + parameters + ".")
+      
       switch (intentName) {
         // ## zodiac signs ##
         case 'zodiacsign.check':
@@ -152,10 +152,6 @@ module.exports = {
       if (contexts[i].name === "year") {
         providedYear = contexts[i].parameters.age.amount
         console.log("providedYear is " + providedYear)
-        
-        console.log("contexts[i].parameters.age.amount " + contexts[i].parameters.age.amount)
-        //console.log("contexts[i].parameters " + contexts[i].parameters)
-        console.log("contexts[i].parameters.age " + contexts[i].parameters.age)
       }
       if (contexts[i].name === "zodiac-sign") {
         zodiacSign = contexts[i].parameters.zodiacsign
@@ -163,7 +159,7 @@ module.exports = {
       }
     }
 
-    let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
+    let quickRepliesTitle = "Want to know more about the zodiac sign " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope", "Info"]
 
     response = this.getZodiacSignYearResponse(providedYear);
@@ -216,7 +212,7 @@ module.exports = {
     })
   },
 
-  // ### construct the reponse objects for api.ai/dialogflow ###
+  // ### construct the reponse objects for dialogflow (api.ai) ###
 
   getResponseMessageObject: function(messageText) { // may be it would be better to call this a more specific name: like getResponseMessageObjectObject - because what we are doing here is creating an object!
     return {

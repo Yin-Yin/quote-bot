@@ -44,6 +44,6 @@ A way to achieve this would be to memorize which button we have shown with an ou
 
 **to dos**:
 - improve texts of zodiac signs
-- improve pictures of zodiac signs
+- improve pictures of zodiac signs: get smaller sizes of pictures to save bandwith of users and host them on own server to avoid hotlinking
 - - start intents
 - Code enhancements: Make functions smaller - only one functionality per function, for example: getting the contexts out

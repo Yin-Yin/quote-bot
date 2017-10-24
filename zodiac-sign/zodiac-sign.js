@@ -1,48 +1,37 @@
 const request = require('request');
 
+// toDO: Write better texts for: Aquarius, 
 const zodiacSignMap = new Map();
-zodiacSignMap.set('Capricorn', 'Capricorn ("The Mountain Sea-goat")\nDates: December 22 – January 19 \nThey are really cool animals! They can climb like badasses and are very cheeky');
-zodiacSignMap.set('Aquarius', 'Aquarius\nDates: January 20 – February 18\nAlternative name: "The Waterbearer"\nAs the name suggests, they like water a lot. Their best abilities lie in watering plants as they have so much. ');
-zodiacSignMap.set('Pisces', 'Pisces\nDates: February 19 – March 20\nAlternative name: "The Fish"\nPisces are fishes. Living in the water is a cool thing.');
+zodiacSignMap.set('Capricorn', 'Capricorn ("The Mountain Sea-goat") ♑\nDates: December 22 – January 19 \nCapricorn is considered an earth sign, negative sign, and one of the four cardinal signs. Capricorn is said to be ruled by the planet Saturn. Its symbol is based on the Sumerians primordial god of wisdom and waters, Enki, with the head and upper body of a goat and the lower body and tail of a fish. Later known as Ea in Akkadian and Babylonian mythology, Enki was the god of intelligence (gestú, literally "ear"), creation, crafts; magic; water, seawater and lakewater (a, aba, ab). The goat part of the symbol depicts ambition, resolute, intelligence, curiosity, but also steadiness, and ability to thrive in inhospitable environments while the fish represents passion, spirituality, intuition, and connection with the soul.');
+zodiacSignMap.set('Aquarius', 'Aquarius ("The Waterbearer") ♒\nDates: January 20 – February 18\nThe water carrier represented by the zodiacal constellation Aquarius is Ganymede, a beautiful Phrygian youth. Ganymede was the son of Tros, king of Troy (according to Lucian, he was also the son of Dardanus). While tending to his fathers flocks on Mount Ida, Ganymede was spotted by Jupiter. The king of gods flew down to the mountain in the form of a large bird, whisking Ganymede away to the heavens. Ever since, the boy has served as cupbearer to the gods.');
+zodiacSignMap.set('Pisces', 'Pisces ("The Fish") ♓\nDates: February 19 – March 20\nThe astrological symbol shows the two fishes captured by a string, typically by the mouth or the tails. The fish are usually portrayed swimming in opposite directions; this represents the duality within the Piscean nature. Although they appear as a pair, the name of the sign in all languages originally referred to only one fish with the exception of Greek, Bulgarian, Dutch, Latvian, Italian.');
 zodiacSignMap.set('Aries', 'Aries ("The Ram")\nDates: March 21 – April 19\nAries is symbolized by the ram, which fits very well as this sign is strong, impulsive and has a hot temper. They attack any goal without fear and do not stop until they reach their goal. They get mad fast when they cannot reach a goal, but on the other hand do not hold a grudge for long.\nIts planet is the planet Mars, the planet of fire.');
-zodiacSignMap.set('Taurus', 'Taurus\nDates: April 20 – May 20\nAlternative name: "The Bull"\nThese animals are very big and strong. Altough most of the time they are very peaceful and just graze.');
-zodiacSignMap.set('Gemini', 'Gemini\nDates: May 21 – June 20\nAlternative name: "The Twins"\nGemini is cool, because it means sth. like siblings and to have a sibling is a wonderful thing. Even if you may be not have a sibling, with your star sign you do! :)');
-zodiacSignMap.set('Cancer', 'Cancer\nDates: June 21 – July 22\nAlternative name: "The Crab"\nCancer have two scissors on their hands, which is pretty badass!');
-zodiacSignMap.set('Leo', 'Leo\nDates: July 23 – August 22\nAlternative name: "The Lion"\nLions are so cool! They are like the kings of animal kingdom!');
-zodiacSignMap.set('Virgo', 'Virgo\nDates: August 23 – September 22\nAlternative name: "The Maiden"\nVirgos are very intelligent! And beautiful! Your are great!');
-zodiacSignMap.set('Libra', 'Libra\nDates: September 23 – October 22\nAlternative name: "The Scales"\nLibra means sth. like a scale. So they are very harmonious.');
-zodiacSignMap.set('Scorpio', 'Scorpio\nDates: October 23 – November 21\nAlternative name: "The Scorpion"\nScorpions are so cool! They have a tail with a sting and two scissor hands!!! Wow! ...');
-zodiacSignMap.set('Sagittarius', 'Sagittarius\nDates: November 22 – December 21\nAlternative name: "The Archer"\nSagittarius is like bow and arrow. So they know whre to aim.');
+zodiacSignMap.set('Taurus', 'Taurus ("The Bull")\nDates: April 20 – May 20\nThese animals are very big and strong. Altough most of the time they are very peaceful and just graze.');
+zodiacSignMap.set('Gemini', 'Gemini ("The Twins")\nDates: May 21 – June 20\nGemini is cool, because it means sth. like siblings and to have a sibling is a wonderful thing. Even if you may be not have a sibling, with your star sign you do! :)');
+zodiacSignMap.set('Cancer', 'Cancer ("The Crab")\nDates: June 21 – July 22\nCancer have two scissors on their hands, which is pretty badass!');
+zodiacSignMap.set('Leo', 'Leo ("The Lion")\nDates: July 23 – August 22\nLions are so cool! They are like the kings of animal kingdom!');
+zodiacSignMap.set('Virgo', 'Virgo ("The Maiden")\nDates: August 23 – September 22\nVirgos are very intelligent! And beautiful! Your are great!');
+zodiacSignMap.set('Libra', 'Libra ("The Scales")\nDates: September 23 – October 22\nLibra means sth. like a scale. So they are very harmonious.');
+zodiacSignMap.set('Scorpio', 'Scorpio ("The Scorpion")\nDates: October 23 – November 21\nScorpions are so cool! They have a tail with a sting and two scissor hands!!! Wow! ...');
+zodiacSignMap.set('Sagittarius', 'Sagittarius ("The Archer")\nDates: November 22 – December 21\nSagittarius is like bow and arrow. So they know whre to aim.');
 zodiacSignMap.set('General', 'General information from Wikipedia:\nWhile Western astrology is essentially a product of Greco-Roman culture, some of its more basic concepts originated in Babylonia. Isolated references to celestial "signs" in Sumerian sources are insufficient to speak of a Sumerian zodiac. Specifically, the division of the ecliptic in twelve equal sectors is a Babylonian conceptual construction.\n\nBy the 4th century BC, Babylonian astronomy and its system of celestial omens had an influence on the culture of ancient Greece, as did the astrology of ancient Egypt by late 2nd century BC. This resulted, unlike the Mesopotamian tradition, in a strong focus on the birth chart of the individual and in the creation of horoscopic astrology, employing the use of the Ascendant (the rising degree of the ecliptic, at the time of birth), and of the twelve houses. Association of the astrological signs with Empedocles four classical elements was another important development in the characterization of the twelve signs.\nThe body of astrological knowledge by the 2nd century AD is described in Ptolemys Tetrabiblos, a work that was responsible for astrologys successful spread across Europe and the Middle East, and remained a reference for almost seventeen centuries as later traditions made few substantial changes to its core teachings.\nSource: https://en.wikipedia.org/wiki/Astrological_sign');
 
 const zodiacSignPictureUrlMap = new Map();
-// toDO: use only really free pictures from wikipedia to be safe!
+// toDO: use only pictures from wikipedia to be safe! 
+// toDo: use smaller pictures to safe us
+// toDO: host pictures on own server to avoid hotlinking
 zodiacSignPictureUrlMap.set('Capricorn', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Zoo-Capricorn-Mountain-Goat-2389416.jpg');
-// https://cdn.pixabay.com/photo/2017/07/26/18/06/capricorn-2542608_960_720.png
 zodiacSignPictureUrlMap.set('Aquarius', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Poseidon-Zodiac-Sign-Aquarius-Neptune-Composing-1865691.jpg');
-// https://cdn.pixabay.com/photo/2017/05/08/23/51/aquarius-2296922_960_720.png
 zodiacSignPictureUrlMap.set('Pisces', 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Pisces_-_Horoscope_from_%27The_book_of_birth_of_Iskandar%22_Wellcome_L0040147.jpg');
-// https://cdn.pixabay.com/photo/2017/05/10/16/18/fish-2301218_960_720.png
-//zodiacSignPictureUrlMap.set('aries', 'https://upload.wikimedia.org/wikipedia/commons/6/69/Aries2.jpg');
 zodiacSignPictureUrlMap.set('Aries', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Horoscope-Aries-Icon-Images-Astrology-Zodiac-639126.jpg');
-//https://cdn.pixabay.com/photo/2017/05/09/00/08/ram-2296942_960_720.png
 zodiacSignPictureUrlMap.set('Taurus', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Bos-Primigenius-Taurus-Beef-Cow-Domestic-Cattle-56014.jpg');
-// https://cdn.pixabay.com/photo/2017/07/06/17/56/bull-2478801_960_720.png
 zodiacSignPictureUrlMap.set('Gemini', 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Gemini_-_Horoscope_from_%27The_book_of_birth_of_Iskandar%22_Wellcome_L0040144.jpg');
-// https://cdn.pixabay.com/photo/2017/05/09/15/45/gemini-2298596_960_720.png
 zodiacSignPictureUrlMap.set('Cancer', 'https://cdn.pixabay.com/photo/2015/02/22/09/39/horoscope-644864_960_720.jpg');
-//https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png
 zodiacSignPictureUrlMap.set('Leo', 'https://upload.wikimedia.org/wikipedia/commons/4/47/Lion_%28Panthera_leo%29_eye_close-up.jpg');
-//https://cdn.pixabay.com/photo/2017/05/07/17/40/lion-2293073_960_720.png
 zodiacSignPictureUrlMap.set('Virgo', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg/1200px-Sidney_Hall_-_Urania%27s_Mirror_-_Virgo.jpg');
-// https://cdn.pixabay.com/photo/2017/05/05/22/07/miss-2288356_960_720.png
 zodiacSignPictureUrlMap.set('Libra', 'https://upload.wikimedia.org/wikipedia/commons/3/35/LibraCC.jpg');
-// https://cdn.pixabay.com/photo/2017/05/10/17/19/libra-2301362_960_720.png
 zodiacSignPictureUrlMap.set('Scorpio', 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Scorpio-bonatti.png');
-// https://cdn.pixabay.com/photo/2017/06/03/00/23/scorpio-2367640_960_720.png
-// https://upload.wikimedia.org/wikipedia/commons/c/cf/Sidney_Hall_-_Urania%27s_Mirror_-_Scorpio.jpg
 zodiacSignPictureUrlMap.set('Sagittarius', 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Milky_Way_and_Sagittarius_%28with_note%29.JPG');
-// https://cdn.pixabay.com/photo/2017/05/05/21/50/sagittarius-2288323_960_720.png
 
 const chineseZodiacMap = new Map();
 chineseZodiacMap.set(0, 'Rat');
@@ -62,7 +51,6 @@ const chineseZodiacPicturesUrlMap = new Map();
 chineseZodiacPicturesUrlMap.set('Rat', 'https://cdn.pixabay.com/photo/2016/03/05/18/54/animal-1238228_960_720.jpg');
 chineseZodiacPicturesUrlMap.set('Ox', 'https://upload.wikimedia.org/wikipedia/commons/7/77/Euceratherium_BW.jpg');
 chineseZodiacPicturesUrlMap.set('Tiger', 'https://cdn.pixabay.com/photo/2014/10/11/00/21/tiger-484097_960_720.jpg');
-// https://upload.wikimedia.org/wikipedia/commons/6/62/Panthera_tigris_sumatran_subspecies.jpg
 chineseZodiacPicturesUrlMap.set('Rabbit', 'http://maxpixel.freegreatpicture.com/static/photo/1x/Grass-Cute-Rabbit-Hare-Lawn-Animal-Adorable-1903016.jpg');
 chineseZodiacPicturesUrlMap.set('Dragon', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Bhutanese_dragon_%28%27druk%27%29.jpg/320px-Bhutanese_dragon_%28%27druk%27%29.jpg');
 chineseZodiacPicturesUrlMap.set('Snake', 'https://cdn.pixabay.com/photo/2016/03/28/22/08/cobra-1287036_960_720.png');
