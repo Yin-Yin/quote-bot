@@ -102,7 +102,7 @@ module.exports = {
     console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
 
     let responseMessageText = zodiacSignModule.getZodiacSignInfo(zodiacSign);
-    let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPicture(zodiacSign); //toDo: rename to Image to be conssitent
+    let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPictureUrl(zodiacSign); //toDo: rename to Image to be conssitent
 
     let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope"]
@@ -131,7 +131,7 @@ module.exports = {
     console.log("Triggered intent zodiacSign.year with params: ", year);
 
     let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(year);
-    let chineseZodiacSignPicturUrl = zodiacSignModule.getChineseZodiacSignPicture(year);
+    let chineseZodiacSignPicturUrl = zodiacSignModule.getChineseZodiacSignPictureUrl(year);
 
     let responseMessageText = "Your chinese zodiac sign is " + chineseZodiacSign + "."
     let yearParameters = { "age": { "amount": year } }
