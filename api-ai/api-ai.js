@@ -101,7 +101,7 @@ module.exports = {
   getZodiacSignInfoResponse: function(zodiacSign, contexts) {
     console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
 
-    let zodiacInfo = zodiacSignModule.getZodiacSignInfo(zodiacSign);
+    let responseMessageText = zodiacSignModule.getZodiacSignInfo(zodiacSign);
     let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPicture(zodiacSign); //toDo: rename to Image to be conssitent
 
     let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + "?"
@@ -117,9 +117,9 @@ module.exports = {
 
     let zodiacSignParameters = { "zodiacsign": zodiacSign }
 
-    response.speech = zodiacInfo;
-    response.displayText = zodiacInfo;
-    response.messages = [this.getImageObject(zodiacSignPicturUrl), this.getResponseMessageObject(zodiacInfo), this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons)];
+    response.speech = responseMessageText;
+    response.displayText = responseMessageText;
+    response.messages = [this.getImageObject(zodiacSignPicturUrl), this.getResponseMessageObject(responseMessageText), this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons)];
     response.contextOut = [this.getContextOutObject("zodiac-sign", zodiacSignParameters, 4)]
     return response;
   },
@@ -149,6 +149,8 @@ module.exports = {
     and we want to leave the user the possibility to get more information about the zodiac sign from the context.
   */
   getZodiacSignYearContextResponse: function(contexts) {
+    console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
+    
     let providedYear = '';
     let zodiacSign = '';
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
@@ -162,7 +164,6 @@ module.exports = {
         console.log("Zodiac SIgn from Context: ", zodiacSign)
       }
     }
-    console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
 
     let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
     let quickRepliesButtons = ["Horoscope", "Info"]
@@ -193,6 +194,7 @@ module.exports = {
   */
   getZodiacSignHoroscopeResponse: function(zodiacSign, contexts) {
     console.log("Triggerd intent zodiacSign.horoscope with params: ", zodiacSign);
+    
     return new Promise((resolve, reject) => {
       zodiacSignModule.getHoroscope(zodiacSign).then(
         (horoscope) => {
