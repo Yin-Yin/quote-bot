@@ -111,10 +111,13 @@ module.exports = {
         quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign?"
       }
     }
+    
+    let zodiacSignParameters = { "zodiacsign": zodiacSign }
 
     response.speech = zodiacInfo;
     response.displayText = zodiacInfo;
     response.messages = [this.getImage(zodiacSignPicturUrl), this.getResponseMessage(zodiacInfo), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)];
+    response.contextOut = [this.getContextOut("zodiac-sign", zodiacSignParameters, 4)]
     return response;
   },
 
@@ -190,9 +193,12 @@ module.exports = {
             }
           }
           
+          let zodiacSignParameters = { "zodiacsign": zodiacSign }
+          
           response.speech = horoscope;
           response.displayText = horoscope;
           response.messages = [this.getResponseMessage(horoscope), this.getQuickReplies(quickRepliesTitle, quickRepliesButtons)]
+          response.contextOut = [this.getContextOut("zodiac-sign", zodiacSignParameters, 4)]
           resolve(response)
         }
       )
