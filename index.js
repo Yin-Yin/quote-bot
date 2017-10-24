@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/intent', function(req, res) {
-  console.log("req.body",req.body)
+  // console.log("req.body",req.body)
   let intentName = req.body.result.metadata.intentName;
   let parameters = req.body.result.parameters;
   let contexts = req.body.result.contexts;
