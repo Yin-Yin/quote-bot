@@ -5,6 +5,8 @@ module.exports = {
   // ## API.ai intents ##
   getResponse: function(intentName, parameters, contexts) {
     return new Promise((resolve, reject) => {
+      
+      console.log("Triggerd intent: " + intentName + "with params: " + parameters + ".")
       switch (intentName) {
         // ## zodiac signs ##
         case 'zodiacsign.check':
@@ -59,8 +61,6 @@ module.exports = {
   If a user enters a date we calculate the zodiac sign.
   */
   getZodiacSignCheckResponse: function(date) {
-    console.log("Triggerd intent *zodiacSign.check with params, date: ", date);
-
     let zodiacSign = zodiacSignModule.getZodiacSign(date);
 
     let responseMessageText = "Your zodiac sign is " + zodiacSign + "."
@@ -99,8 +99,6 @@ module.exports = {
   Give the user a picture and information about a zodiac sign. 
   */
   getZodiacSignInfoResponse: function(zodiacSign, contexts) {
-    console.log("Triggerd intent zodiacSign.info with params: ", zodiacSign);
-
     let responseMessageText = zodiacSignModule.getZodiacSignInfo(zodiacSign);
     let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPictureUrl(zodiacSign); //toDo: rename to Image to be conssitent
 
@@ -128,8 +126,6 @@ module.exports = {
   Give the user the chinese zodiac sign for a year or age he provides. 
   */
   getZodiacSignYearResponse: function(year) {
-    console.log("Triggered intent zodiacSign.year with params: ", year);
-
     let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(year);
     let chineseZodiacSignPicturUrl = zodiacSignModule.getChineseZodiacSignPictureUrl(year);
 
@@ -149,9 +145,7 @@ module.exports = {
     and we want to leave the user the possibility to get more information about the zodiac sign from the context.
   */
   getZodiacSignYearContextResponse: function(contexts) {
-    console.log("Triggered intent zodiacSign.year.context with params: ", providedYear);
-
-    let providedYear = '2001';
+    let providedYear = '';
     let zodiacSign = '';
     for (var i = 0; i < contexts.length; i++) { // get values from contexts
       console.log("Iterating over contexts ... ")
@@ -182,8 +176,6 @@ module.exports = {
     It is done here in the backend, because in dialogflow (api.ai) the maximum list number is limited to 10 and we have 12 zodiac signs.
   */
   getZodiacSignList: function() {
-    console.log("Intent zodiacsign.list triggered");
-
     let quickRepliesTitle = "Select a zodiac sign to get information about it:"
     let quickRepliesButtons = ['Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius']
 
@@ -197,8 +189,6 @@ module.exports = {
   Fetch the horoscope for a provided zodiac sign from an API.
   */
   getZodiacSignHoroscopeResponse: function(zodiacSign, contexts) {
-    console.log("Triggerd intent zodiacSign.horoscope with params: ", zodiacSign);
-
     return new Promise((resolve, reject) => {
       zodiacSignModule.getHoroscope(zodiacSign).then(
         (horoscope) => {

@@ -88,14 +88,14 @@ module.exports = {
 
   /* Returns the image url for a zodiac sign */
   getZodiacSignPictureUrl: function(zodiacSign) {
-    console.log("Getting zodiacSign picture for: ", zodiacSign);
+    // console.log("Getting zodiacSign picture for: ", zodiacSign);
     let zodiacPicture = zodiacSignPictureUrlMap.get(zodiacSign);
     return zodiacPicture;
   },
 
   /* Returns the info for a zodiac sign */
   getZodiacSignInfo: function(zodiacSign) {
-    console.log("Getting zodiacSign Info for: ", zodiacSign);
+    // console.log("Getting zodiacSign Info for: ", zodiacSign);
     let zodiacInfo = zodiacSignMap.get(zodiacSign);
     return zodiacInfo;
   },
@@ -115,9 +115,10 @@ module.exports = {
   },
 
   /* Returns the url of the picture for a chinese zodiac sign */
+  // toDo: get the zodiac sign from the zodiac sign we already have and don`t calculate it again here!
   getChineseZodiacSignPictureUrl: function(year) {
     let chineseZodiacSign = this.getChineseZodiacSign(year);
-    console.log("Getting chinese zodiacSign picture for: ", chineseZodiacSign);
+    // console.log("Getting chinese zodiacSign picture for: ", chineseZodiacSign);
     let chineseZodiacPicture = chineseZodiacPicturesUrlMap.get(chineseZodiacSign);
     return chineseZodiacPicture;
   },
