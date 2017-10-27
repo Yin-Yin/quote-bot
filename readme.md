@@ -1,13 +1,10 @@
 # Zodiac Sign Bot #
-A conversational chatbot that gives information about zodiac signs to the user. It calculates the zodiac sign for dates that you give it and gives you information about star signs, like an overview or horoscopes. You can talk to the bot in natural language.
+This conversational chatbot teaches the user all about zodiac signs. 
 
-The code here is the webhook for API.ai. API.ai provides all the natural language processing and chat functionality for the user. This webhook adds additional functionality like calculating the zodiac signs for the provided dates and more.
-
-You can find a web demo of the bot here: https://bot.dialogflow.com/zodiacsignbot.
 You can talk to the bot on Telegram: _'@zodiacsignbot'_ and on kik: _'zodiacsignbot'_.
+A web demo of the bot can be found here: https://bot.dialogflow.com/zodiacsignbot.
 
-
-The bot has the following functionality at the moment: 
+The bot can do the following at the moment: 
 
 1. **Get the zodiac sign for a date:**
 Input a date and the bot will calculate the zodiac sign for that date.
@@ -26,12 +23,14 @@ The bot can give you horoscopes. Type "horoscope" to get the horoscope for pisce
 **Input Examples**: "horoscope pisces"; *with context*: "horoscope"
 
 5. **Help**
-I tried to make the help useful by providing quick actions that guide the user to the most important functionalities of the bot.s
+I tried to make the help useful by providing quick actions that guide the user to the most important functionalities of the bot.
 **Input Examples**: "help"
 
 6. **Small Talk:**
 The bot also knows a bit of small talk.
 **Input Examples**: "Hi", "Tell me a joke,", "How are you?"
+
+The code here on github is the webhook for dialogflow (api.ai). Dialogflow (api.ai) provides all the natural language processing and chat functionality for the user. This webhook provides all the additional functionality like calculating the zodiac signs for the provided dates.
 
 **Known bugs**: 
 - When there are quick actions visible and you are away for more than 10 (?) minutes the context is lost and the user will be asked for input again. 
