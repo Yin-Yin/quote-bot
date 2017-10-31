@@ -26,9 +26,9 @@ module.exports = {
   /*
   Fetch a quote from an API.
   */
-  getQuote: function() {
+  getWebKnoxRandomJoke: function() {
     return new Promise((resolve, reject) => {
-      quoteModule.getQUote().then(
+      quoteModule.getWebKnoxRandomJoke().then(
         (quote) => {
 
           //let quickRepliesTitle = "Want more?"
