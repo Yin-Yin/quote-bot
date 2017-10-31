@@ -5,8 +5,6 @@ module.exports = {
   /*
   quote APIs
   
-  http://forismatic.com/en
-  Here we collect the most inspiring expressions of mankind.
   https://theysaidso.com/api/
   TheySaidSo Famous Quotes API
   https://www.forbes.com/forbesapi/thought/uri.json?enrich=true&query=1&relatedlimit=1
@@ -56,19 +54,43 @@ module.exports = {
       })
     })
   },
-  
-  
+
+
   // API documentation: http://forismatic.com/en/api/
   getForismaticQuote: function(argument) {
     return new Promise((resolve, reject) => {
       let requestUrl = 'https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
-        let resultText = '"' + parsedBody.quoteText + '"' + " Author: " + parsedBody.quoteAuthor ;
+        let resultText = '"' + parsedBody.quoteText + '" - ' + parsedBody.quoteAuthor;
         resolve(resultText)
       })
     })
   },
-  
+
+
+  // API documentation: http://quotes.stormconsultancy.co.uk/api
+  getProgrammingQuote: function(argument) {
+    return new Promise((resolve, reject) => {
+      let requestUrl = 'http://quotes.stormconsultancy.co.uk/random.json'
+      this.fetchFromAPI(requestUrl).then((parsedBody) => {
+        let resultText = '"' + parsedBody.quote + '" - ' + parsedBody.author;
+        resolve(resultText)
+      })
+    })
+  },
+
+
+
+  getStartupIdea: function() {
+    return new Promise((resolve, reject) => {
+      let requestUrl = 'http://itsthisforthat.com/api.php?json'
+      this.fetchFromAPI(requestUrl).then((parsedBody) => {
+        let resultText = parsedBody.this + " for " + parsedBody.that;
+        resolve(resultText)
+      })
+    })
+  },
+
 
   // make the API calls
   fetchFromAPI: function(requestUrl) {
