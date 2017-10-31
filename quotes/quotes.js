@@ -74,7 +74,7 @@ module.exports = {
     */
   },
 
-  fetchFromAPI: (requestUrl) => {
+  fetchFromAPI: function(requestUrl) {
     return new Promise((resolve, reject) => {
       request(requestUrl, function(error, response, body) {
         if (!error && response.statusCode == 200) {
