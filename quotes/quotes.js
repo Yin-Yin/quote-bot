@@ -46,7 +46,7 @@ module.exports = {
     })
   },
 
-  getRandomChuckNorris: () => {
+  getRandomChuckNorris: function(argument) {
     return new Promise((resolve, reject) => {
       let requestUrl = 'https://api.chucknorris.io/jokes/random'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
