@@ -1,4 +1,4 @@
-const quoteModule = require('../quote/quote.js')
+const quoteModule = require('../quotes/quotes.js')
 var response = {}
 
 module.exports = {
