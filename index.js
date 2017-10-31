@@ -2,7 +2,7 @@
 var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
-var apiAiModule = require('./api-ai/api-ai.js')
+var dialogflowModule = require('./dialogflow/dialogflow.js')
 
 // parse application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -16,7 +16,7 @@ app.get('/', function(req, res) {
   res.send('Hi there, this is the webhook for the zodiac sign bot. For more info got to: <a href="https://github.com/Yin-Yin/zodiac-sign-bot/">Zodiac Sign Bot GitHub Page</a>');
 });
 
-app.post('/intent', function(req, res) {
+app.post('/dialogflow', function(req, res) {
   // console.log("req.body",req.body)
   let intentName = req.body.result.metadata.intentName;
   let parameters = req.body.result.parameters;
@@ -25,7 +25,7 @@ app.post('/intent', function(req, res) {
   //console.log("parameters",parameters);
   //es.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   
-  apiAiModule.getResponse(intentName,parameters,contexts).then((response) =>
+  dialogflowModule.getResponse(intentName,parameters,contexts).then((response) =>
   res.send(JSON.stringify({
     //"speech" is the spoken version of the response, "displayText" is the visual version, "messages" are for the different messengers, "contextOut" is the context for api.ai
     "speech": response.speech,
