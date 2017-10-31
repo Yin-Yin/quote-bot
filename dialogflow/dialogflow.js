@@ -9,7 +9,7 @@ module.exports = {
 
       switch (intentName) {
         // ## quotes ##
-        case 'quote':
+        case 'joke':
           resolve(this.getQuote())
           break;
 
@@ -31,23 +31,12 @@ module.exports = {
       quoteModule.getQUote().then(
         (quote) => {
 
-          let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
-          let quickRepliesButtons = ["Info"]
+          //let quickRepliesTitle = "Want more?"
+          //let quickRepliesButtons = ["Info"]
 
-          for (var i = 0; i < contexts.length; i++) {
-            console.log("Iterating over contexts ... ")
-            if (contexts[i].name === "year") {
-              quickRepliesTitle = "Do you want to get more information about " + zodiacSign + " or find out your Chinese Zodiac Sign?"
-              quickRepliesButtons.push("Chinese Zodiac")
-            }
-          }
-
-          let zodiacSignParameters = { "zodiacsign": zodiacSign }
-
-          response.speech = horoscope;
-          response.displayText = horoscope;
-          response.messages = [this.getResponseMessageObject(horoscope), this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons)]
-          response.contextOut = [this.getContextOutObject("zodiac-sign", zodiacSignParameters, 4)]
+          response.speech = quote;
+          response.displayText = quote;
+          response.messages = [this.getResponseMessageObject(quote)]
           resolve(response)
         }
       )

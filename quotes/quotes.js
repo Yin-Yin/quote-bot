@@ -26,21 +26,21 @@ module.exports = {
   
   */
 
-  /* Fetches a quote from an API */
-  getQUote: function() {
+  /* Fetches a random joke from the webknox joke API */
+  getWebKnoxRandomJoke: function() {
     return new Promise((resolve, reject) => {
       console.log("Requesting quote for api: ... ");
-      let requestUrl = 'http://sandipbgt.com/theastrologer/api/horoscope/' + zodiacSign.toLowerCase() + '/today'
+      let requestUrl = 'https://webknox-jokes.p.mashape.com/jokes/random'
       request(requestUrl, function(error, response, body) {
         if (!error && response.statusCode == 200) {
           let parsedBody = JSON.parse(body);
           // console.log(body + '/n' + requestUrl);
-          console.log("Horoscope for " + zodiacSign + " requested successfully.")
-          let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + parsedBody.horoscope;
+          console.log("Joke from getWebKnoxRandomJoke requested successfully.")
+          let horoscope = "This is a random joke from the category " + body.category + ": \n" + parsedBody.joke;
           resolve(horoscope);
         }
         else {
-          reject("The API request for ther horoscope for " + zodiacSign + " failed: " + error);
+          reject("The API request to " + requestUrl + " failed: " + error);
         }
       })
     })
