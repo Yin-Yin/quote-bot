@@ -44,5 +44,27 @@ module.exports = {
         }
       })
     })
-  }
+  },
+  
+  getRandomChuckNorris: () => {
+      return new Promise((resolve, reject) => {
+      console.log("Requesting quote for api: ... ");
+      let requestUrl = 'https://api.chucknorris.io/jokes/random'
+      request(requestUrl, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          let parsedBody = JSON.parse(body);
+          // console.log(body + '/n' + requestUrl);
+          console.log("Chuck Norris Fact from getRandomChuckNorris requested successfully.")
+          let horoscope = "This is a random chuck norris fact: \n" + parsedBody.value;
+          resolve(horoscope);
+        }
+        else {
+          reject("The API request to " + requestUrl + " failed: " + error);
+        }
+      })
+    })
+  },
+  
+  
+  
 }

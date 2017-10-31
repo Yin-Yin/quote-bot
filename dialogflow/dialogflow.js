@@ -10,7 +10,11 @@ module.exports = {
       switch (intentName) {
         // ## quotes ##
         case 'joke':
-          resolve(this.getWebKnoxRandomJoke())
+          resolve(this.getRandomChuckNorris())
+          break;
+
+        case 'chuck-norris':
+          resolve(this.getRandomChuckNorris())
           break;
 
         default:
@@ -26,7 +30,7 @@ module.exports = {
   /*
   Fetch a quote from an API.
   */
-  getWebKnoxRandomJoke: function() {
+  getRandomChuckNorris: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getWebKnoxRandomJoke().then(
         (quote) => {
