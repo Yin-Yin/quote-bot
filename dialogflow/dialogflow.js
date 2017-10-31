@@ -32,7 +32,7 @@ module.exports = {
   */
   getRandomChuckNorris: function() {
     return new Promise((resolve, reject) => {
-      quoteModule.getWebKnoxRandomJoke().then(
+      quoteModule.getRandomChuckNorris().then(
         (quote) => {
 
           //let quickRepliesTitle = "Want more?"
