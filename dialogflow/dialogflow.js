@@ -17,6 +17,10 @@ module.exports = {
           resolve(this.getRandomChuckNorris())
           break;
 
+        case 'quote':
+          resolve(this.getRandomChuckNorris())
+          break;
+
         default:
           console.log("Something went wrong. The default switch case was triggered. This means there was a intent triggered from api.ai that is not yet implemented in the webhook You triggered the intent: " + intentName + ", with the parameters: " + parameters)
           reject("Something went wrong. Sorry about that.")
@@ -33,6 +37,23 @@ module.exports = {
   getRandomChuckNorris: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getRandomChuckNorris().then(
+        (quote) => {
+
+          //let quickRepliesTitle = "Want more?"
+          //let quickRepliesButtons = ["Info"]
+
+          response.speech = quote;
+          response.displayText = quote;
+          response.messages = [this.getResponseMessageObject(quote)]
+          resolve(response)
+        }
+      )
+    })
+  },
+  
+    getForismaticQuote: function() {
+    return new Promise((resolve, reject) => {
+      quoteModule.getForismaticQuote().then(
         (quote) => {
 
           //let quickRepliesTitle = "Want more?"

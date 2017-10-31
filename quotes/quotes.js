@@ -46,6 +46,7 @@ module.exports = {
     })
   },
 
+  // API documentation: https://api.chucknorris.io/#!
   getRandomChuckNorris: function(argument) {
     return new Promise((resolve, reject) => {
       let requestUrl = 'https://api.chucknorris.io/jokes/random'
@@ -54,26 +55,22 @@ module.exports = {
         resolve(chukcNorrisFact)
       })
     })
-    /*
-      return new Promise((resolve, reject) => {
-      console.log("Requesting quote for api: ... ");
-      let requestUrl = 'https://api.chucknorris.io/jokes/random'
-      request(requestUrl, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-          let parsedBody = JSON.parse(body);
-          // console.log(body + '/n' + requestUrl);
-          console.log("Chuck Norris Fact from getRandomChuckNorris requested successfully.")
-          let horoscope = parsedBody.value;
-          resolve(horoscope);
-        }
-        else {
-          reject("The API request to " + requestUrl + " failed: " + error);
-        }
+  },
+  
+  
+  // API documentation: http://forismatic.com/en/api/
+  getForismaticQuote: function(argument) {
+    return new Promise((resolve, reject) => {
+      let requestUrl = 'https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en'
+      this.fetchFromAPI(requestUrl).then((parsedBody) => {
+        let resultText = '"' + parsedBody.quoteText + '"' + " Author: " + parsedBody.quoteAuthor ;
+        resolve(resultText)
       })
     })
-    */
   },
+  
 
+  // make the API calls
   fetchFromAPI: function(requestUrl) {
     return new Promise((resolve, reject) => {
       request(requestUrl, function(error, response, body) {
