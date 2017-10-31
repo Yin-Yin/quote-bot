@@ -9,16 +9,14 @@ module.exports = {
   TheySaidSo Famous Quotes API
   https://www.forbes.com/forbesapi/thought/uri.json?enrich=true&query=1&relatedlimit=1
   https://en.wikiquote.org/w/api.php
-  http://quotes.stormconsultancy.co.uk/api
-  A hand picked selection of quotes from the field of computer science.
-  https://whatdoestrumpthink.com/api-docs/index.html#introduction
-  https://quotesondesign.com/api-v4-0/
   http://www.icndb.com/api/
   CHuck Norris Jokes
   https://www.programmableweb.com/api/chuck-norris-facts
   Chuck Norris Facts API
   https://talaikis.com/random_quotes_api/
   Random quotes API 72,000+ at the moment
+  yo mama jokes
+  http://api.yomomma.info/ 
   
   
   
@@ -45,6 +43,7 @@ module.exports = {
   },
 
   // API documentation: https://api.chucknorris.io/#!
+  // alternative: http://www.icndb.com/api/
   getRandomChuckNorris: function(argument) {
     return new Promise((resolve, reject) => {
       let requestUrl = 'https://api.chucknorris.io/jokes/random'
@@ -54,7 +53,6 @@ module.exports = {
       })
     })
   },
-
 
   // API documentation: http://forismatic.com/en/api/
   getForismaticQuote: function(argument) {
@@ -67,7 +65,6 @@ module.exports = {
     })
   },
 
-
   // API documentation: http://quotes.stormconsultancy.co.uk/api
   getProgrammingQuote: function(argument) {
     return new Promise((resolve, reject) => {
@@ -79,7 +76,16 @@ module.exports = {
     })
   },
 
-
+  // API documentation: https://whatdoestrumpthink.com/api-docs/index.html#introduction
+  getRandomTrumpQuote: function(argument) {
+    return new Promise((resolve, reject) => {
+      let requestUrl = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random'
+      this.fetchFromAPI(requestUrl).then((parsedBody) => {
+        let resultText = '"' + parsedBody.message + '" - Donald Trump';
+        resolve(resultText)
+      })
+    })
+  },
 
   getStartupIdea: function() {
     return new Promise((resolve, reject) => {
@@ -87,6 +93,20 @@ module.exports = {
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
         let resultText = parsedBody.this + " for " + parsedBody.that;
         resolve(resultText)
+      })
+    })
+  },
+
+  // api documentation: https://yesno.wtf/#api
+  getYesOrNo: function() {
+    return new Promise((resolve, reject) => {
+      let requestUrl = 'https://yesno.wtf/api/'
+      this.fetchFromAPI(requestUrl).then((parsedBody) => {
+        let resultObject = {
+          "text": parsedBody.answer,
+          "imageUrl": parsedBody.image
+        };
+        resolve(resultObject)
       })
     })
   },
