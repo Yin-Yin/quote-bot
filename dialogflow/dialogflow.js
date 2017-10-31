@@ -10,7 +10,7 @@ module.exports = {
       switch (intentName) {
         // ## quotes ##
         case 'joke':
-          resolve(this.getQuote())
+          resolve(this.getWebKnoxRandomJoke())
           break;
 
         default:
