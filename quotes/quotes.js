@@ -84,7 +84,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       let requestUrl = 'https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
-        let resultText = '"' + parsedBody.quoteText + '" - ' + parsedBody.quoteAuthor;
+        let resultText = parsedBody.quoteText + '- ' + parsedBody.quoteAuthor;
         resolve(resultText)
       })
     })
@@ -95,7 +95,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       let requestUrl = 'http://quotes.stormconsultancy.co.uk/random.json'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
-        let resultText = '"' + parsedBody.quote + '" - ' + parsedBody.author;
+        let resultText = parsedBody.quote + ' - ' + parsedBody.author;
         resolve(resultText)
       })
     })

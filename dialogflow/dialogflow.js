@@ -36,28 +36,27 @@ module.exports = {
         case 'yes-no':
           resolve(this.getYesOrNo())
           break;
-          
+
         case 'number-trivia':
           resolve(this.getNumberTrivia())
           break;
-          
+
         case 'year-trivia':
           resolve(this.getYearTrivia())
           break;
-          
+
         case 'cat-fact':
           resolve(this.getCatFact())
           break;
-          
+
         case 'dog-fact':
           resolve(this.getDogFact())
           break;
-          
-          
-        /*
-        case 'entertain-me':
-          resolve(this.getEntertainMe())
-          break;*/
+
+          /*
+          case 'entertain-me':
+            resolve(this.getEntertainMe())
+            break;*/
 
         default:
           console.log("Something went wrong. The default switch case was triggered. This means there was a intent triggered from api.ai that is not yet implemented in the webhook You triggered the intent: " + intentName + ", with the parameters: " + parameters)
@@ -95,15 +94,8 @@ module.exports = {
   getRandomChuckNorris: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getRandomChuckNorris().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
@@ -112,33 +104,18 @@ module.exports = {
   getForismaticQuote: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getForismaticQuote().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
   },
 
-
   getStartupIdea: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getStartupIdea().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
@@ -147,103 +124,58 @@ module.exports = {
   getProgrammingQuote: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getProgrammingQuote().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
   },
-
 
   getRandomTrumpQuote: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getRandomTrumpQuote().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
   },
-  
+
   getNumberTrivia: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getNumberTrivia().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
-    
   },
-    
-    getYearTrivia: function() {
+
+  getYearTrivia: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getYearTrivia().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
   },
-  
+
   getCatFact: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getCatFact().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
   },
-  
-  
+
   getDogFact: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getDogFact().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
@@ -253,10 +185,6 @@ module.exports = {
     return new Promise((resolve, reject) => {
       quoteModule.getYesOrNo().then(
         (resultObject) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
           response.speech = resultObject.text;
           response.displayText = resultObject.text;
           response.messages = [this.getResponseMessageObject(resultObject.text), this.getImageObject(resultObject.imageUrl)]
@@ -266,27 +194,35 @@ module.exports = {
     })
   },
 
-/*
-  getEntertainMe: function() {
-    
-    let intents = ['joke', 'programming', 'Chuck Norris']
-    let randomIntent = 
+  /*
+    getEntertainMe: function() {
+      
+      let intents = ['joke', 'programming', 'Chuck Norris']
+      let randomIntent = 
 
-    //let quickRepliesTitle = "Want more?"
-    //let quickRepliesButtons = ["Info"]
+      //let quickRepliesTitle = "Want more?"
+      //let quickRepliesButtons = ["Info"]
 
-    response.speech = resultObject.randomIntent;
-    response.displayText = resultObject.text;
-    response.messages = [this.getResponseMessageObject(resultObject.text), this.getImageObject(resultObject.imageUrl)]
-    resolve(response)
+      response.speech = resultObject.randomIntent;
+      response.displayText = resultObject.text;
+      response.messages = [this.getResponseMessageObject(resultObject.text), this.getImageObject(resultObject.imageUrl)]
+      resolve(response)
 
-  },*/
+    },*/
 
 
 
 
 
   // ### construct the reponse objects for dialogflow ###
+
+  getSimpleResponse: function(text) {
+    return {
+      "speech": text,
+      "displayText": text,
+      "messages": [this.getResponseMessageObject(text)]
+    }
+  },
 
   getResponseMessageObject: function(messageText) { // may be it would be better to call this a more specific name: like getResponseMessageObjectObject - because what we are doing here is creating an object!
     return {
