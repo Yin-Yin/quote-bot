@@ -18,31 +18,10 @@ jokesMap.set('15', 'I poured root beer in a square glass.\nNow I just have beer.
 
 module.exports = {
 
-
+  /* Fetches a random joke from the map joke API */
+  // toDo: if there is any API, it would be great to integrate it. There is one API at the moment, but it is not free...
   /*
-  quote APIs
-  
-  https://theysaidso.com/api/
-  TheySaidSo Famous Quotes API
-  https://www.forbes.com/forbesapi/thought/uri.json?enrich=true&query=1&relatedlimit=1
-  https://en.wikiquote.org/w/api.php
-  http://www.icndb.com/api/
-  CHuck Norris Jokes
-  https://www.programmableweb.com/api/chuck-norris-facts
-  Chuck Norris Facts API
-  https://talaikis.com/random_quotes_api/
-  Random quotes API 72,000+ at the moment
-  yo mama jokes
-  http://api.yomomma.info/ 
-  
-  
-  
-  */
-
-
-  /* Fetches a random joke from the webknox joke API */
-  /*
-  getWebKnoxRandomJoke: function() {
+  getRandomJoke: function() {
     return new Promise((resolve, reject) => {
       console.log("Requesting quote for api: ... ");
       let requestUrl = 'https://webknox-jokes.p.mashape.com/jokes/random'
@@ -66,6 +45,9 @@ module.exports = {
     })
   },
   */
+  getRandomJoke: function() {
+    return jokesMap.get(Math.floor(Math.random() * jokesMap.size) + 1); // get a random joke from the map
+  },
 
   // API documentation: https://api.chucknorris.io/#!
   // alternative: http://www.icndb.com/api/
@@ -194,7 +176,6 @@ module.exports = {
     })
   },
 
-
   // make the API calls
   fetchFromAPI: function(requestUrl) {
     return new Promise((resolve, reject) => {
@@ -209,7 +190,6 @@ module.exports = {
         }
       })
     })
-  }
-
+  },
 
 }

@@ -10,7 +10,7 @@ module.exports = {
       switch (intentName) {
         // ## quotes ##
         case 'joke':
-          resolve(this.getRandomChuckNorris())
+          resolve(this.getRandomJoke())
           break;
 
         case 'chuck-norris':
@@ -53,11 +53,6 @@ module.exports = {
           resolve(this.getDogFact())
           break;
 
-          /*
-          case 'entertain-me':
-            resolve(this.getEntertainMe())
-            break;*/
-
         default:
           console.log("Something went wrong. The default switch case was triggered. This means there was a intent triggered from api.ai that is not yet implemented in the webhook You triggered the intent: " + intentName + ", with the parameters: " + parameters)
           reject("Something went wrong. Sorry about that.")
@@ -72,24 +67,15 @@ module.exports = {
   Fetch a quote from an API.
   */
 
-  /*
-  getWebKnoxRandomJoke: function() {
+  getRandomJoke: function() {
     return new Promise((resolve, reject) => {
-      quoteModule.getWebKnoxRandomJoke().then(
-        (quote) => {
-
-          //let quickRepliesTitle = "Want more?"
-          //let quickRepliesButtons = ["Info"]
-
-          response.speech = quote;
-          response.displayText = quote;
-          response.messages = [this.getResponseMessageObject(quote)]
-          resolve(response)
+      quoteModule.getRandomJoke().then(
+        (text) => {
+          resolve(this.getSimpleResponse(text))
         }
       )
     })
   },
-  */
 
   getRandomChuckNorris: function() {
     return new Promise((resolve, reject) => {
@@ -194,26 +180,6 @@ module.exports = {
     })
   },
 
-  /*
-    getEntertainMe: function() {
-      
-      let intents = ['joke', 'programming', 'Chuck Norris']
-      let randomIntent = 
-
-      //let quickRepliesTitle = "Want more?"
-      //let quickRepliesButtons = ["Info"]
-
-      response.speech = resultObject.randomIntent;
-      response.displayText = resultObject.text;
-      response.messages = [this.getResponseMessageObject(resultObject.text), this.getImageObject(resultObject.imageUrl)]
-      resolve(response)
-
-    },*/
-
-
-
-
-
   // ### construct the reponse objects for dialogflow ###
 
   getSimpleResponse: function(text) {
@@ -253,7 +219,4 @@ module.exports = {
       "lifespan": lifespan
     }
   },
-
-
-
 }
