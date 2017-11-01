@@ -124,24 +124,33 @@ module.exports = {
 
   // api documentatioN: http://numbersapi.com/#random/trivia
   getNumberTrivia: function() {
+    let requestUrl = 'http://numbersapi.com/random/trivia'
     return new Promise((resolve, reject) => {
-      let requestUrl = 'http://numbersapi.com/random/trivia'
-      this.fetchFromAPI(requestUrl).then((parsedBody) => {
-        let resultText = '"' + parsedBody + '"';
-        console.log("resultText: ",resultText)
-        resolve(resultText)
+      request(requestUrl, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log("API request to " + requestUrl + " successfull.")
+          resolve(body);
+        }
+        else {
+          reject("The API request to " + requestUrl + " failed: " + error);
+        }
       })
     })
   },
 
   // api documentation: http://numbersapi.com/#random/trivia
   getYearTrivia: function() {
+
+    let requestUrl = 'http://numbersapi.com/random/year'
     return new Promise((resolve, reject) => {
-      let requestUrl = 'http://numbersapi.com/random/year'
-      this.fetchFromAPI(requestUrl).then((parsedBody) => {
-        let resultText = '"' + parsedBody + '"';
-        console.log("resultText: ",resultText)
-        resolve(resultText)
+      request(requestUrl, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log("API request to " + requestUrl + " successfull.")
+          resolve(body);
+        }
+        else {
+          reject("The API request to " + requestUrl + " failed: " + error);
+        }
       })
     })
   },
