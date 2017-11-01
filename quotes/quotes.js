@@ -127,7 +127,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       let requestUrl = 'http://numbersapi.com/random/trivia'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
-        let resultText = parsedBody;
+        let resultText = '"' + parsedBody + '"';
         console.log("resultText: ",resultText)
         resolve(resultText)
       })
@@ -139,7 +139,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       let requestUrl = 'http://numbersapi.com/random/year'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
-        let resultText = parsedBody;
+        let resultText = '"' + parsedBody + '"';
         console.log("resultText: ",resultText)
         resolve(resultText)
       })
