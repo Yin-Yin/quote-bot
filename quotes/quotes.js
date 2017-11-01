@@ -48,7 +48,8 @@ module.exports = {
   getRandomJoke: function() {
     let randomNumberOfJoke = Math.floor(Math.random() * jokesMap.size) + 1;
     console.log("randomNumberOfJoke: ", randomNumberOfJoke);
-    return jokesMap.get(jokesMap.size); // get a random joke from the jokesMap
+    console.log("jokesMap.size: ", jokesMap.size);
+    return jokesMap.get(randomNumberOfJoke); // get a random joke from the jokesMap
   },
 
   // API documentation: https://api.chucknorris.io/#!
