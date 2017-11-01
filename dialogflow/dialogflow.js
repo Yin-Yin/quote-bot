@@ -5,7 +5,7 @@ module.exports = {
   // ## dialogflow intents ##
   getResponse: function(intentName, parameters, contexts) {
     return new Promise((resolve, reject) => {
-      console.log("Triggerd intent: " + intentName + "with params: " + parameters + ".")
+      console.log("Triggerd intent: " + intentName + ".")
 
       switch (intentName) {
         case 'joke':
