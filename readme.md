@@ -10,4 +10,8 @@ Programming Quote
 Trump Quote
 CHuck Nottis Fact
 Start Up Idea
+Cat Fact
+Dog Fact
+Random Year Fact
+Random Number Fact
 Yes or no
