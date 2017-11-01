@@ -18,6 +18,7 @@ This is what the bot can do at the moment:
 
 __Possible improvements__
 - Add some more content with maps
+- Reduce size of functions, eliminate duplicate code
 
 more quote APIs
 https://theysaidso.com/api/

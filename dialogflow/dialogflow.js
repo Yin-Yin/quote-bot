@@ -66,7 +66,9 @@ module.exports = {
   Fetch a quote from an API.
   */
   getRandomJoke: function() {
-    return this.getSimpleResponse(quoteModule.getRandomJoke())
+    let text = quoteModule.getRandomJoke();
+    console.log("quoteModule.getRandomJoke()",text);
+    return this.getSimpleResponse(text)
   },
 
   getRandomChuckNorris: function() {
