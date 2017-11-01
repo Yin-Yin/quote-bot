@@ -8,7 +8,6 @@ module.exports = {
       console.log("Triggerd intent: " + intentName + "with params: " + parameters + ".")
 
       switch (intentName) {
-        // ## quotes ##
         case 'joke':
           resolve(this.getRandomJoke())
           break;

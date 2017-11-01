@@ -46,7 +46,7 @@ module.exports = {
   },
   */
   getRandomJoke: function() {
-    return this.jokesMap.get(Math.floor(Math.random() * jokesMap.size) + 1); // get a random joke from the jokesMap
+    return jokesMap.get(Math.floor(Math.random() * jokesMap.size) + 1); // get a random joke from the jokesMap
   },
 
   // API documentation: https://api.chucknorris.io/#!
