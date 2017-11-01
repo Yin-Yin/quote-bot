@@ -66,15 +66,8 @@ module.exports = {
   /*
   Fetch a quote from an API.
   */
-
   getRandomJoke: function() {
-    return new Promise((resolve, reject) => {
-      quoteModule.getRandomJoke().then(
-        (text) => {
-          resolve(this.getSimpleResponse(text))
-        }
-      )
-    })
+    return this.getSimpleResponse(quoteModule.getRandomJoke())
   },
 
   getRandomChuckNorris: function() {
