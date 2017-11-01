@@ -45,6 +45,10 @@ module.exports = {
           resolve(this.getYearTrivia())
           break;
           
+        case 'cat-fact':
+          resolve(this.getCatFact())
+          break;
+          
         /*
         case 'entertain-me':
           resolve(this.getEntertainMe())
@@ -205,6 +209,22 @@ module.exports = {
     })
   },
   
+  getCatFact: function() {
+    return new Promise((resolve, reject) => {
+      quoteModule.getCatFact().then(
+        (quote) => {
+
+          //let quickRepliesTitle = "Want more?"
+          //let quickRepliesButtons = ["Info"]
+
+          response.speech = quote;
+          response.displayText = quote;
+          response.messages = [this.getResponseMessageObject(quote)]
+          resolve(response)
+        }
+      )
+    })
+  },
   
 
   getYesOrNo: function() {
