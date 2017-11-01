@@ -49,6 +49,11 @@ module.exports = {
           resolve(this.getCatFact())
           break;
           
+        case 'dog-fact':
+          resolve(this.getDogFact())
+          break;
+          
+          
         /*
         case 'entertain-me':
           resolve(this.getEntertainMe())
@@ -226,6 +231,23 @@ module.exports = {
     })
   },
   
+  
+  getDogFact: function() {
+    return new Promise((resolve, reject) => {
+      quoteModule.getDogFact().then(
+        (quote) => {
+
+          //let quickRepliesTitle = "Want more?"
+          //let quickRepliesButtons = ["Info"]
+
+          response.speech = quote;
+          response.displayText = quote;
+          response.messages = [this.getResponseMessageObject(quote)]
+          resolve(response)
+        }
+      )
+    })
+  },
 
   getYesOrNo: function() {
     return new Promise((resolve, reject) => {

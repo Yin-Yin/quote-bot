@@ -125,7 +125,7 @@ module.exports = {
   // api documentatioN: http://numbersapi.com/#random/trivia
   getNumberTrivia: function() {
     return new Promise((resolve, reject) => {
-      let requestUrl = 'numbersapi.com/random/trivia'
+      let requestUrl = 'http://numbersapi.com/random/trivia'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
         resolve(parsedBody)
       })
@@ -135,7 +135,7 @@ module.exports = {
   // api documentation: http://numbersapi.com/#random/trivia
   getYearTrivia: function() {
     return new Promise((resolve, reject) => {
-      let requestUrl = 'numbersapi.com/random/year'
+      let requestUrl = 'http://numbersapi.com/random/year'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
         resolve(parsedBody)
       })
@@ -146,6 +146,17 @@ module.exports = {
   getCatFact: function() {
     return new Promise((resolve, reject) => {
       let requestUrl = 'https://catfact.ninja/fact'
+      this.fetchFromAPI(requestUrl).then((parsedBody) => {
+        let resultText = parsedBody.fact;
+        resolve(resultText)
+      })
+    })
+  },
+
+  // api documentation: https://fact.birb.pw/
+  getDogFact: function() {
+    return new Promise((resolve, reject) => {
+      let requestUrl = 'https://fact.birb.pw/api/v1/dog'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
         let resultText = parsedBody.fact;
         resolve(resultText)
