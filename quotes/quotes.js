@@ -1,5 +1,21 @@
 const request = require('request');
 
+const jokesMap = new Map();
+jokesMap.set('1','Three guys stranded on a desert island find a magic lantern containing a genie, who grants them each one wish. The first guy wishes he was off the island and back home. The second guy wishes the same. The third guy says: ‘I’m lonely. I wish my friends were back here.’');
+jokesMap.set('2','Here’s some advice: At a job interview, tell them you’re willing to give 110 percent. Unless the job is a statistician.');
+jokesMap.set('3','After a talking sheepdog gets all the sheep in the pen, he reports back to the farmer: “All 40 accounted for.”\n“But I only have 36 sheep,” says the farmer.\n“I know,” says the sheepdog. “But I rounded them up.”');
+jokesMap.set('4','Q: What did Al Gore play on his guitar?\n\nA: An Algorithm');
+jokesMap.set('5',"-Have you heard of Murphy's Law\n-Yes, anything can go wrong will go wrong\n-What's about Cole's law?\n-No\n-It's a thin-slice cabbage dripped in mayonnaise and sour cream");
+jokesMap.set('7','Dr Frankenstein entered a body building contest. Upon arrival he realised he misunderstood the objective.');
+jokesMap.set('8',"People laughed at me when I said I wanted to be a comedian. Well, they're not laughing now.\n(Bob Monkhouse)");
+jokesMap.set('9','My wife told me I need to quit playing Wonderwall on guitar.\nI said maybe...');
+jokesMap.set('10','What is the difference between a hippo and a zippo?\nOne is really heavy, and the other is a little lighter.');
+jokesMap.set('11','I stayed up all night wondering where the sun went. Then it dawned on me.');
+jokesMap.set('12','I forgot how to throw a boomerang. Then it came back to me.');
+jokesMap.set('13',"Why did the old man fall in the well?\nBecause he couldn't see that well.");
+jokesMap.set('14','What do you call a dog that does magic tricks?\nA labracadabrador.');
+jokesMap.set('15','I poured root beer in a square glass.\nNow I just have beer.');
+
 module.exports = {
 
   /*
@@ -27,16 +43,21 @@ module.exports = {
     return new Promise((resolve, reject) => {
       console.log("Requesting quote for api: ... ");
       let requestUrl = 'https://webknox-jokes.p.mashape.com/jokes/random'
+      let requesObject = {
+        
+      }
       request(requestUrl, function(error, response, body) {
         if (!error && response.statusCode == 200) {
           let parsedBody = JSON.parse(body);
           // console.log(body + '/n' + requestUrl);
           console.log("Joke from getWebKnoxRandomJoke requested successfully.")
-          let horoscope = "This is a random joke from the category " + body.category + ": \n" + parsedBody.joke;
-          resolve(horoscope);
+          let resultText = "This is a random joke from the category " + body.category + ": \n" + parsedBody.joke;
+          resolve(resultText);
         }
         else {
-          reject("The API request to " + requestUrl + " failed: " + error);
+          console.log("The API request to " + requestUrl + " failed: " + error + " This might be because the free quota of this API has been exceeded. In this case a joke from the map will be catched.")
+          let resultText = jokesMap.get(Math.floor(Math.random() * jokesMap.size) + 1); // get a random joke from the map
+          resolve(resultText);
         }
       })
     })
@@ -87,6 +108,7 @@ module.exports = {
     })
   },
 
+  // website: http://itsthisforthat.com/
   getStartupIdea: function() {
     return new Promise((resolve, reject) => {
       let requestUrl = 'http://itsthisforthat.com/api.php?json'
@@ -96,6 +118,29 @@ module.exports = {
       })
     })
   },
+  
+  // api documentatioN: http://numbersapi.com/#random/trivia
+  getNumberTrivia: function() {
+    return new Promise((resolve, reject) => {
+      let requestUrl = 'numbersapi.com/random/trivia'
+      this.fetchFromAPI(requestUrl).then((parsedBody) => {
+        resolve(parsedBody)
+      })
+    })
+  },
+  
+    // api documentatioN: http://numbersapi.com/#random/trivia
+  getYearTrivia: function() {
+    return new Promise((resolve, reject) => {
+      let requestUrl = 'numbersapi.com/random/year'
+      this.fetchFromAPI(requestUrl).then((parsedBody) => {
+        resolve(parsedBody)
+      })
+    })
+  },
+  
+  
+  
 
   // api documentation: https://yesno.wtf/#api
   getYesOrNo: function() {

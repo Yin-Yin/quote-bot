@@ -37,6 +37,14 @@ module.exports = {
           resolve(this.getYesOrNo())
           break;
           
+        case 'number-trivia':
+          resolve(this.getNumberTrivia())
+          break;
+          
+        case 'year-trivia':
+          resolve(this.getYearTrivia())
+          break;
+          
         /*
         case 'entertain-me':
           resolve(this.getEntertainMe())
@@ -55,6 +63,26 @@ module.exports = {
   /*
   Fetch a quote from an API.
   */
+
+  /*
+  getWebKnoxRandomJoke: function() {
+    return new Promise((resolve, reject) => {
+      quoteModule.getWebKnoxRandomJoke().then(
+        (quote) => {
+
+          //let quickRepliesTitle = "Want more?"
+          //let quickRepliesButtons = ["Info"]
+
+          response.speech = quote;
+          response.displayText = quote;
+          response.messages = [this.getResponseMessageObject(quote)]
+          resolve(response)
+        }
+      )
+    })
+  },
+  */
+
   getRandomChuckNorris: function() {
     return new Promise((resolve, reject) => {
       quoteModule.getRandomChuckNorris().then(
@@ -141,6 +169,43 @@ module.exports = {
       )
     })
   },
+  
+  getNumberTrivia: function() {
+    return new Promise((resolve, reject) => {
+      quoteModule.getNumberTrivia().then(
+        (quote) => {
+
+          //let quickRepliesTitle = "Want more?"
+          //let quickRepliesButtons = ["Info"]
+
+          response.speech = quote;
+          response.displayText = quote;
+          response.messages = [this.getResponseMessageObject(quote)]
+          resolve(response)
+        }
+      )
+    })
+    
+  },
+    
+    getYearTrivia: function() {
+    return new Promise((resolve, reject) => {
+      quoteModule.getYearTrivia().then(
+        (quote) => {
+
+          //let quickRepliesTitle = "Want more?"
+          //let quickRepliesButtons = ["Info"]
+
+          response.speech = quote;
+          response.displayText = quote;
+          response.messages = [this.getResponseMessageObject(quote)]
+          resolve(response)
+        }
+      )
+    })
+  },
+  
+  
 
   getYesOrNo: function() {
     return new Promise((resolve, reject) => {
