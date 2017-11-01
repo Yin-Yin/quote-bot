@@ -158,7 +158,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       let requestUrl = 'https://fact.birb.pw/api/v1/dog'
       this.fetchFromAPI(requestUrl).then((parsedBody) => {
-        let resultText = parsedBody.fact;
+        let resultText = parsedBody.string;
         resolve(resultText)
       })
     })
