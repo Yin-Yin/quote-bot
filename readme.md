@@ -3,6 +3,7 @@
 Webhook for a chatbot that gives random quotes and facts from various APIs to the user.
 
 Demo: https://bot.dialogflow.com/quoteBot
+on kik: __randomquotebot__
 
 This is what the bot can do at the moment: 
 - __Quote__ Get a  random inspirational quote. from API: http://forismatic.com/en/api/ _Example:_ "quote"
