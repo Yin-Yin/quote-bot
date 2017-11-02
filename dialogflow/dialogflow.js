@@ -180,7 +180,7 @@ module.exports = {
     return {
       "speech": text,
       "displayText": text,
-      "messages": [this.getResponseMessageObject(text), this.getQuickRepliesObject("", ["Quote", "Chuck Norris Fact", "Programming Quote", "Trump Quote", "Cat Fact", "Dog Fact", "Random number fact", "Random year fact", "yes or no?"])]
+      "messages": [this.getResponseMessageObject(text), this.getQuickRepliesObject(":)", ["Quote", "Chuck Norris Fact", "Programming Quote", "Trump Quote", "Cat Fact", "Dog Fact", "Random number fact", "Random year fact", "yes or no?"])]
     }
   },
 
