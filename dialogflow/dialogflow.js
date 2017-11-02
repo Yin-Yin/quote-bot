@@ -167,7 +167,7 @@ module.exports = {
         (resultObject) => {
           response.speech = resultObject.text;
           response.displayText = resultObject.text;
-          response.messages = [this.getResponseMessageObject(resultObject.text), this.getImageObject(resultObject.imageUrl), this.getQuickRepliesObject("", ["Quote", "Chuck Norris Fact", "Programming Quote", "Trump Quote", "Cat Fact", "Dog Fact", "Random number fact", "Random year fact", "yes or no?"])]
+          response.messages = [this.getResponseMessageObject(resultObject.text), this.getImageObject(resultObject.imageUrl), this.getQuickRepliesObject("More?", ["Quote", "Chuck Norris Fact", "Programming Quote", "Trump Quote", "Cat Fact", "Dog Fact", "Random number fact", "Random year fact", "yes or no?"])]
           resolve(response)
         }
       )
